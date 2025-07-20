@@ -47,19 +47,41 @@ const handleWheelScroll = (e) => {
     return; // Already at the edge
   }
   
-  // Scroll to target section
+  // Scroll to target section with custom smooth animation
   const targetSection = sections[targetSectionIndex];
+  const startScrollTop = container.scrollTop;
+  const targetScrollTop = targetSection.offsetTop;
+  const distance = targetScrollTop - startScrollTop;
+  const duration = 1200; // Increased duration for smoother animation
+  let startTime = null;
+  
   isScrolling = true;
   
-  container.scrollTo({
-    top: targetSection.offsetTop,
-    behavior: 'smooth'
-  });
+  // Custom easing function for smoother animation
+  const easeInOutCubic = (t) => {
+    return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+  };
   
-  // Reset scrolling flag after animation
-  setTimeout(() => {
-    isScrolling = false;
-  }, 800);
+  const animateScroll = (currentTime) => {
+    if (startTime === null) startTime = currentTime;
+    const timeElapsed = currentTime - startTime;
+    const progress = Math.min(timeElapsed / duration, 1);
+    
+    // Apply easing function
+    const easedProgress = easeInOutCubic(progress);
+    
+    // Calculate current scroll position
+    const currentScrollPosition = startScrollTop + (distance * easedProgress);
+    container.scrollTop = currentScrollPosition;
+    
+    if (progress < 1) {
+      requestAnimationFrame(animateScroll);
+    } else {
+      isScrolling = false;
+    }
+  };
+  
+  requestAnimationFrame(animateScroll);
 };
 
 onMounted(() => {
