@@ -11,17 +11,35 @@ const createStars = () => {
   const container = starsContainer.value
   if (!container) return
 
-  // Create different types of stars
+  // Create different types of stars with much more variety
   const starTypes = [
-    { count: 150, size: 1, opacity: 0.8, speed: 20 },
-    { count: 100, size: 2, opacity: 0.6, speed: 30 },
-    { count: 50, size: 3, opacity: 0.4, speed: 40 }
+    // Dense field of tiny stationary twinkling stars
+    { count: 400, size: 0.5, opacity: 0.9, speed: 10, stationary: true },
+    { count: 350, size: 1, opacity: 0.8, speed: 15, stationary: true },
+    { count: 250, size: 1.5, opacity: 0.7, speed: 20, stationary: true },
+    { count: 200, size: 2, opacity: 0.6, speed: 25, stationary: true },
+    { count: 150, size: 2.5, opacity: 0.5, speed: 30, stationary: true },
+    { count: 100, size: 3, opacity: 0.4, speed: 35, stationary: true },
+    { count: 75, size: 3.5, opacity: 0.3, speed: 40, stationary: true },
+    
+    // Moving/floating stars of various sizes
+    { count: 120, size: 0.5, opacity: 0.8, speed: 45, stationary: false },
+    { count: 100, size: 1, opacity: 0.7, speed: 50, stationary: false },
+    { count: 80, size: 1.5, opacity: 0.6, speed: 55, stationary: false },
+    { count: 60, size: 2, opacity: 0.5, speed: 60, stationary: false },
+    { count: 40, size: 2.5, opacity: 0.4, speed: 65, stationary: false },
+    { count: 30, size: 3, opacity: 0.3, speed: 70, stationary: false },
+    
+    // Slow drifting larger stars
+    { count: 20, size: 4, opacity: 0.2, speed: 80, stationary: false },
+    { count: 15, size: 4.5, opacity: 0.15, speed: 90, stationary: false },
+    { count: 10, size: 5, opacity: 0.1, speed: 100, stationary: false },
   ]
 
   starTypes.forEach(type => {
     for (let i = 0; i < type.count; i++) {
       const star = document.createElement('div')
-      star.className = 'star'
+      star.className = type.stationary ? 'star stationary' : 'star moving'
       
       // Random position
       star.style.left = Math.random() * 100 + '%'
@@ -32,9 +50,17 @@ const createStars = () => {
       star.style.height = type.size + 'px'
       star.style.opacity = Math.random() * type.opacity
       
-      // Animation duration
-      star.style.animationDuration = (type.speed + Math.random() * 20) + 's'
-      star.style.animationDelay = Math.random() * 20 + 's'
+      // Animation duration with more variety
+      star.style.animationDuration = (type.speed + Math.random() * 40) + 's'
+      star.style.animationDelay = Math.random() * 60 + 's'
+      
+      // For moving stars, add random movement direction
+      if (!type.stationary) {
+        const moveX = (Math.random() - 0.5) * 300
+        const moveY = (Math.random() - 0.5) * 300
+        star.style.setProperty('--moveX', moveX + 'px')
+        star.style.setProperty('--moveY', moveY + 'px')
+      }
       
       container.appendChild(star)
     }
@@ -56,7 +82,7 @@ const createStars = () => {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: -1;
+  z-index: 1;
   overflow: hidden;
 }
 
@@ -137,6 +163,22 @@ const createStars = () => {
   100% {
     transform: translate(300px, 150px) scale(0);
     opacity: 0;
+  }
+}
+
+/* Additional animations for moving stars */
+.moving {
+  animation-name: twinkle, move;
+  animation-timing-function: linear, ease-in-out;
+  animation-iteration-count: infinite, infinite;
+}
+
+@keyframes move {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(var(--moveX), var(--moveY));
   }
 }
 </style>
