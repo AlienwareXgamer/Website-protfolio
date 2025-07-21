@@ -17,13 +17,12 @@ export default defineConfig({
   build: {
     // Enable source maps for production debugging
     sourcemap: true,
-    // Optimize chunk splitting
+    // Optimize chunk splitting - only include packages that actually exist
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ["vue"],
-          animations: ["gsap", "lottie-web", "vue3-lottie"],
-          utils: ["@vueuse/core", "@vueuse/motion"],
+          // Removed references to packages not in your project
         },
       },
     },
