@@ -104,7 +104,6 @@ const setupIntersectionObserver = () => {
 
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        const visibilityRatio = entry.intersectionRatio;
         const sectionId = entry.target.id;
         
         // Calculate actual visibility based on intersection rectangle
