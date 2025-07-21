@@ -8,27 +8,18 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": resolve(__dirname, "src"),
-      "@components": resolve(__dirname, "src/components"),
-      "@utils": resolve(__dirname, "src/utils"),
-      "@config": resolve(__dirname, "src/config"),
-      "@assets": resolve(__dirname, "src/assets"),
     },
   },
   build: {
-    // Enable source maps for production debugging
-    sourcemap: true,
-    // Optimize chunk splitting - only include packages that actually exist
+    // Simplified build configuration to avoid crypto-hash issues
+    sourcemap: false,
+    minify: "esbuild", // Use esbuild instead of terser (default and faster)
     rollupOptions: {
       output: {
-        manualChunks: {
-          vendor: ["vue"],
-          // Removed references to packages not in your project
-        },
+        // Let Vite handle chunking automatically
+        manualChunks: undefined,
       },
     },
-    // Optimize assets
-    assetsInlineLimit: 4096,
-    cssCodeSplit: true,
   },
   server: {
     port: 5173,
