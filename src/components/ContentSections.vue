@@ -1,14 +1,14 @@
 <script setup>
-import AboutSection from './sections/AboutSection.vue'
-import ExperienceSection from './sections/ExperienceSection.vue'
-import ProjectsSection from './sections/ProjectsSection.vue'
-import EducationSection from './sections/EducationSection.vue'
-import LeadershipSection from './sections/LeadershipSection.vue'
-import SkillsSection from './sections/SkillsSection.vue'
+import AboutSection from "./sections/AboutSection.vue";
+import ExperienceSection from "./sections/ExperienceSection.vue";
+import ProjectsSection from "./sections/ProjectsSection.vue";
+import EducationSection from "./sections/EducationSection.vue";
+import LeadershipSection from "./sections/LeadershipSection.vue";
+import SkillsSection from "./sections/SkillsSection.vue";
 
 defineProps({
-  skills: Object
-})
+  skills: Object,
+});
 </script>
 
 <template>

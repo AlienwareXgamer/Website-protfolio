@@ -1,45 +1,45 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref } from "vue";
 
-const starsContainer = ref(null)
+const starsContainer = ref(null);
 
 onMounted(() => {
-  createStars()
-})
+  createStars();
+});
 
 const createStars = () => {
-  const container = starsContainer.value
-  if (!container) return
+  const container = starsContainer.value;
+  if (!container) return;
 
   // Create different types of stars
   const starTypes = [
     { count: 150, size: 1, opacity: 0.8, speed: 20 },
     { count: 100, size: 2, opacity: 0.6, speed: 30 },
-    { count: 50, size: 3, opacity: 0.4, speed: 40 }
-  ]
+    { count: 50, size: 3, opacity: 0.4, speed: 40 },
+  ];
 
-  starTypes.forEach(type => {
+  starTypes.forEach((type) => {
     for (let i = 0; i < type.count; i++) {
-      const star = document.createElement('div')
-      star.className = 'star'
-      
+      const star = document.createElement("div");
+      star.className = "star";
+
       // Random position
-      star.style.left = Math.random() * 100 + '%'
-      star.style.top = Math.random() * 100 + '%'
-      
+      star.style.left = Math.random() * 100 + "%";
+      star.style.top = Math.random() * 100 + "%";
+
       // Star properties
-      star.style.width = type.size + 'px'
-      star.style.height = type.size + 'px'
-      star.style.opacity = Math.random() * type.opacity
-      
+      star.style.width = type.size + "px";
+      star.style.height = type.size + "px";
+      star.style.opacity = Math.random() * type.opacity;
+
       // Animation duration
-      star.style.animationDuration = (type.speed + Math.random() * 20) + 's'
-      star.style.animationDelay = Math.random() * 20 + 's'
-      
-      container.appendChild(star)
+      star.style.animationDuration = type.speed + Math.random() * 20 + "s";
+      star.style.animationDelay = Math.random() * 20 + "s";
+
+      container.appendChild(star);
     }
-  })
-}
+  });
+};
 </script>
 
 <template>
@@ -69,7 +69,8 @@ const createStars = () => {
 }
 
 @keyframes twinkle {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0;
     transform: scale(0.8);
   }
@@ -98,7 +99,7 @@ const createStars = () => {
 /* Shooting stars */
 .stars-container::before,
 .stars-container::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 2px;
   height: 2px;

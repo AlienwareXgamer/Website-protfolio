@@ -1,22 +1,23 @@
 <script setup>
-import ProfilePhoto from './ui/ProfilePhoto.vue'
-import HeroIdentity from './ui/HeroIdentity.vue'
-import SocialIcons from './ui/SocialIcons.vue'
-import BaseButton from './ui/BaseButton.vue'
+import ProfilePhoto from "./ui/ProfilePhoto.vue";
+import HeroIdentity from "./ui/HeroIdentity.vue";
+import SocialIcons from "./ui/SocialIcons.vue";
+import BaseButton from "./ui/BaseButton.vue";
 
 defineProps({
-  isDarkMode: Boolean
-})
+  isDarkMode: Boolean,
+});
 
+// Simple, reliable scroll function (same as navigation now uses)
 const scrollToSection = (sectionId) => {
   const element = document.getElementById(sectionId);
   if (element) {
-    element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 };
 
 const openEmail = () => {
-  window.location.href = 'mailto:francisallen148@gmail.com';
+  window.location.href = "mailto:francisallen148@gmail.com";
 };
 </script>
 
@@ -24,18 +25,16 @@ const openEmail = () => {
   <section class="hero-section" id="home">
     <div class="hero-content">
       <ProfilePhoto size="large" />
-      
-      <HeroIdentity 
-        name="Francis Allen Prado"
-        handle="@francis_allen_dev"
-      />
-      
+
+      <HeroIdentity name="Francis Allen Prado" handle="@francis_allen_dev" />
+
       <SocialIcons />
-      
+
       <p class="hero-title">
-        Experienced web developer and data analyst with a strong foundation in public sector projects, volunteer leadership, and technical skills.
+        Experienced web developer and data analyst with a strong foundation in
+        public sector projects, volunteer leadership, and technical skills.
       </p>
-      
+
       <div class="hero-buttons">
         <BaseButton variant="primary" @click="scrollToSection('about')">
           Get to Know Me
@@ -44,7 +43,7 @@ const openEmail = () => {
           View Projects
         </BaseButton>
       </div>
-      
+
       <div class="hero-contact">
         <button class="email-btn" @click="openEmail">
           francisallen148@gmail.com
@@ -64,7 +63,11 @@ const openEmail = () => {
   text-align: center;
   padding: 4rem 2rem;
   box-sizing: border-box;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(139, 92, 246, 0.05) 0%,
+    rgba(59, 130, 246, 0.05) 100%
+  );
 }
 
 .hero-content {
@@ -119,8 +122,9 @@ const openEmail = () => {
   color: #d1d5db;
   border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2),
-              0 0 15px rgba(139, 92, 246, 0.15);
+  box-shadow:
+    0 8px 25px rgba(139, 92, 246, 0.2),
+    0 0 15px rgba(139, 92, 246, 0.15);
 }
 
 /* Desktop optimizations */
@@ -128,12 +132,12 @@ const openEmail = () => {
   .hero-section {
     padding: 6rem 4rem;
   }
-  
+
   .hero-title {
     font-size: 1.75rem;
     max-width: 700px;
   }
-  
+
   .hero-buttons {
     gap: 2.5rem;
   }
@@ -143,7 +147,7 @@ const openEmail = () => {
   .hero-content {
     max-width: 1000px;
   }
-  
+
   .hero-title {
     font-size: 2rem;
     max-width: 800px;
@@ -155,7 +159,7 @@ const openEmail = () => {
   .hero-title {
     font-size: 1.2rem;
   }
-  
+
   .hero-buttons {
     flex-direction: column;
     align-items: center;

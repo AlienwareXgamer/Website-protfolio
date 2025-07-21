@@ -1,15 +1,15 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref } from "vue";
 
-const starsContainer = ref(null)
+const starsContainer = ref(null);
 
 onMounted(() => {
-  createStars()
-})
+  createStars();
+});
 
 const createStars = () => {
-  const container = starsContainer.value
-  if (!container) return
+  const container = starsContainer.value;
+  if (!container) return;
 
   // Create different types of stars with much more variety
   const starTypes = [
@@ -21,7 +21,7 @@ const createStars = () => {
     { count: 150, size: 2.5, opacity: 0.5, speed: 30, stationary: true },
     { count: 100, size: 3, opacity: 0.4, speed: 35, stationary: true },
     { count: 75, size: 3.5, opacity: 0.3, speed: 40, stationary: true },
-    
+
     // Moving/floating stars of various sizes
     { count: 120, size: 0.5, opacity: 0.8, speed: 45, stationary: false },
     { count: 100, size: 1, opacity: 0.7, speed: 50, stationary: false },
@@ -29,43 +29,43 @@ const createStars = () => {
     { count: 60, size: 2, opacity: 0.5, speed: 60, stationary: false },
     { count: 40, size: 2.5, opacity: 0.4, speed: 65, stationary: false },
     { count: 30, size: 3, opacity: 0.3, speed: 70, stationary: false },
-    
+
     // Slow drifting larger stars
     { count: 20, size: 4, opacity: 0.2, speed: 80, stationary: false },
     { count: 15, size: 4.5, opacity: 0.15, speed: 90, stationary: false },
     { count: 10, size: 5, opacity: 0.1, speed: 100, stationary: false },
-  ]
+  ];
 
-  starTypes.forEach(type => {
+  starTypes.forEach((type) => {
     for (let i = 0; i < type.count; i++) {
-      const star = document.createElement('div')
-      star.className = type.stationary ? 'star stationary' : 'star moving'
-      
+      const star = document.createElement("div");
+      star.className = type.stationary ? "star stationary" : "star moving";
+
       // Random position
-      star.style.left = Math.random() * 100 + '%'
-      star.style.top = Math.random() * 100 + '%'
-      
+      star.style.left = Math.random() * 100 + "%";
+      star.style.top = Math.random() * 100 + "%";
+
       // Star properties
-      star.style.width = type.size + 'px'
-      star.style.height = type.size + 'px'
-      star.style.opacity = Math.random() * type.opacity
-      
+      star.style.width = type.size + "px";
+      star.style.height = type.size + "px";
+      star.style.opacity = Math.random() * type.opacity;
+
       // Animation duration with more variety
-      star.style.animationDuration = (type.speed + Math.random() * 40) + 's'
-      star.style.animationDelay = Math.random() * 60 + 's'
-      
+      star.style.animationDuration = type.speed + Math.random() * 40 + "s";
+      star.style.animationDelay = Math.random() * 60 + "s";
+
       // For moving stars, add random movement direction
       if (!type.stationary) {
-        const moveX = (Math.random() - 0.5) * 300
-        const moveY = (Math.random() - 0.5) * 300
-        star.style.setProperty('--moveX', moveX + 'px')
-        star.style.setProperty('--moveY', moveY + 'px')
+        const moveX = (Math.random() - 0.5) * 300;
+        const moveY = (Math.random() - 0.5) * 300;
+        star.style.setProperty("--moveX", moveX + "px");
+        star.style.setProperty("--moveY", moveY + "px");
       }
-      
-      container.appendChild(star)
+
+      container.appendChild(star);
     }
-  })
-}
+  });
+};
 </script>
 
 <template>
@@ -95,7 +95,8 @@ const createStars = () => {
 }
 
 @keyframes twinkle {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0;
     transform: scale(0.8);
   }
@@ -124,7 +125,7 @@ const createStars = () => {
 /* Shooting stars */
 .stars-container::before,
 .stars-container::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 2px;
   height: 2px;

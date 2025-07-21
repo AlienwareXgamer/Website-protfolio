@@ -2,13 +2,13 @@
 defineProps({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   handle: {
     type: String,
-    required: true
-  }
-})
+    required: true,
+  },
+});
 </script>
 
 <template>

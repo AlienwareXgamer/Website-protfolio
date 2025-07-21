@@ -2,17 +2,20 @@
 defineProps({
   size: {
     type: String,
-    default: 'large', // 'small' | 'medium' | 'large'
-  }
-})
+    default: "large", // 'small' | 'medium' | 'large'
+    validator: (value) => ["small", "medium", "large"].includes(value),
+  },
+});
 </script>
 
 <template>
   <div :class="['profile-photo', `photo-${size}`]">
-    <img 
-      src="/src/assets/profile-photo.jpg" 
-      alt="Francis Allen Prado" 
+    <img
+      src="/src/assets/profile-photo.jpg"
+      alt="Francis Allen Prado"
       class="profile-image"
+      loading="lazy"
+      decoding="async"
     />
   </div>
 </template>

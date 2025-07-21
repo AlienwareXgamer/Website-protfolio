@@ -1,0 +1,170 @@
+<script setup>
+import { ref, computed, onMounted, onUnmounted } from "vue";
+
+const props = defineProps({
+  type: {
+    type: String,
+    default: "info",
+    validator: (value) =>
+      ["success", "error", "warning", "info"].includes(value),
+  },
+  message: {
+    type: String,
+    required: true,
+  },
+  duration: {
+    type: Number,
+    default: 4000,
+  },
+  persistent: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+const emit = defineEmits(["close"]);
+
+const isVisible = ref(true);
+let timeoutId = null;
+
+const iconMap = {
+  success: "✓",
+  error: "✕",
+  warning: "⚠",
+  info: "ℹ",
+};
+
+const icon = computed(() => iconMap[props.type]);
+
+const close = () => {
+  isVisible.value = false;
+  emit("close");
+};
+
+onMounted(() => {
+  if (!props.persistent && props.duration > 0) {
+    timeoutId = setTimeout(close, props.duration);
+  }
+});
+
+onUnmounted(() => {
+  if (timeoutId) {
+    clearTimeout(timeoutId);
+  }
+});
+</script>
+
+<template>
+  <Transition name="notification">
+    <div
+      v-if="isVisible"
+      :class="['notification', `notification--${type}`]"
+      role="alert"
+      :aria-live="type === 'error' ? 'assertive' : 'polite'"
+    >
+      <div class="notification__content">
+        <span class="notification__icon">{{ icon }}</span>
+        <span class="notification__message">{{ message }}</span>
+        <button
+          v-if="persistent"
+          class="notification__close"
+          @click="close"
+          aria-label="Close notification"
+        >
+          ✕
+        </button>
+      </div>
+    </div>
+  </Transition>
+</template>
+
+<style scoped>
+.notification {
+  position: fixed;
+  top: 2rem;
+  right: 2rem;
+  z-index: 9999;
+  min-width: 300px;
+  max-width: 500px;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.notification__content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.notification__icon {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.notification__message {
+  flex: 1;
+  color: #fff;
+  font-weight: 500;
+}
+
+.notification__close {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  padding: 0.25rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.notification__close:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.notification--success {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: rgba(34, 197, 94, 0.4);
+}
+
+.notification--error {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.notification--warning {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: rgba(245, 158, 11, 0.4);
+}
+
+.notification--info {
+  background: rgba(59, 130, 246, 0.2);
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.notification-enter-active,
+.notification-leave-active {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.notification-enter-from {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+.notification-leave-to {
+  opacity: 0;
+  transform: translateX(100%);
+}
+
+@media (max-width: 768px) {
+  .notification {
+    left: 1rem;
+    right: 1rem;
+    min-width: auto;
+  }
+}
+</style>

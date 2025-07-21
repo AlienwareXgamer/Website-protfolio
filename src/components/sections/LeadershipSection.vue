@@ -1,89 +1,98 @@
 <script setup>
-import ContentSectionBase from '../shared/ContentSectionBase.vue'
+import ContentSectionBase from "../shared/ContentSectionBase.vue";
 
 const leadershipData = [
   {
     title: "UACTLY Your Path to Being the Exact Fit at Work",
     organization: "UI UX Davao Organization Volunteer",
     period: "2024 - Present",
-    description: "Volunteered for multiple events, including workshops and professional development sessions.",
+    description:
+      "Volunteered for multiple events, including workshops and professional development sessions.",
     achievements: [
       "2025 May UXACTLY Your Path to Being the Exact Fit at Work",
       "2025 March UXD Women Who Design",
       "2025 February UXD Project Management",
       "2024 February Web Accessibility Workshop",
-      "2024 August Level up your Prototypes in Figma"
-    ]
+      "2024 August Level up your Prototypes in Figma",
+    ],
   },
   {
     title: "Google Developers Davao Professional Photographer",
     organization: "Google Developers Davao Volunteer",
     period: "November 2023",
-    description: "For dedicated volunteer service and instrumental role in the seamless execution of Google I/O Extended Demo.",
+    description:
+      "For dedicated volunteer service and instrumental role in the seamless execution of Google I/O Extended Demo.",
     achievements: [
       "Captured high-quality images for Google Developer events",
       "Provided sales support promptly for professional purposes",
-      "Collaborated with event organizers to ensure all photography needs were met"
-    ]
+      "Collaborated with event organizers to ensure all photography needs were met",
+    ],
   },
   {
     title: "IT Week 2025 (SysDev Committee Member)",
     organization: "Ateneo de Davao University",
     period: "2025",
-    description: "In recognition of invaluable contributions as SysDev Committee Member during IT Week 2025.",
+    description:
+      "In recognition of invaluable contributions as SysDev Committee Member during IT Week 2025.",
     achievements: [
       "Contributed to system development initiatives during IT Week",
-      "Collaborated with fellow committee members on technical projects"
-    ]
+      "Collaborated with fellow committee members on technical projects",
+    ],
   },
   {
     title: "DevFest Davao 2023",
     organization: "Google I/O Extended Davao 2024 | 2023",
     period: "2023",
-    description: "For dedicated volunteer service and instrumental role in the seamless execution of Google I/O Extended Demo.",
+    description:
+      "For dedicated volunteer service and instrumental role in the seamless execution of Google I/O Extended Demo.",
     achievements: [
       "Provided volunteer service for Google DevFest Davao 2023",
-      "Contributed significantly to the success of DevFest Davao 2023"
-    ]
+      "Contributed significantly to the success of DevFest Davao 2023",
+    ],
   },
   {
     title: "CS Alumni Connect Talk/Workshop Series",
     organization: "Ateneo Sui Generis Leadership Online Hub",
     period: "2021 - 2020",
-    description: "For participation in the 'Dissecting the Full-Stack: Front-end Development' Talk/Workshop and active participation during the Ateneo Sui Generis Leadership Online Hub 2020.",
+    description:
+      "For participation in the 'Dissecting the Full-Stack: Front-end Development' Talk/Workshop and active participation during the Ateneo Sui Generis Leadership Online Hub 2020.",
     achievements: [
       "Participated in Full-Stack development workshop series",
-      "Active engagement in leadership development programs"
-    ]
-  }
-]
+      "Active engagement in leadership development programs",
+    ],
+  },
+];
 
 const certifications = [
   {
     name: "Certified Cisco Networking Basics",
     issuer: "Cisco",
     year: "Certified",
-    credentialId: "Cisco-NB-2024"
+    credentialId: "Cisco-NB-2024",
   },
   {
     name: "Technical Skills Development",
     issuer: "Various Organizations",
     year: "2020-2025",
-    credentialId: "Multi-Cert"
-  }
-]
+    credentialId: "Multi-Cert",
+  },
+];
 </script>
 
 <template>
   <ContentSectionBase>
     <section id="leadership">
       <h3>Leadership & Certifications</h3>
-      
+
       <div class="leadership-content">
         <div class="leadership-section">
           <h4>Leadership Experience</h4>
           <div class="leadership-list">
-            <div v-for="item in leadershipData" :key="item.title" class="leadership-item">
+            <div
+              v-for="item in leadershipData"
+              :key="item.title"
+              class="leadership-item"
+            >
               <div class="leadership-header">
                 <h5>{{ item.title }}</h5>
                 <span class="leadership-period">{{ item.period }}</span>
@@ -102,7 +111,11 @@ const certifications = [
         <div class="certifications-section">
           <h4>Certifications</h4>
           <div class="certifications-grid">
-            <div v-for="cert in certifications" :key="cert.name" class="certification-card">
+            <div
+              v-for="cert in certifications"
+              :key="cert.name"
+              class="certification-card"
+            >
               <h5>{{ cert.name }}</h5>
               <p class="cert-issuer">{{ cert.issuer }}</p>
               <div class="cert-details">
@@ -151,7 +164,7 @@ const certifications = [
 }
 
 .leadership-item::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -167,9 +180,10 @@ const certifications = [
 .leadership-item:hover {
   background: rgba(255, 255, 255, 0.08);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.15),
-              0 0 15px rgba(245, 158, 11, 0.1),
-              0 0 0 1px rgba(245, 158, 11, 0.1);
+  box-shadow:
+    0 8px 25px rgba(245, 158, 11, 0.15),
+    0 0 15px rgba(245, 158, 11, 0.1),
+    0 0 0 1px rgba(245, 158, 11, 0.1);
   border-left-color: #d97706;
 }
 
@@ -227,7 +241,7 @@ const certifications = [
 }
 
 .leadership-achievements li::before {
-  content: '🏆';
+  content: "🏆";
   position: absolute;
   left: 0;
 }
@@ -252,8 +266,9 @@ const certifications = [
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(139, 92, 246, 0.3);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.15),
-              0 0 0 1px rgba(139, 92, 246, 0.1);
+  box-shadow:
+    0 8px 25px rgba(139, 92, 246, 0.15),
+    0 0 0 1px rgba(139, 92, 246, 0.1);
 }
 
 .certification-card h5 {
@@ -302,11 +317,11 @@ const certifications = [
     flex-direction: column;
     align-items: flex-start;
   }
-  
+
   .leadership-period {
     white-space: normal;
   }
-  
+
   .cert-details {
     flex-direction: column;
     text-align: center;

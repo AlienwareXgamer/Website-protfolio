@@ -1,185 +1,229 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
-import Wholepage from './components/Wholepage.vue'
-import Navigation from './components/Navigation.vue'
-import HeroSection from './components/HeroSection.vue'
-import ContentSections from './components/ContentSections.vue'
+import { ref, onMounted, onUnmounted } from "vue";
+import Wholepage from "./components/Wholepage.vue";
+import Navigation from "./components/Navigation.vue";
+import HeroSection from "./components/HeroSection.vue";
+import ContentSections from "./components/ContentSections.vue";
+import ScrollToTop from "./components/ui/ScrollToTop.vue";
 
 const skills = {
   languages: [
-    { name: 'JavaScript', logo: 'javascript' },
-    { name: 'TypeScript', logo: 'typescript' },
-    { name: 'MySQL', logo: 'mysql' },
+    { name: "JavaScript", logo: "javascript" },
+    { name: "TypeScript", logo: "typescript" },
+    { name: "MySQL", logo: "mysql" },
   ],
-  frontend: [
-    { name: 'Vue.js', logo: 'vuedotjs' },
-  ],
+  frontend: [{ name: "Vue.js", logo: "vuedotjs" }],
   backend: [
-    { name: 'Nest.js', logo: 'nestjs' },
-    { name: 'Node.js', logo: 'nodedotjs' },
-    { name: 'Laravel', logo: 'laravel' },
+    { name: "Nest.js", logo: "nestjs" },
+    { name: "Node.js", logo: "nodedotjs" },
+    { name: "Laravel", logo: "laravel" },
   ],
   db_orm: [
-    { name: 'Firebase', logo: 'firebase' },
-    { name: 'Prisma', logo: 'prisma' },
+    { name: "Firebase", logo: "firebase" },
+    { name: "Prisma", logo: "prisma" },
   ],
   dev_tools: [
-    { name: 'Git', logo: 'git' },
-    { name: 'GitHub', logo: 'github' },
-    { name: 'npm', logo: 'npm' },
-    { name: 'Arduino', logo: 'arduino' },
+    { name: "Git", logo: "git" },
+    { name: "GitHub", logo: "github" },
+    { name: "npm", logo: "npm" },
+    { name: "Arduino", logo: "arduino" },
   ],
   design_prod: [
-    { name: 'Canva', logo: 'canva' },
-    { name: 'Figma', logo: 'figma' },
+    { name: "Canva", logo: "canva" },
+    { name: "Figma", logo: "figma" },
   ],
-   office: [
-    { name: 'Microsoft Office', logo: 'microsoftoffice' },
-  ]
+  office: [{ name: "Microsoft Office", logo: "microsoftoffice" }],
 };
 
 // Theme management
-const isDarkMode = ref(true)
+const isDarkMode = ref(true);
 
 const toggleTheme = () => {
-  isDarkMode.value = !isDarkMode.value
-  document.body.classList.toggle('light-mode', !isDarkMode.value)
-}
+  isDarkMode.value = !isDarkMode.value;
+  document.body.classList.toggle("light-mode", !isDarkMode.value);
+};
 
 // Active section for navigation highlighting
-const activeSection = ref('home')
+const activeSection = ref("home");
 
 // Define the sections array for auto-scroll detection
-const sections = ['hero', 'about', 'experience', 'education', 'leadership', 'projects', 'skills']
+const sections = [
+  "home", // Changed from "hero" to match actual HTML id
+  "about",
+  "experience",
+  "projects",
+  "education",
+  "leadership",
+  "skills",
+];
 
-// Scroll to section function for navigation clicks
+// Enhanced scroll function with consistent offset support
 const scrollToSection = (sectionId) => {
   console.log(`Attempting to scroll to: ${sectionId}`);
-  
-  // Wait a bit to ensure DOM is fully rendered
-  setTimeout(() => {
-    const element = document.getElementById(sectionId);
-    
-    if (element) {
-      console.log(`Found element:`, element);
-      
-      // Get the navigation height to offset scroll position
-      const nav = document.querySelector('.navigation');
-      const navHeight = nav ? nav.offsetHeight + 20 : 80; // 20px for extra spacing
-      
-      console.log(`Navigation height: ${navHeight}`);
-      
-      // Get the element's position relative to the document
-      const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
-      const offsetPosition = elementPosition - navHeight;
-      
-      console.log(`Element position: ${elementPosition}, Offset position: ${offsetPosition}`);
-      
-      // Smooth scroll to the section
-      window.scrollTo({
-        top: Math.max(0, offsetPosition),
-        behavior: 'smooth'
-      });
-      
-      // Update active section after scroll animation completes
-      setTimeout(() => {
-        activeSection.value = sectionId;
-        console.log(`Active section updated to: ${sectionId}`);
-      }, 100);
-      
-    } else {
-      console.error(`Section with id "${sectionId}" not found`);
-      console.log('Available elements with IDs:', Array.from(document.querySelectorAll('[id]')).map(el => el.id));
-    }
-  }, 100);
-}
 
-// Update active section based on scroll position
-const updateActiveSection = () => {
-  const scrollPosition = window.scrollY;
-  const windowHeight = window.innerHeight;
-  const offset = windowHeight * 0.3; // Trigger when section is 30% visible
-  
-  let newActiveSection = 'hero'; // Default to hero section
-  
-  sections.forEach(section => {
-    const element = document.getElementById(section);
-    if (element) {
-      const rect = element.getBoundingClientRect();
-      const elementTop = rect.top + scrollPosition;
-      const elementBottom = elementTop + rect.height;
-      
-      // Check if section is prominently visible (accounting for navbar height)
-      const navbarHeight = 80; // Approximate navbar height
-      const adjustedScrollTop = scrollPosition + navbarHeight + offset;
-      
-      if (adjustedScrollTop >= elementTop && adjustedScrollTop < elementBottom) {
-        newActiveSection = section;
+  // Try the simple approach first (like your working hero buttons originally used)
+  const element = document.getElementById(sectionId);
+  if (element) {
+    console.log(`Found element:`, element);
+
+    // Use simple scrollIntoView method that we know works
+    element.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    // Update active section after scroll animation starts
+    setTimeout(() => {
+      activeSection.value = sectionId;
+      console.log(`Active section updated to: ${sectionId}`);
+    }, 100);
+  } else {
+    console.error(`Section with id "${sectionId}" not found`);
+    console.log(
+      "Available elements with IDs:",
+      Array.from(document.querySelectorAll("[id]")).map((el) => el.id)
+    );
+  }
+};
+
+// Update active section based on scroll position using Intersection Observer
+let observer = null;
+
+const setupIntersectionObserver = () => {
+  // Clean up existing observer
+  if (observer) {
+    observer.disconnect();
+  }
+
+  const options = {
+    root: document.querySelector('.portfolio-container'),
+    rootMargin: '-20% 0px -70% 0px', // Trigger when section is 20% visible from top
+    threshold: 0
+  };
+
+  observer = new IntersectionObserver((entries) => {
+    let mostVisibleSection = null;
+    let maxVisibility = 0;
+
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const visibilityRatio = entry.intersectionRatio;
+        const sectionId = entry.target.id;
+        
+        // Calculate actual visibility based on intersection rectangle
+        const rect = entry.intersectionRect;
+        const targetRect = entry.boundingClientRect;
+        const visibility = (rect.height * rect.width) / (targetRect.height * targetRect.width);
+        
+        console.log(`Section ${sectionId} visibility:`, visibility);
+        
+        if (visibility > maxVisibility && sections.includes(sectionId)) {
+          maxVisibility = visibility;
+          mostVisibleSection = sectionId;
+        }
       }
+    });
+
+    // Update active section if we found a more visible one
+    if (mostVisibleSection && mostVisibleSection !== activeSection.value) {
+      activeSection.value = mostVisibleSection;
+      console.log(`Active section updated to: ${mostVisibleSection}`);
+    }
+  }, options);
+
+  // Observe all sections
+  sections.forEach(sectionId => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      observer.observe(element);
+      console.log(`Observing section: ${sectionId}`);
     }
   });
-  
-  // Special handling for the last section to ensure it gets highlighted when at bottom
-  const lastSection = sections[sections.length - 1];
-  const lastElement = document.getElementById(lastSection);
-  if (lastElement) {
-    const rect = lastElement.getBoundingClientRect();
-    const isAtBottom = (window.innerHeight + scrollPosition) >= document.documentElement.scrollHeight - 10;
-    if (isAtBottom) {
-      newActiveSection = lastSection;
+};
+
+// Fallback scroll-based detection (simplified)
+const updateActiveSection = () => {
+  const scrollContainer = document.querySelector('.portfolio-container');
+  if (!scrollContainer) {
+    if (activeSection.value !== "home") {
+      activeSection.value = "home";
     }
+    return;
   }
   
-  if (newActiveSection !== activeSection.value) {
-    activeSection.value = newActiveSection;
+  const scrollTop = scrollContainer.scrollTop;
+  
+  // If at the very top, always show home
+  if (scrollTop < 100) {
+    if (activeSection.value !== "home") {
+      activeSection.value = "home";
+      console.log(`Active section updated to: home (at top)`);
+    }
   }
 };
 
 // Throttle function for better scroll performance
 const throttle = (func, limit) => {
   let inThrottle;
-  return function() {
+  return function () {
     const args = arguments;
     const context = this;
     if (!inThrottle) {
       func.apply(context, args);
       inThrottle = true;
-      setTimeout(() => inThrottle = false, limit);
+      setTimeout(() => (inThrottle = false), limit);
     }
   };
 };
 
 onMounted(() => {
-  // Throttled scroll handler for better performance
-  const throttledUpdateActiveSection = throttle(updateActiveSection, 50);
-  
-  window.addEventListener('scroll', throttledUpdateActiveSection, { passive: true });
-  window.addEventListener('resize', throttledUpdateActiveSection, { passive: true });
-  
-  // Initial check
-  updateActiveSection();
+  // Wait for the DOM to be ready
+  setTimeout(() => {
+    // Set up the Intersection Observer for more reliable detection
+    setupIntersectionObserver();
+    
+    // Also keep the scroll-based fallback for edge cases
+    const throttledUpdateActiveSection = throttle(updateActiveSection, 100);
+    const scrollContainer = document.querySelector('.portfolio-container');
+    
+    if (scrollContainer) {
+      scrollContainer.addEventListener("scroll", throttledUpdateActiveSection, {
+        passive: true,
+      });
+    }
+
+    // Initial check to ensure we start with "home"
+    activeSection.value = "home";
+    console.log('Navigation initialized with home section active');
+  }, 200);
 });
 
 onUnmounted(() => {
-  // Clean up throttled listeners
-  const throttledUpdateActiveSection = throttle(updateActiveSection, 50);
-  window.removeEventListener('scroll', throttledUpdateActiveSection);
-  window.removeEventListener('resize', throttledUpdateActiveSection);
+  // Clean up intersection observer
+  if (observer) {
+    observer.disconnect();
+    observer = null;
+  }
+  
+  // Clean up scroll listeners
+  const throttledUpdateActiveSection = throttle(updateActiveSection, 100);
+  const scrollContainer = document.querySelector('.portfolio-container');
+  
+  if (scrollContainer) {
+    scrollContainer.removeEventListener("scroll", throttledUpdateActiveSection);
+  }
 });
 </script>
 
 <template>
   <!-- Stars Background Animation -->
   <Wholepage />
-  
+
   <!-- Navigation -->
-  <Navigation 
-    :activeSection="activeSection" 
+  <Navigation
+    :activeSection="activeSection"
     :isDarkMode="isDarkMode"
     @scroll-to-section="scrollToSection"
     @toggle-theme="toggleTheme"
   />
-  
+
   <div class="portfolio-container">
     <!-- Hero Section -->
     <HeroSection :isDarkMode="isDarkMode" />
@@ -187,6 +231,9 @@ onUnmounted(() => {
     <!-- Content Sections -->
     <ContentSections :skills="skills" />
   </div>
+
+  <!-- Scroll to Top Button -->
+  <ScrollToTop />
 </template>
 
 <style>
@@ -199,7 +246,16 @@ onUnmounted(() => {
 body {
   background: linear-gradient(135deg, #0c0c0c 0%, #1a1a1a 50%, #0a0a0a 100%);
   color: #fff;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    sans-serif;
   overflow-x: hidden;
   line-height: 1.6;
   transition: all 0.3s ease;
@@ -209,123 +265,412 @@ body {
   width: 100vw;
 }
 
-/* Light mode styles */
+/* Light mode styles - Complete comprehensive overhaul */
 body.light-mode {
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #f1f5f9 100%);
+  background: linear-gradient(
+    135deg,
+    #f8fafc 0%,
+    #e2e8f0 25%,
+    #f1f5f9 75%,
+    #fdfbfb 100%
+  );
   color: #1f2937;
 }
 
 body.light-mode .portfolio-container {
   color: #1f2937;
+  background: inherit;
 }
 
+/* Light mode stars/background effects */
+body.light-mode .stars-container {
+  opacity: 0.3;
+}
+
+body.light-mode .star {
+  background: #6366f1;
+  box-shadow: 0 0 4px rgba(99, 102, 241, 0.6);
+}
+
+body.light-mode .star:nth-child(3n) {
+  background: #8b5cf6;
+  box-shadow: 0 0 4px rgba(139, 92, 246, 0.6);
+}
+
+body.light-mode .star:nth-child(5n) {
+  background: #a855f7;
+  box-shadow: 0 0 4px rgba(168, 85, 247, 0.6);
+}
+
+/* Light mode navigation - Enhanced */
 body.light-mode .navigation {
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  backdrop-filter: blur(30px);
+  box-shadow: 0 4px 25px rgba(139, 92, 246, 0.1);
+}
+
+body.light-mode .navigation:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 8px 35px rgba(139, 92, 246, 0.2);
 }
 
 body.light-mode .nav-link {
-  color: #6b7280;
+  color: #4b5563;
 }
 
 body.light-mode .nav-link.active,
 body.light-mode .nav-link:hover {
   color: #1f2937;
+  background: rgba(139, 92, 246, 0.15);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
 }
 
 body.light-mode .nav-actions button {
-  background: rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  color: #6b7280;
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: #4b5563;
 }
 
 body.light-mode .nav-actions button:hover {
   color: #1f2937;
-  background: rgba(0, 0, 0, 0.15);
+  background: rgba(139, 92, 246, 0.25);
+  border-color: rgba(139, 92, 246, 0.5);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
+}
+
+body.light-mode .mobile-menu-button {
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: #4b5563;
+}
+
+body.light-mode .mobile-menu-button:hover {
+  background: rgba(139, 92, 246, 0.25);
+  border-color: rgba(139, 92, 246, 0.5);
+  color: #1f2937;
+}
+
+body.light-mode .mobile-nav {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  backdrop-filter: blur(25px);
+}
+
+/* Light mode hero section - Enhanced */
+body.light-mode .hero-section {
+  color: #1f2937;
 }
 
 body.light-mode .hero-name {
-  background: linear-gradient(135deg, #1f2937, #6b7280);
+  background: linear-gradient(
+    135deg,
+    #1f2937 0%,
+    #4338ca 25%,
+    #6366f1 50%,
+    #8b5cf6 75%,
+    #a855f7 100%
+  );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 body.light-mode .hero-title {
-  color: #4b5563;
-}
-
-body.light-mode .content-section {
   color: #374151;
 }
 
-body.light-mode .content-section::before {
-  background: rgba(0, 0, 0, 0.02);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+body.light-mode .hero-handle {
+  color: #8b5cf6;
 }
 
-body.light-mode .content-section h3 {
-  background: linear-gradient(135deg, #1f2937, #8b5cf6);
+/* Light mode social icons - Enhanced */
+body.light-mode .social-icon {
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: #4b5563;
+}
+
+body.light-mode .social-icon:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+  background: rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.5);
+  color: #1f2937;
+}
+
+body.light-mode .email-btn {
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: #374151;
+}
+
+body.light-mode .email-btn:hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.5);
+  color: #1f2937;
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);
+}
+
+/* Light mode content sections - Enhanced */
+body.light-mode .content-section-base {
+  color: #1f2937;
+}
+
+body.light-mode .content-section-base::before {
+  background: rgba(255, 255, 255, 0.7);
+  border-top: 1px solid rgba(139, 92, 246, 0.15);
+  backdrop-filter: blur(15px);
+}
+
+body.light-mode .content-section-base:hover::before {
+  background: rgba(255, 255, 255, 0.85);
+  border-top-color: rgba(139, 92, 246, 0.3);
+}
+
+body.light-mode .content-section-base h3 {
+  background: linear-gradient(
+    135deg,
+    #1f2937 0%,
+    #4338ca 25%,
+    #6366f1 50%,
+    #8b5cf6 75%,
+    #a855f7 100%
+  );
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+/* Light mode cards and components - Enhanced */
 body.light-mode .skills-category {
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  color: #1f2937;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.05);
 }
 
 body.light-mode .skills-category:hover {
-  background: rgba(0, 0, 0, 0.08);
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.2);
+  transform: translateY(-3px);
 }
 
+body.light-mode .skills-category h4 {
+  color: #1f2937;
+  border-bottom-color: rgba(139, 92, 246, 0.4);
+}
+
+body.light-mode .skill-name {
+  color: #374151;
+}
+
+/* Individual component overrides */
 body.light-mode .experience-item,
 body.light-mode .education-item,
+body.light-mode .project-card {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(139, 92, 246, 0.2) !important;
+  color: #1f2937 !important;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.05) !important;
+}
+
+body.light-mode .experience-item:hover,
+body.light-mode .education-item:hover,
+body.light-mode .project-card:hover {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(139, 92, 246, 0.4) !important;
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.2) !important;
+}
+
+body.light-mode .experience-item h4,
+body.light-mode .education-item h4,
+body.light-mode .project-card h4 {
+  color: #1f2937 !important;
+}
+
+body.light-mode .experience-company,
+body.light-mode .education-institution {
+  color: #6b7280 !important;
+}
+
+body.light-mode .experience-description,
+body.light-mode .education-description,
+body.light-mode .project-description {
+  color: #374151 !important;
+}
+
+body.light-mode .experience-period {
+  color: #8b5cf6 !important;
+}
+
+body.light-mode .education-year {
+  color: #22c55e !important;
+}
+
+body.light-mode .education-location {
+  color: #6b7280 !important;
+}
+
+body.light-mode .experience-achievements li,
+body.light-mode .education-achievements li {
+  color: #374151 !important;
+}
+
 body.light-mode .leadership-item {
-  background: rgba(0, 0, 0, 0.03);
+  background: rgba(255, 255, 255, 0.8) !important;
+  border-left-color: #f59e0b !important;
+  color: #1f2937 !important;
+  box-shadow: 0 4px 15px rgba(245, 158, 11, 0.05) !important;
+}
+
+body.light-mode .leadership-item:hover {
+  background: rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.2) !important;
+}
+
+body.light-mode .leadership-header h5 {
+  color: #1f2937 !important;
+}
+
+body.light-mode .leadership-organization {
+  color: #6b7280 !important;
+}
+
+body.light-mode .leadership-description {
+  color: #374151 !important;
+}
+
+body.light-mode .leadership-period {
+  color: #f59e0b !important;
+}
+
+body.light-mode .leadership-achievements li {
+  color: #374151 !important;
+}
+
+body.light-mode .certification-card {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(139, 92, 246, 0.2) !important;
+  color: #1f2937 !important;
+}
+
+body.light-mode .certification-card:hover {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(139, 92, 246, 0.4) !important;
+}
+
+body.light-mode .certification-card h5 {
+  color: #1f2937 !important;
+}
+
+body.light-mode .cert-issuer {
+  color: #8b5cf6 !important;
+}
+
+body.light-mode .cert-year {
+  color: #22c55e !important;
+}
+
+body.light-mode .cert-id {
+  color: #6b7280 !important;
 }
 
 body.light-mode .contact-info {
-  background: rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(139, 92, 246, 0.2) !important;
+  color: #1f2937 !important;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.05) !important;
 }
 
-body.light-mode .skill-group strong {
-  color: #1f2937;
+body.light-mode .contact-info:hover {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(139, 92, 246, 0.4) !important;
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.2) !important;
 }
 
-body.light-mode .skill-group span {
-  color: #4b5563;
+body.light-mode .contact-info strong {
+  color: #1f2937 !important;
 }
 
-.skill-items {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 0.5rem;
+body.light-mode .contact-info a {
+  color: #8b5cf6 !important;
 }
 
-.skill-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 0.25rem 0.75rem;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
+body.light-mode .contact-info a:hover {
+  color: #6366f1 !important;
 }
 
-.skill-item:hover {
-  background: rgba(139, 92, 246, 0.2);
-  transform: translateY(-2px);
+/* Light mode tech tags and skill items - Enhanced */
+body.light-mode .tech-tag {
+  background: rgba(139, 92, 246, 0.15) !important;
+  border: 1px solid rgba(139, 92, 246, 0.4) !important;
+  color: #6366f1 !important;
 }
 
-.skill-logo {
-  width: 16px;
-  height: 16px;
-  fill: currentColor;
+body.light-mode .tech-tag:hover {
+  background: rgba(139, 92, 246, 0.25) !important;
+  border-color: rgba(139, 92, 246, 0.6) !important;
+  color: #4338ca !important;
+}
+
+body.light-mode .skill-item {
+  background: rgba(139, 92, 246, 0.15) !important;
+  color: #374151 !important;
+}
+
+body.light-mode .skill-item:hover {
+  background: rgba(139, 92, 246, 0.25) !important;
+  color: #1f2937 !important;
+}
+
+/* Light mode buttons - Enhanced */
+body.light-mode .base-button.btn-primary,
+body.light-mode .base-button.btn-secondary,
+body.light-mode .btn-primary,
+body.light-mode .btn-secondary {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+  color: #fff !important;
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4) !important;
+}
+
+body.light-mode .base-button:hover,
+body.light-mode .btn-primary:hover,
+body.light-mode .btn-secondary:hover {
+  box-shadow: 0 12px 35px rgba(139, 92, 246, 0.5) !important;
+}
+
+/* Light mode profile photo - Enhanced */
+body.light-mode .profile-photo,
+body.light-mode .hero-photo {
+  box-shadow: 0 25px 50px rgba(139, 92, 246, 0.4) !important;
+  border-color: rgba(139, 92, 246, 0.3) !important;
+}
+
+body.light-mode .profile-photo:hover,
+body.light-mode .hero-photo:hover {
+  box-shadow: 0 30px 60px rgba(139, 92, 246, 0.5) !important;
+}
+
+/* Light mode scroll to top button */
+body.light-mode .scroll-to-top {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6) !important;
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4) !important;
+}
+
+body.light-mode .scroll-to-top:hover {
+  box-shadow: 0 12px 35px rgba(139, 92, 246, 0.5) !important;
+}
+
+/* Light mode about description */
+body.light-mode .about-description {
+  color: #374151 !important;
+}
+
+body.light-mode .about-description p {
+  color: #4b5563 !important;
 }
 
 /* Navigation */
@@ -353,9 +698,10 @@ body.light-mode .skill-group span {
 .navigation:hover {
   background: rgba(0, 0, 0, 0.8);
   border-color: rgba(139, 92, 246, 0.3);
-  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15),
-              0 0 0 1px rgba(139, 92, 246, 0.1),
-              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  box-shadow:
+    0 8px 32px rgba(139, 92, 246, 0.15),
+    0 0 0 1px rgba(139, 92, 246, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .nav-logo .logo-circle {
@@ -375,9 +721,10 @@ body.light-mode .skill-group span {
 
 .nav-logo .logo-circle:hover {
   transform: scale(1.05);
-  box-shadow: 0 12px 40px rgba(139, 92, 246, 0.4),
-              0 0 0 2px rgba(139, 92, 246, 0.2),
-              inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 12px 40px rgba(139, 92, 246, 0.4),
+    0 0 0 2px rgba(139, 92, 246, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .nav-links {
@@ -401,7 +748,7 @@ body.light-mode .skill-group span {
 }
 
 .nav-link::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: 0;
   left: 0;
@@ -414,16 +761,18 @@ body.light-mode .skill-group span {
 .nav-link:hover {
   color: #fff;
   background: rgba(139, 92, 246, 0.1);
-  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.2),
-              0 0 0 1px rgba(139, 92, 246, 0.1);
+  box-shadow:
+    0 4px 20px rgba(139, 92, 246, 0.2),
+    0 0 0 1px rgba(139, 92, 246, 0.1);
 }
 
 .nav-link.active,
 .nav-link.active:hover {
   color: #fff;
   background: rgba(139, 92, 246, 0.15);
-  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.3),
-              0 0 0 1px rgba(139, 92, 246, 0.2);
+  box-shadow:
+    0 4px 20px rgba(139, 92, 246, 0.3),
+    0 0 0 1px rgba(139, 92, 246, 0.2);
 }
 
 .nav-actions {
@@ -448,8 +797,9 @@ body.light-mode .skill-group span {
   background: rgba(255, 255, 255, 0.15);
   border-color: rgba(255, 255, 255, 0.3);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2),
-              0 0 0 1px rgba(139, 92, 246, 0.1);
+  box-shadow:
+    0 8px 25px rgba(139, 92, 246, 0.2),
+    0 0 0 1px rgba(139, 92, 246, 0.1);
 }
 
 /* Hero Section */
@@ -550,9 +900,10 @@ body.light-mode .skill-group span {
 
 .social-icon:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3),
-              0 0 20px rgba(139, 92, 246, 0.2),
-              0 0 0 1px rgba(139, 92, 246, 0.1);
+  box-shadow:
+    0 8px 25px rgba(139, 92, 246, 0.3),
+    0 0 20px rgba(139, 92, 246, 0.2),
+    0 0 0 1px rgba(139, 92, 246, 0.1);
   background: rgba(139, 92, 246, 0.1);
   border-color: rgba(139, 92, 246, 0.3);
 }
@@ -561,32 +912,36 @@ body.light-mode .skill-group span {
   background: #0077b5;
   border-color: #0077b5;
   color: #fff;
-  box-shadow: 0 8px 25px rgba(0, 119, 181, 0.4),
-              0 0 20px rgba(0, 119, 181, 0.3);
+  box-shadow:
+    0 8px 25px rgba(0, 119, 181, 0.4),
+    0 0 20px rgba(0, 119, 181, 0.3);
 }
 
 .social-icon.github:hover {
   background: #333;
   border-color: #333;
   color: #fff;
-  box-shadow: 0 8px 25px rgba(51, 51, 51, 0.4),
-              0 0 20px rgba(51, 51, 51, 0.3);
+  box-shadow:
+    0 8px 25px rgba(51, 51, 51, 0.4),
+    0 0 20px rgba(51, 51, 51, 0.3);
 }
 
 .social-icon.email:hover {
   background: #ea4335;
   border-color: #ea4335;
   color: #fff;
-  box-shadow: 0 8px 25px rgba(234, 67, 53, 0.4),
-              0 0 20px rgba(234, 67, 53, 0.3);
+  box-shadow:
+    0 8px 25px rgba(234, 67, 53, 0.4),
+    0 0 20px rgba(234, 67, 53, 0.3);
 }
 
 .social-icon.twitter:hover {
   background: #1da1f2;
   border-color: #1da1f2;
   color: #fff;
-  box-shadow: 0 8px 25px rgba(29, 161, 242, 0.4),
-              0 0 20px rgba(29, 161, 242, 0.3);
+  box-shadow:
+    0 8px 25px rgba(29, 161, 242, 0.4),
+    0 0 20px rgba(29, 161, 242, 0.3);
 }
 
 .hero-title {
@@ -623,13 +978,18 @@ body.light-mode .skill-group span {
 }
 
 .btn-primary::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   transition: left 0.5s;
 }
 
@@ -639,9 +999,10 @@ body.light-mode .skill-group span {
 
 .btn-primary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 35px rgba(139, 92, 246, 0.4),
-              0 0 20px rgba(139, 92, 246, 0.3),
-              0 0 0 1px rgba(139, 92, 246, 0.2);
+  box-shadow:
+    0 12px 35px rgba(139, 92, 246, 0.4),
+    0 0 20px rgba(139, 92, 246, 0.3),
+    0 0 0 1px rgba(139, 92, 246, 0.2);
 }
 
 .btn-secondary {
@@ -660,13 +1021,18 @@ body.light-mode .skill-group span {
 }
 
 .btn-secondary::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   transition: left 0.5s;
 }
 
@@ -676,9 +1042,10 @@ body.light-mode .skill-group span {
 
 .btn-secondary:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 35px rgba(139, 92, 246, 0.4),
-              0 0 20px rgba(139, 92, 246, 0.3),
-              0 0 0 1px rgba(139, 92, 246, 0.2);
+  box-shadow:
+    0 12px 35px rgba(139, 92, 246, 0.4),
+    0 0 20px rgba(139, 92, 246, 0.3),
+    0 0 0 1px rgba(139, 92, 246, 0.2);
 }
 
 .hero-contact {
@@ -704,8 +1071,9 @@ body.light-mode .skill-group span {
   color: #d1d5db;
   border-color: rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2),
-              0 0 15px rgba(139, 92, 246, 0.15);
+  box-shadow:
+    0 8px 25px rgba(139, 92, 246, 0.2),
+    0 0 15px rgba(139, 92, 246, 0.15);
 }
 
 /* Portfolio Container */
