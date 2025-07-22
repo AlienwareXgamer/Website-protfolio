@@ -93,9 +93,9 @@ const setupIntersectionObserver = () => {
   }
 
   const options = {
-    root: document.querySelector('.portfolio-container'),
-    rootMargin: '-20% 0px -70% 0px', // Trigger when section is 20% visible from top
-    threshold: 0
+    root: document.querySelector(".portfolio-container"),
+    rootMargin: "-20% 0px -70% 0px", // Trigger when section is 20% visible from top
+    threshold: 0,
   };
 
   observer = new IntersectionObserver((entries) => {
@@ -105,14 +105,15 @@ const setupIntersectionObserver = () => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
         const sectionId = entry.target.id;
-        
+
         // Calculate actual visibility based on intersection rectangle
         const rect = entry.intersectionRect;
         const targetRect = entry.boundingClientRect;
-        const visibility = (rect.height * rect.width) / (targetRect.height * targetRect.width);
-        
+        const visibility =
+          (rect.height * rect.width) / (targetRect.height * targetRect.width);
+
         console.log(`Section ${sectionId} visibility:`, visibility);
-        
+
         if (visibility > maxVisibility && sections.includes(sectionId)) {
           maxVisibility = visibility;
           mostVisibleSection = sectionId;
@@ -128,7 +129,7 @@ const setupIntersectionObserver = () => {
   }, options);
 
   // Observe all sections
-  sections.forEach(sectionId => {
+  sections.forEach((sectionId) => {
     const element = document.getElementById(sectionId);
     if (element) {
       observer.observe(element);
@@ -139,16 +140,16 @@ const setupIntersectionObserver = () => {
 
 // Fallback scroll-based detection (simplified)
 const updateActiveSection = () => {
-  const scrollContainer = document.querySelector('.portfolio-container');
+  const scrollContainer = document.querySelector(".portfolio-container");
   if (!scrollContainer) {
     if (activeSection.value !== "home") {
       activeSection.value = "home";
     }
     return;
   }
-  
+
   const scrollTop = scrollContainer.scrollTop;
-  
+
   // If at the very top, always show home
   if (scrollTop < 100) {
     if (activeSection.value !== "home") {
@@ -177,11 +178,11 @@ onMounted(() => {
   setTimeout(() => {
     // Set up the Intersection Observer for more reliable detection
     setupIntersectionObserver();
-    
+
     // Also keep the scroll-based fallback for edge cases
     const throttledUpdateActiveSection = throttle(updateActiveSection, 100);
-    const scrollContainer = document.querySelector('.portfolio-container');
-    
+    const scrollContainer = document.querySelector(".portfolio-container");
+
     if (scrollContainer) {
       scrollContainer.addEventListener("scroll", throttledUpdateActiveSection, {
         passive: true,
@@ -190,7 +191,7 @@ onMounted(() => {
 
     // Initial check to ensure we start with "home"
     activeSection.value = "home";
-    console.log('Navigation initialized with home section active');
+    console.log("Navigation initialized with home section active");
   }, 200);
 });
 
@@ -200,11 +201,11 @@ onUnmounted(() => {
     observer.disconnect();
     observer = null;
   }
-  
+
   // Clean up scroll listeners
   const throttledUpdateActiveSection = throttle(updateActiveSection, 100);
-  const scrollContainer = document.querySelector('.portfolio-container');
-  
+  const scrollContainer = document.querySelector(".portfolio-container");
+
   if (scrollContainer) {
     scrollContainer.removeEventListener("scroll", throttledUpdateActiveSection);
   }
@@ -1085,7 +1086,7 @@ body.light-mode .about-description p {
   position: fixed;
   top: 0;
   left: 0;
-  background: inherit;
+  background: transparent; /* Changed from inherit to transparent */
   display: flex;
   flex-direction: column;
   scroll-snap-type: y proximity;
@@ -1093,11 +1094,7 @@ body.light-mode .about-description p {
   overscroll-behavior: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  z-index: 1;
-}
-
-.portfolio-container::-webkit-scrollbar {
-  display: none;
+  z-index: 10; /* Increased z-index but keep stars behind */
 }
 
 /* Remove conflicting section styles since they're handled by ContentSectionBase */
