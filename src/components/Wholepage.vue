@@ -245,4 +245,27 @@ const createStars = () => {
       -16px -8px 0 rgba(255, 255, 255, 0.2);
   }
 }
+
+/* Light mode styles - Plain white background */
+body.light-mode .stars-container {
+  background: #ffffff !important;
+  opacity: 1;
+}
+
+/* Hide stars completely in light mode */
+body.light-mode .star.meteorit-star {
+  display: none;
+}
+
+/* Hide shooting star animations in light mode */
+body.light-mode .animation-layer::before,
+body.light-mode .animation-layer::after {
+  display: none;
+}
+
+/* Remove background star patterns in light mode */
+body.light-mode .animation-layer {
+  background-image: none;
+  animation: none;
+}
 </style>

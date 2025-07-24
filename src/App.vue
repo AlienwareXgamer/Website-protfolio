@@ -265,97 +265,82 @@ body {
   width: 100vw;
 }
 
-/* Light mode styles - Complete comprehensive overhaul */
+/* Light mode styles - Enhanced and Improved */
 body.light-mode {
   background: linear-gradient(
     135deg,
-    #f8fafc 0%,
-    #e2e8f0 25%,
-    #f1f5f9 75%,
-    #fdfbfb 100%
+    #ffffff 0%,
+    #f8fafc 25%,
+    #f1f5f9 50%,
+    #e2e8f0 75%,
+    #f8fafc 100%
   );
   color: #1f2937;
+  transition: all 0.5s ease;
 }
 
 body.light-mode .portfolio-container {
   color: #1f2937;
-  background: inherit;
+  background: transparent;
 }
 
-/* Light mode stars/background effects */
+/* Light mode stars/background effects - Completely hidden */
 body.light-mode .stars-container {
-  opacity: 0.3;
+  background: #ffffff !important;
+  opacity: 1;
 }
 
-body.light-mode .star {
-  background: #6366f1;
-  box-shadow: 0 0 4px rgba(99, 102, 241, 0.6);
-}
-
-body.light-mode .star:nth-child(3n) {
-  background: #8b5cf6;
-  box-shadow: 0 0 4px rgba(139, 92, 246, 0.6);
-}
-
+/* Remove all star styling in light mode */
+body.light-mode .star,
+body.light-mode .star:nth-child(3n),
 body.light-mode .star:nth-child(5n) {
-  background: #a855f7;
-  box-shadow: 0 0 4px rgba(168, 85, 247, 0.6);
+  display: none !important;
 }
 
-/* Light mode navigation - Enhanced */
+/* Light mode navigation - Premium glassmorphism */
 body.light-mode .navigation {
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(139, 92, 246, 0.2);
-  backdrop-filter: blur(30px);
-  box-shadow: 0 4px 25px rgba(139, 92, 246, 0.1);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 8px 32px rgba(139, 92, 246, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.8);
 }
 
 body.light-mode .navigation:hover {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(139, 92, 246, 0.4);
-  box-shadow: 0 8px 35px rgba(139, 92, 246, 0.2);
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(139, 92, 246, 0.3);
+  box-shadow: 
+    0 12px 40px rgba(139, 92, 246, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.9);
 }
 
+/* Light mode navigation links */
 body.light-mode .nav-link {
   color: #4b5563;
+  background: transparent;
 }
 
 body.light-mode .nav-link.active,
 body.light-mode .nav-link:hover {
   color: #1f2937;
-  background: rgba(139, 92, 246, 0.15);
-  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
+  background: rgba(139, 92, 246, 0.1);
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.2);
 }
 
+/* Light mode navigation actions */
 body.light-mode .nav-actions button {
-  background: rgba(139, 92, 246, 0.15);
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  color: #4b5563;
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  color: #6b7280;
 }
 
 body.light-mode .nav-actions button:hover {
   color: #1f2937;
-  background: rgba(139, 92, 246, 0.25);
-  border-color: rgba(139, 92, 246, 0.5);
-  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.3);
-}
-
-body.light-mode .mobile-menu-button {
-  background: rgba(139, 92, 246, 0.15);
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  color: #4b5563;
-}
-
-body.light-mode .mobile-menu-button:hover {
-  background: rgba(139, 92, 246, 0.25);
-  border-color: rgba(139, 92, 246, 0.5);
-  color: #1f2937;
-}
-
-body.light-mode .mobile-nav {
-  background: rgba(255, 255, 255, 0.95);
-  border: 1px solid rgba(139, 92, 246, 0.2);
-  backdrop-filter: blur(25px);
+  background: rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.4);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.25);
 }
 
 /* Light mode hero section - Enhanced */
@@ -1115,4 +1100,119 @@ body.light-mode .about-description p {
 }
 
 /* Remove duplicate .content-section styles - they're handled by ContentSectionBase.vue */
+
+/* Light mode mobile menu improvements */
+body.light-mode .mobile-menu-button {
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  color: #6b7280;
+}
+
+body.light-mode .mobile-menu-button:hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.4);
+  color: #1f2937;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
+}
+
+body.light-mode .mobile-nav {
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(139, 92, 246, 0.15) !important;
+  box-shadow: 0 12px 40px rgba(139, 92, 246, 0.15) !important;
+}
+
+body.light-mode .mobile-nav-link {
+  color: #4b5563 !important;
+}
+
+body.light-mode .mobile-nav-link:hover,
+body.light-mode .mobile-nav-link.active {
+  background: rgba(139, 92, 246, 0.1) !important;
+  color: #1f2937 !important;
+}
+
+/* Light mode project features and tech stack improvements */
+body.light-mode .project-features {
+  color: #374151 !important;
+}
+
+body.light-mode .project-features h5 {
+  color: #1f2937 !important;
+}
+
+body.light-mode .project-features li {
+  color: #4b5563 !important;
+}
+
+body.light-mode .project-tech-stack {
+  margin-bottom: 1.5rem;
+}
+
+/* Enhanced light mode gradients and shadows */
+body.light-mode .hero-photo {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7) !important;
+  box-shadow: 
+    0 25px 50px rgba(139, 92, 246, 0.3),
+    0 0 0 4px rgba(255, 255, 255, 0.8),
+    0 0 0 6px rgba(139, 92, 246, 0.2) !important;
+}
+
+body.light-mode .hero-photo:hover {
+  box-shadow: 
+    0 30px 60px rgba(139, 92, 246, 0.4),
+    0 0 0 4px rgba(255, 255, 255, 0.9),
+    0 0 0 6px rgba(139, 92, 246, 0.3) !important;
+}
+
+/* Light mode skill items with better visual hierarchy */
+body.light-mode .skill-item {
+  background: rgba(255, 255, 255, 0.7) !important;
+  border: 1px solid rgba(139, 92, 246, 0.15) !important;
+  color: #374151 !important;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.05) !important;
+}
+
+body.light-mode .skill-item:hover {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(139, 92, 246, 0.3) !important;
+  color: #1f2937 !important;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.15) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Light mode about section enhancements */
+body.light-mode .about-description {
+  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid rgba(139, 92, 246, 0.15) !important;
+  border-radius: 12px !important;
+  padding: 2rem !important;
+  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.05) !important;
+}
+
+body.light-mode .about-description:hover {
+  background: rgba(255, 255, 255, 0.95) !important;
+  border-color: rgba(139, 92, 246, 0.25) !important;
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.1) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Light mode scroll indicator improvements */
+body.light-mode .portfolio-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+body.light-mode .portfolio-container::-webkit-scrollbar-track {
+  background: rgba(139, 92, 246, 0.1);
+  border-radius: 3px;
+}
+
+body.light-mode .portfolio-container::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-radius: 3px;
+}
+
+body.light-mode .portfolio-container::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #4338ca, #7c3aed);
+}
 </style>

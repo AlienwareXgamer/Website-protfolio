@@ -52,104 +52,37 @@ defineEmits(["toggle-theme"]);
   color: #a1a1aa;
   font-size: 14px;
   cursor: pointer;
-  /* Optimized for 60fps with slower, more elegant animations */
-  transition: all 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  padding: 0.35rem; /* More compact */
+  transition: all 0.3s ease; /* Simplified transition */
+  padding: 0.35rem;
   border-radius: 6px;
   backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px; /* Fixed compact size */
+  width: 32px;
   height: 32px;
-  opacity: 0;
-  transform: translateY(10px);
-  animation: buttonFadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s
-    forwards;
-  /* Hardware acceleration for 60fps */
-  will-change: transform, background, box-shadow, border-color;
-  transform-origin: center;
+  opacity: 1; /* Changed from 0 to 1 to ensure visibility */
+  transform: translateY(0); /* Reset transform */
+  /* Remove the complex animation that might be causing issues */
 }
 
-/* Streamlined button fade-in animation - optimized for 60fps */
-@keyframes buttonFadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(10px) scale(0.95);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Optimized hover animation - streamlined from 6+ steps to 3 steps */
+/* Simplified hover animation */
 .nav-actions button:hover {
-  animation: navButtonHoverOptimized 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-    forwards;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
 }
 
-@keyframes navButtonHoverOptimized {
-  0% {
-    transform: translateY(0) scale(1) rotate(0deg);
-    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.15);
-  }
-  50% {
-    transform: translateY(-1px) scale(1.05) rotate(5deg);
-    box-shadow: 0 3px 12px rgba(139, 92, 246, 0.2);
-  }
-  100% {
-    transform: translateY(-2px) scale(1.1) rotate(10deg);
-    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
-  }
+/* Ensure SVG icons are visible */
+.nav-actions button svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
 }
 
-/* Optimized return animation - streamlined */
-.nav-actions button:not(:hover) {
-  animation: navButtonHoverReturn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-    forwards;
-}
-
-@keyframes navButtonHoverReturn {
-  0% {
-    transform: translateY(-2px) scale(1.1) rotate(10deg);
-    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
-  }
-  50% {
-    transform: translateY(-1px) scale(1.05) rotate(5deg);
-    box-shadow: 0 3px 10px rgba(139, 92, 246, 0.2);
-  }
-  100% {
-    transform: translateY(0) scale(1) rotate(0deg);
-    box-shadow: 0 2px 8px rgba(139, 92, 246, 0.15);
-  }
-}
-
-/* Optimized icon scale animation - streamlined */
 .nav-actions button:hover svg {
-  animation: iconScaleOptimized 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-    forwards;
-}
-
-@keyframes iconScaleOptimized {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1.1);
-  }
-}
-
-.nav-actions button:not(:hover) svg {
-  animation: iconScaleReturn 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-
-@keyframes iconScaleReturn {
-  0% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
+  transform: scale(1.1);
 }
 </style>

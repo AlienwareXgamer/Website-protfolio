@@ -12,7 +12,7 @@ defineProps({
     <div v-for="(value, key) in contactInfo" :key="key" class="contact-item">
       <strong>{{ key }}:</strong>
       <a
-        v-if="value.link"
+        v-if="value && typeof value === 'object' && value.link"
         :href="value.link"
         :target="value.external ? '_blank' : '_self'"
       >
@@ -70,5 +70,14 @@ defineProps({
 
 .contact-item span {
   color: #d1d5db;
+}
+
+/* Light mode specific styling for contact info text */
+body.light-mode .contact-item span {
+  color: #374151 !important;
+}
+
+body.light-mode .contact-item strong {
+  color: #1f2937 !important;
 }
 </style>

@@ -16,7 +16,7 @@
       </svg>
     </a>
     <a
-      href="https://github.com/francis-allen-prado"
+      href="https://github.com/AlienwareXgamer"
       target="_blank"
       class="social-icon github"
     >

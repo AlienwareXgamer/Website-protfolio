@@ -1,42 +1,63 @@
 # Francis Allen Prado Portfolio Website
 
-This is a modern, stylish personal portfolio website for Francis Allen Prado, built with Vue 3 and Vite. It features a glassmorphic design, smooth scroll-snapping, dynamic navigation highlighting, interactive starfield animations, and both dark and light themes.
+This is a modern, stylish personal portfolio website for Francis Allen Prado, built with Vue 3 and Vite. It features a glassmorphic design, smooth scroll-snapping, dynamic navigation highlighting, interactive starfield animations, and both dark and light themes with enhanced UI/UX design.
 
-## ✨ Latest Updates (v1.0 - Complete Animations)
+## ✨ Latest Updates (v3.0 - UI & Design Improvements)
 
-### 🌟 Starfield Animation System
-- **Optimized Performance**: Reduced star count from 100 to 50 stars for 60fps performance
-- **Dynamic Star Creation**: JavaScript-powered star generation with randomized positioning
-- **Streamlined Animations**: 
-  - Optimized twinkle effects with `will-change` properties
-  - Simplified shooting star trails (reduced from 40+ shadows to 5 key shadows)
-  - Parallax background star movement for depth
-- **Accessibility**: `prefers-reduced-motion` support for users with motion sensitivity
-- **Mobile Optimization**: Reduced animation complexity on devices ≤768px width
+### 🎨 Enhanced Visual Design System
 
-### 🎨 Enhanced UI Components
-- **BaseButton**: Improved styling and interaction states
-- **ScrollToTop**: Enhanced smooth scroll behavior with optimized animations
-- **NavigationActions**: Streamlined action handling and visual feedback
-- **Performance**: All components optimized with `will-change` for 60fps animations
+- **Clean Color Palette**: Replaced messy gradients with cohesive solid colors
+- **Typography Refinements**: Improved font sizes, spacing, and readability
+- **Gradient Text Highlights**: Beautiful color-coded text highlighting for:
+  - 🟦 **Key Skills** - Purple highlights for primary skills
+  - 🔄 **Data Insights** - Cyan for analytics focus
+  - 💚 **Technical Stack** - Green for technologies
+  - 🟡 **Achievements** - Orange for accomplishments
 
-### 📱 Responsive Design Improvements
-- Mobile-first approach with progressive enhancement
-- Optimized animations for different screen sizes
-- Better touch interaction handling
+### 🌟 Enhanced Hero Section
+
+- **Structured Text Layout**: Replaced plain paragraphs with intelligent text segmentation
+- **Visual Hierarchy**: Key phrases now stand out with color highlights
+- **Optimized Spacing**: Reduced font sizes and margins to prevent overlapping
+- **Responsive Typography**: Scales beautifully across all device sizes
+- **Clean Presentation**: Professional layout that guides the eye naturally
+
+### 📖 Improved About Section
+
+- **Paragraph Structure**: Automatic text parsing into digestible sections
+- **Rich Text Rendering**: Support for highlighted phrases within descriptions
+- **Contact Info Fixes**: Resolved visibility issues for location and phone display
+- **Enhanced Readability**: Better line spacing and font weights
+- **Professional Narrative**: Comprehensive story showcasing education, experience, and community involvement
+
+### 🎯 Light Mode Enhancements
+
+- **Premium Glassmorphism**: Enhanced transparency and blur effects
+- **Professional Color Scheme**: Sophisticated light theme with proper contrast
+- **Plain White Background**: Clean starfield removal in light mode
+- **Consistent Styling**: All components adapt beautifully to light theme
+- **Enhanced Navigation**: Improved visibility and interaction states
+
+### 🔧 Technical Improvements
+
+- **Theme Toggle Visibility**: Fixed missing sun/moon icons in navigation
+- **Contact Information Display**: Resolved template logic for proper data rendering
+- **Responsive Design**: Better mobile experience with optimized spacing
+- **Performance Optimization**: Cleaner CSS and reduced complexity
 
 ## Features
 
 - **Modern glassmorphism UI** with enhanced visual effects
-- **Interactive starfield background** with optimized performance
-- **Responsive and mobile-friendly** design
+- **Interactive starfield background** with plain white light mode
+- **Responsive and mobile-friendly** design with optimized typography
 - **Scroll-snapping sections** for smooth navigation
 - **Dynamic navigation highlighting** with enhanced visual feedback
-- **Dark/Light mode toggle** with system preference detection
+- **Dark/Light mode toggle** with comprehensive theme support
 - **Performance optimized animations** running at 60fps
 - **Accessibility compliant** with reduced motion support
 - **Section-based layout**: Hero, About, Experience, Projects, Education, Leadership, Skills
-- **Social/contact links** with hover effects
+- **Enhanced visual hierarchy** with color-coded highlights
+- **Professional contact display** with fixed visibility issues
 
 ## Tech Stack
 
@@ -62,22 +83,26 @@ This is a modern, stylish personal portfolio website for Francis Allen Prado, bu
 ## Getting Started
 
 1. **Clone the repository:**
+
    ```sh
    git clone https://github.com/AlienwareXgamer/Website-protfolio.git
    cd Website-protfolio
    ```
 
 2. **Install dependencies:**
+
    ```sh
    npm install
    ```
 
 3. **Run the development server:**
+
    ```sh
    npm run dev
    ```
 
 4. **Build for production:**
+
    ```sh
    npm run build
    ```
@@ -108,12 +133,14 @@ src/
 ## 🎯 Recent Optimizations
 
 ### Animation Performance
+
 - **60fps targeting**: All animations optimized for smooth 60fps performance
 - **Reduced complexity**: Simplified shooting star trails and effects
 - **Hardware acceleration**: Strategic use of CSS transforms and GPU layers
 - **Memory management**: Efficient star creation and cleanup
 
 ### Code Quality
+
 - **Clean architecture**: Modular component structure
 - **Performance monitoring**: Console logging for animation system
 - **Error handling**: Robust container validation and fallbacks
@@ -128,7 +155,8 @@ src/
 
 ## Author
 
-**Francis Allen Prado**  
+**Francis Allen Prado**
+
 - LinkedIn: [@francis.allen.dev](https://www.linkedin.com/in/francis-allen-prado)
 - Email: francisallen148@gmail.com
 - GitHub: [@AlienwareXgamer](https://github.com/AlienwareXgamer)
@@ -140,4 +168,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 **Built with ❤️ and optimized for performance**  
-*Inspired by modern web design trends and built for a professional online presence.*
+_Inspired by modern web design trends and built for a professional online presence._

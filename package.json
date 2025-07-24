@@ -1,8 +1,21 @@
 {
   "name": "prado-website-portfolio",
   "private": true,
-  "version": "0.0.0",
+  "version": "3.0.0",
   "type": "module",
+  "description": "Francis Allen Prado's professional portfolio website featuring modern UI design, dynamic animations, and comprehensive project showcase",
+  "author": "Francis Allen Prado <francisallen148@gmail.com>",
+  "keywords": [
+    "portfolio",
+    "vue3",
+    "full-stack-developer",
+    "data-analyst",
+    "web-development",
+    "modern-ui",
+    "responsive-design",
+    "gradient-highlights",
+    "glassmorphism"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
