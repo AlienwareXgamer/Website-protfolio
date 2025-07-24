@@ -1,6 +1,15 @@
 # Francis Allen Prado Portfolio Website
 
+> **📱 Important Note**: This is the **Desktop Version Build (Final Build V1)**. This version is optimized for desktop and larger screen viewing. Mobile version optimization is currently in development and will be released in a future update.
+
 This is a modern, stylish personal portfolio website for Francis Allen Prado, built with Vue 3 and Vite. It features a glassmorphic design, smooth scroll-snapping, dynamic navigation highlighting, interactive starfield animations, and both dark and light themes with enhanced UI/UX design.
+
+## 🖥️ Desktop Version Status
+
+- ✅ **Desktop Optimized**: Fully optimized for desktop and laptop screens
+- ✅ **Large Screen Support**: Perfect viewing experience on monitors 1024px and above
+- 🚧 **Mobile Version**: Currently under development - mobile responsiveness improvements coming soon
+- 🎯 **Target Devices**: Desktop computers, laptops, and tablets in landscape mode
 
 ## ✨ Latest Updates (v3.0 - UI & Design Improvements)
 
