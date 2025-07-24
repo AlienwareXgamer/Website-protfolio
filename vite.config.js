@@ -12,15 +12,20 @@ export default defineConfig({
     },
   },
   build: {
-    // Simplified build configuration to avoid crypto-hash issues
+    // Fix crypto-hash build issues
     sourcemap: false,
-    minify: "esbuild", // Use esbuild instead of terser (default and faster)
+    minify: "esbuild",
+    target: "esnext",
     rollupOptions: {
       output: {
         // Let Vite handle chunking automatically
         manualChunks: undefined,
       },
     },
+  },
+  define: {
+    // Fix crypto-hash issues in production
+    global: "globalThis",
   },
   server: {
     port: 5173,
