@@ -29,7 +29,7 @@ export default [
         self: "readonly", // Added for web workers/service workers
         global: "readonly", // Added for Node.js compatibility
         Element: "readonly", // Added for DOM elements
-        SVGElement: "readonly", // Added for SVG elements  
+        SVGElement: "readonly", // Added for SVG elements
         MathMLElement: "readonly", // Added for MathML elements
         // Node.js globals
         process: "readonly",

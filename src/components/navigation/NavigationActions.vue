@@ -52,69 +52,37 @@ defineEmits(["toggle-theme"]);
   color: #a1a1aa;
   font-size: 14px;
   cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 0.35rem; /* More compact */
+  transition: all 0.3s ease; /* Simplified transition */
+  padding: 0.35rem;
   border-radius: 6px;
   backdrop-filter: blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px; /* Fixed compact size */
+  width: 32px;
   height: 32px;
-  opacity: 0;
-  transform: translateY(10px);
-  animation: buttonFadeIn 0.5s ease-out 0.5s forwards;
+  opacity: 1; /* Changed from 0 to 1 to ensure visibility */
+  transform: translateY(0); /* Reset transform */
+  /* Remove the complex animation that might be causing issues */
 }
 
-@keyframes buttonFadeIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
+/* Simplified hover animation */
 .nav-actions button:hover {
   color: #fff;
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(139, 92, 246, 0.4);
-  transform: translateY(-2px) scale(1.1) rotate(10deg);
-  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.2);
 }
 
+/* Ensure SVG icons are visible */
 .nav-actions button svg {
-  width: 16px; /* Smaller icon */
-  height: 16px;
+  width: 20px;
+  height: 20px;
   transition: transform 0.3s ease;
 }
 
 .nav-actions button:hover svg {
   transform: scale(1.1);
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-  .nav-actions button {
-    width: 28px;
-    height: 28px;
-    padding: 0.3rem;
-  }
-
-  .nav-actions button svg {
-    width: 14px;
-    height: 14px;
-  }
-}
-
-@media (max-width: 480px) {
-  .nav-actions button {
-    width: 26px;
-    height: 26px;
-    padding: 0.25rem;
-  }
-
-  .nav-actions button svg {
-    width: 12px;
-    height: 12px;
-  }
 }
 </style>

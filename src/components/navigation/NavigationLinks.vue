@@ -105,6 +105,9 @@ const handleNavClick = (itemId) => {
   opacity: 0;
   transform: translateY(10px);
   animation: linkFadeIn 0.5s ease-out forwards;
+  /* Remove default focus outline and borders */
+  outline: none;
+  box-shadow: none;
 }
 
 .nav-link:nth-child(1) {
@@ -160,6 +163,18 @@ const handleNavClick = (itemId) => {
 .nav-link:hover::before,
 .nav-link.active::before {
   width: 85%;
+}
+
+/* Remove focus outline specifically */
+.nav-link:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Remove any active state borders */
+.nav-link:active {
+  outline: none;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
 }
 
 .mobile-menu-button {

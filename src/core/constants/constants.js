@@ -13,7 +13,7 @@ export const SOCIAL_LINKS = {
     text: "www.linkedin.com/in/francis-allen-prado",
   },
   github: {
-    url: "https://github.com/francis-allen-prado",
+    url: "https://github.com/AlienwareXgamer",
     text: "GitHub Profile",
   },
   twitter: {

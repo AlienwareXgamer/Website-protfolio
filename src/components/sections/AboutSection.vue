@@ -5,7 +5,7 @@ import ContactInfo from "../../features/about/ContactInfo.vue";
 
 // Define the data for this section
 const aboutDescription =
-  "A motivated, fresh IT graduate with skills in programming, web development, and hardware maintenance. Experienced in solving complex problems, adapting to new technologies, and working both independently and in teams. Dedicated to contributing to real-world IT projects and enhancing my skills through on-the-job training.";
+  "I'm a dedicated <span class='highlight'>Information Technology graduate</span> from Ateneo de Davao University with a passion for building innovative digital solutions. My expertise spans <span class='highlight-tech'>full-stack web development, data analysis, and system administration</span>, with hands-on experience in modern technologies like Vue.js, Node.js, and MySQL.\n\nDuring my internship at <span class='highlight-company'>Globe Telecom</span>, I honed my data analysis skills while contributing to real-world corporate projects. I'm actively involved in the tech community through volunteering with <span class='highlight-community'>Google Developer Groups (GDG) and UI/UX Davao</span>, where I help organize events and mentor fellow developers.\n\nI thrive on solving complex problems, learning emerging technologies, and creating impactful applications that make a difference. Whether it's developing responsive web applications, analyzing data patterns, or troubleshooting network infrastructure, I bring <span class='highlight'>enthusiasm and technical expertise</span> to every project.";
 
 const contactInfo = {
   Location: "Davao Del Sur, Davao City, Roxas Ave.",

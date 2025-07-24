@@ -1,5 +1,5 @@
 <script setup>
-import NavigationLogo from "./navigation/NavigationLogo.vue";
+// Remove NavigationLogo import since we're removing the FP logo
 import NavigationLinks from "./navigation/NavigationLinks.vue";
 import NavigationActions from "./navigation/NavigationActions.vue";
 
@@ -13,7 +13,7 @@ defineEmits(["scroll-to-section", "toggle-theme"]);
 
 <template>
   <nav class="navigation">
-    <NavigationLogo />
+    <!-- Removed NavigationLogo component -->
 
     <NavigationLinks
       :activeSection="activeSection"
@@ -36,7 +36,7 @@ defineEmits(["scroll-to-section", "toggle-theme"]);
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center; /* Changed from space-between to center since we removed the logo */
   padding: 0.5rem 1rem;
   background: rgba(0, 0, 0, 0.2); /* Much more transparent when not hovered */
   backdrop-filter: blur(15px); /* Reduced blur for more transparency */

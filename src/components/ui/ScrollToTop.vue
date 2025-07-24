@@ -58,37 +58,66 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
-  transition: all 0.3s ease;
   backdrop-filter: blur(10px);
+
+  /* Optimized for 60fps - use transform and opacity only */
+  transition:
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 0.3s ease-out;
+  will-change: transform;
+  transform: translateZ(0); /* Force hardware acceleration */
 }
 
 .scroll-to-top:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 12px 35px rgba(139, 92, 246, 0.5);
+  /* Simplified hover animation - hardware accelerated */
+  transform: translateZ(0) translateY(-4px) scale(1.08);
+  box-shadow: 0 16px 40px rgba(139, 92, 246, 0.6);
 }
 
-.scroll-to-top:focus-visible {
-  outline: 2px solid rgba(139, 92, 246, 0.8);
-  outline-offset: 2px;
+.scroll-to-top:active {
+  transform: translateZ(0) translateY(-2px) scale(1.04);
+  transition: transform 0.1s ease-out;
 }
 
-.scroll-top-enter-active,
+.scroll-to-top svg {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+}
+
+.scroll-to-top:hover svg {
+  transform: translateY(-2px);
+}
+
+/* Optimized enter/leave transitions */
+.scroll-top-enter-active {
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
 .scroll-top-leave-active {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.3s ease-in;
 }
 
-.scroll-top-enter-from,
-.scroll-top-leave-to {
+.scroll-top-enter-from {
   opacity: 0;
   transform: translateY(20px) scale(0.8);
 }
 
+.scroll-top-leave-to {
+  opacity: 0;
+  transform: translateY(10px) scale(0.9);
+}
+
+/* Mobile optimizations */
 @media (max-width: 768px) {
   .scroll-to-top {
-    bottom: 1.5rem;
-    right: 1.5rem;
     width: 45px;
     height: 45px;
+    bottom: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .scroll-to-top:hover {
+    transform: translateZ(0) translateY(-3px) scale(1.06);
   }
 }
 </style>

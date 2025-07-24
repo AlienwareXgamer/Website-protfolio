@@ -30,10 +30,30 @@ const openEmail = () => {
 
       <SocialIcons />
 
-      <p class="hero-title">
-        Experienced web developer and data analyst with a strong foundation in
-        public sector projects, volunteer leadership, and technical skills.
-      </p>
+      <div class="hero-title">
+        <span class="intro-text"
+          >Full-stack developer and data analyst passionate about creating</span
+        >
+        <span class="highlight-primary"> innovative web solutions</span>
+        <span class="intro-text"> and driving</span>
+        <span class="highlight-secondary"> insights through data</span
+        ><span class="intro-text">.</span>
+
+        <br /><br />
+
+        <span class="intro-text"> Experienced in</span>
+        <span class="highlight-tech"> modern JavaScript frameworks</span
+        ><span class="intro-text">,</span>
+        <span class="highlight-tech"> backend development</span
+        ><span class="intro-text">, and</span>
+        <span class="highlight-tech"> data visualization</span
+        ><span class="intro-text">, with a</span>
+        <span class="highlight-accent"> proven track record</span>
+        <span class="intro-text"
+          > of delivering impactful projects in corporate and community
+          settings.</span
+        >
+      </div>
 
       <div class="hero-buttons">
         <BaseButton variant="primary" @click="scrollToSection('about')">
@@ -77,30 +97,78 @@ const openEmail = () => {
 }
 
 .hero-title {
-  font-size: 1.5rem;
+  font-size: 0.95rem;
   color: #d1d5db;
-  margin-bottom: 4rem;
-  line-height: 1.7;
-  font-weight: 400;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+  font-weight: 300;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
+  opacity: 0.95;
+  font-family: "Inter", sans-serif;
+}
+
+.intro-text {
+  color: #d1d5db;
+  font-weight: 300;
+}
+
+.highlight-primary {
+  color: #8b5cf6;
+  font-weight: 500;
+}
+
+.highlight-secondary {
+  color: #06b6d4;
+  font-weight: 500;
+}
+
+.highlight-tech {
+  color: #10b981;
+  font-weight: 500;
+}
+
+.highlight-accent {
+  color: #f59e0b;
+  font-weight: 500;
+}
+
+/* Light mode text colors */
+body.light-mode .intro-text {
+  color: #374151;
+}
+
+body.light-mode .highlight-primary {
+  color: #8b5cf6;
+}
+
+body.light-mode .highlight-secondary {
+  color: #0891b2;
+}
+
+body.light-mode .highlight-tech {
+  color: #059669;
+}
+
+body.light-mode .highlight-accent {
+  color: #d97706;
 }
 
 .hero-buttons {
   display: flex;
-  gap: 2rem;
+  gap: 1.5rem;
   justify-content: center;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   flex-wrap: wrap;
 }
 
 .hero-contact {
   display: flex;
   justify-content: center;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .email-btn {
@@ -130,46 +198,59 @@ const openEmail = () => {
 /* Desktop optimizations */
 @media (min-width: 1200px) {
   .hero-section {
-    padding: 6rem 4rem;
+    padding: 4rem 4rem;
   }
 
   .hero-title {
-    font-size: 1.75rem;
-    max-width: 700px;
+    font-size: 1.1rem;
+    max-width: 650px;
+    margin-bottom: 3rem;
   }
 
   .hero-buttons {
-    gap: 2.5rem;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
   }
 }
 
 @media (min-width: 1440px) {
   .hero-content {
-    max-width: 1000px;
+    max-width: 900px;
   }
 
   .hero-title {
-    font-size: 2rem;
-    max-width: 800px;
+    font-size: 1.2rem;
+    max-width: 700px;
   }
 }
 
-/* Keep existing responsive styles for later mobile optimization */
+/* Mobile responsive styles */
 @media (max-width: 768px) {
   .hero-title {
-    font-size: 1.2rem;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
   }
 
   .hero-buttons {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-contact {
+    margin-top: 1rem;
   }
 }
 
 @media (max-width: 480px) {
   .hero-title {
-    font-size: 1rem;
+    font-size: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-section {
+    padding: 3rem 1rem;
   }
 }
 </style>

@@ -9,68 +9,57 @@ onMounted(() => {
 
 const createStars = () => {
   const container = starsContainer.value;
-  if (!container) return;
+  if (!container) {
+    console.error("Stars container not found!");
+    return;
+  }
 
-  // Create different types of stars with much more variety
-  const starTypes = [
-    // Dense field of tiny stationary twinkling stars
-    { count: 400, size: 0.5, opacity: 0.9, speed: 10, stationary: true },
-    { count: 350, size: 1, opacity: 0.8, speed: 15, stationary: true },
-    { count: 250, size: 1.5, opacity: 0.7, speed: 20, stationary: true },
-    { count: 200, size: 2, opacity: 0.6, speed: 25, stationary: true },
-    { count: 150, size: 2.5, opacity: 0.5, speed: 30, stationary: true },
-    { count: 100, size: 3, opacity: 0.4, speed: 35, stationary: true },
-    { count: 75, size: 3.5, opacity: 0.3, speed: 40, stationary: true },
+  // Clear any existing stars first
+  container.innerHTML = "";
 
-    // Moving/floating stars of various sizes
-    { count: 120, size: 0.5, opacity: 0.8, speed: 45, stationary: false },
-    { count: 100, size: 1, opacity: 0.7, speed: 50, stationary: false },
-    { count: 80, size: 1.5, opacity: 0.6, speed: 55, stationary: false },
-    { count: 60, size: 2, opacity: 0.5, speed: 60, stationary: false },
-    { count: 40, size: 2.5, opacity: 0.4, speed: 65, stationary: false },
-    { count: 30, size: 3, opacity: 0.3, speed: 70, stationary: false },
+  console.log("Creating optimized starfield...");
 
-    // Slow drifting larger stars
-    { count: 20, size: 4, opacity: 0.2, speed: 80, stationary: false },
-    { count: 15, size: 4.5, opacity: 0.15, speed: 90, stationary: false },
-    { count: 10, size: 5, opacity: 0.1, speed: 100, stationary: false },
-  ];
+  // Create fewer, more optimized stars for better performance
+  const totalStars = 50; // Reduced from 100 for better performance
 
-  starTypes.forEach((type) => {
-    for (let i = 0; i < type.count; i++) {
-      const star = document.createElement("div");
-      star.className = type.stationary ? "star stationary" : "star moving";
+  for (let i = 0; i < totalStars; i++) {
+    const star = document.createElement("div");
+    star.className = "star meteorit-star";
 
-      // Random position
-      star.style.left = Math.random() * 100 + "%";
-      star.style.top = Math.random() * 100 + "%";
+    // Random position across entire screen
+    const leftPos = Math.random() * 100;
+    const topPos = Math.random() * 100;
+    star.style.left = leftPos + "%";
+    star.style.top = topPos + "%";
 
-      // Star properties
-      star.style.width = type.size + "px";
-      star.style.height = type.size + "px";
-      star.style.opacity = Math.random() * type.opacity;
+    // Optimized star styling
+    star.style.width = "2px";
+    star.style.height = "2px";
+    star.style.opacity = "0.8";
+    star.style.backgroundColor = "#ffffff";
+    star.style.position = "absolute";
+    star.style.borderRadius = "50%";
+    star.style.zIndex = "10";
 
-      // Animation duration with more variety
-      star.style.animationDuration = type.speed + Math.random() * 40 + "s";
-      star.style.animationDelay = Math.random() * 60 + "s";
+    // Add random animation delay for variety
+    star.style.setProperty("--random-delay", Math.random());
 
-      // For moving stars, add random movement direction
-      if (!type.stationary) {
-        const moveX = (Math.random() - 0.5) * 300;
-        const moveY = (Math.random() - 0.5) * 300;
-        star.style.setProperty("--moveX", moveX + "px");
-        star.style.setProperty("--moveY", moveY + "px");
-      }
+    container.appendChild(star);
+  }
 
-      container.appendChild(star);
-    }
-  });
+  console.log(`Created ${totalStars} optimized stars`);
 };
 </script>
 
 <template>
+  <!-- Optimized static stars -->
   <div ref="starsContainer" class="stars-container">
     <!-- Stars will be dynamically created here -->
+  </div>
+
+  <!-- Optimized shooting star animation layer -->
+  <div class="animation-layer">
+    <!-- Single streamlined shooting star system -->
   </div>
 </template>
 
@@ -82,23 +71,41 @@ const createStars = () => {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 1;
+  z-index: 5;
   overflow: hidden;
+  /* Optimized background gradient */
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(30, 30, 50, 0.3) 0%,
+      transparent 40%
+    ),
+    radial-gradient(
+      ellipse at 30% 70%,
+      rgba(20, 30, 60, 0.2) 0%,
+      transparent 30%
+    ),
+    #0a0a0a;
 }
 
-.star {
-  position: absolute;
-  background: #fff;
+/* Optimized star twinkle animation */
+.star.meteorit-star {
+  background: #ffffff;
   border-radius: 50%;
-  animation: twinkle linear infinite;
-  box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+  /* Simplified box-shadow for better performance */
+  box-shadow: 0 0 3px rgba(255, 255, 255, 0.6);
+  /* Streamlined twinkle animation */
+  animation: optimizedTwinkle 8s ease-in-out infinite;
+  animation-delay: calc(var(--random-delay) * 4s);
+  /* 60fps optimization */
+  will-change: opacity, transform;
 }
 
-@keyframes twinkle {
+@keyframes optimizedTwinkle {
   0%,
   100% {
-    opacity: 0;
-    transform: scale(0.8);
+    opacity: 0.3;
+    transform: scale(1);
   }
   50% {
     opacity: 1;
@@ -106,80 +113,159 @@ const createStars = () => {
   }
 }
 
-/* Different star colors for variety */
-.star:nth-child(3n) {
-  background: #8b5cf6;
-  box-shadow: 0 0 6px rgba(139, 92, 246, 0.8);
+/* Optimized shooting star animation layer */
+.animation-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 6;
+  overflow: hidden;
+  /* 60fps optimization */
+  will-change: transform;
 }
 
-.star:nth-child(5n) {
-  background: #6366f1;
-  box-shadow: 0 0 6px rgba(99, 102, 241, 0.8);
-}
-
-.star:nth-child(7n) {
-  background: #a855f7;
-  box-shadow: 0 0 6px rgba(168, 85, 247, 0.8);
-}
-
-/* Shooting stars */
-.stars-container::before,
-.stars-container::after {
+/* Streamlined shooting star system using pseudo-elements */
+.animation-layer::before,
+.animation-layer::after {
   content: "";
   position: absolute;
-  width: 2px;
-  height: 2px;
-  background: linear-gradient(45deg, #fff, transparent);
+  width: 3px;
+  height: 3px;
+  background: #ffffff;
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-  animation: shoot 8s linear infinite;
+  /* Optimized trail effect - simplified from 40+ shadows to 5 key shadows */
+  box-shadow:
+    0 0 8px rgba(255, 255, 255, 0.9),
+    -6px -3px 0 rgba(255, 255, 255, 0.7),
+    -12px -6px 0 rgba(255, 255, 255, 0.5),
+    -18px -9px 0 rgba(255, 255, 255, 0.3),
+    -24px -12px 0 rgba(255, 255, 255, 0.1);
+  opacity: 0;
+  /* 60fps optimization */
+  will-change: transform, opacity;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 }
 
-.stars-container::before {
-  top: 20%;
-  left: 10%;
-  animation-delay: 2s;
+.animation-layer::before {
+  animation: streamlinedShootingStar 6s linear infinite;
+  animation-delay: 1s;
 }
 
-.stars-container::after {
-  top: 60%;
-  left: 80%;
-  animation-delay: 6s;
-  animation-duration: 12s;
+.animation-layer::after {
+  animation: streamlinedShootingStar 8s linear infinite;
+  animation-delay: 4s;
+  transform: translateX(50vw) translateY(20vh); /* Offset second star */
 }
 
-@keyframes shoot {
+/* Additional shooting stars using generated content */
+.animation-layer {
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+    radial-gradient(2px 2px at 40px 70px, #fff, transparent),
+    radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+    radial-gradient(1px 1px at 130px 80px, #fff, transparent),
+    radial-gradient(2px 2px at 160px 30px, #fff, transparent);
+  background-repeat: repeat;
+  background-size:
+    200px 100px,
+    300px 150px,
+    250px 120px,
+    350px 180px,
+    400px 200px;
+  animation: parallaxStars 20s linear infinite;
+}
+
+/* Streamlined shooting star keyframes - simplified from 8+ steps to 3 steps */
+@keyframes streamlinedShootingStar {
   0% {
-    transform: translate(0, 0) scale(0);
+    transform: translate3d(-100px, -100px, 0);
     opacity: 0;
   }
   10% {
-    transform: translate(0, 0) scale(1);
     opacity: 1;
   }
   90% {
-    transform: translate(200px, 100px) scale(1);
     opacity: 1;
   }
   100% {
-    transform: translate(300px, 150px) scale(0);
+    transform: translate3d(calc(100vw + 100px), calc(100vh + 100px), 0);
     opacity: 0;
   }
 }
 
-/* Additional animations for moving stars */
-.moving {
-  animation-name: twinkle, move;
-  animation-timing-function: linear, ease-in-out;
-  animation-iteration-count: infinite, infinite;
-}
-
-@keyframes move {
+/* Parallax star movement for depth */
+@keyframes parallaxStars {
   0% {
-    transform: translate(0, 0);
+    background-position:
+      0 0,
+      0 0,
+      0 0,
+      0 0,
+      0 0;
   }
   100% {
-    transform: translate(var(--moveX), var(--moveY));
+    background-position:
+      -200px -100px,
+      -300px -150px,
+      -250px -120px,
+      -350px -180px,
+      -400px -200px;
   }
+}
+
+/* Media query for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .star.meteorit-star {
+    animation: none;
+    opacity: 0.5;
+  }
+
+  .animation-layer::before,
+  .animation-layer::after {
+    animation: none;
+    opacity: 0;
+  }
+
+  .animation-layer {
+    animation: none;
+  }
+}
+
+/* Performance optimization for lower-end devices */
+@media (max-width: 768px) {
+  .animation-layer::before,
+  .animation-layer::after {
+    box-shadow:
+      0 0 4px rgba(255, 255, 255, 0.8),
+      -8px -4px 0 rgba(255, 255, 255, 0.4),
+      -16px -8px 0 rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Light mode styles - Plain white background */
+body.light-mode .stars-container {
+  background: #ffffff !important;
+  opacity: 1;
+}
+
+/* Hide stars completely in light mode */
+body.light-mode .star.meteorit-star {
+  display: none;
+}
+
+/* Hide shooting star animations in light mode */
+body.light-mode .animation-layer::before,
+body.light-mode .animation-layer::after {
+  display: none;
+}
+
+/* Remove background star patterns in light mode */
+body.light-mode .animation-layer {
+  background-image: none;
+  animation: none;
 }
 </style>
