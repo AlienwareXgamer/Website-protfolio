@@ -302,7 +302,7 @@ body.light-mode .navigation {
   background: rgba(255, 255, 255, 0.95);
   border: 1px solid rgba(139, 92, 246, 0.15);
   backdrop-filter: blur(20px);
-  box-shadow: 
+  box-shadow:
     0 8px 32px rgba(139, 92, 246, 0.1),
     0 0 0 1px rgba(255, 255, 255, 0.8);
 }
@@ -310,7 +310,7 @@ body.light-mode .navigation {
 body.light-mode .navigation:hover {
   background: rgba(255, 255, 255, 0.98);
   border-color: rgba(139, 92, 246, 0.3);
-  box-shadow: 
+  box-shadow:
     0 12px 40px rgba(139, 92, 246, 0.15),
     0 0 0 1px rgba(255, 255, 255, 0.9);
 }
@@ -1152,14 +1152,14 @@ body.light-mode .project-tech-stack {
 /* Enhanced light mode gradients and shadows */
 body.light-mode .hero-photo {
   background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7) !important;
-  box-shadow: 
+  box-shadow:
     0 25px 50px rgba(139, 92, 246, 0.3),
     0 0 0 4px rgba(255, 255, 255, 0.8),
     0 0 0 6px rgba(139, 92, 246, 0.2) !important;
 }
 
 body.light-mode .hero-photo:hover {
-  box-shadow: 
+  box-shadow:
     0 30px 60px rgba(139, 92, 246, 0.4),
     0 0 0 4px rgba(255, 255, 255, 0.9),
     0 0 0 6px rgba(139, 92, 246, 0.3) !important;

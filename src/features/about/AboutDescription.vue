@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from 'vue';
+import { computed } from "vue";
 
 const props = defineProps({
   description: {
@@ -10,15 +10,15 @@ const props = defineProps({
 
 // Split description into paragraphs
 const paragraphs = computed(() => {
-  return props.description.split('\n\n').filter(p => p.trim());
+  return props.description.split("\n\n").filter((p) => p.trim());
 });
 </script>
 
 <template>
   <div class="about-description">
-    <div 
-      v-for="(paragraph, index) in paragraphs" 
-      :key="index" 
+    <div
+      v-for="(paragraph, index) in paragraphs"
+      :key="index"
       class="paragraph"
       v-html="paragraph"
     />
