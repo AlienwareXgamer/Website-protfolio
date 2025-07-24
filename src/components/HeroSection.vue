@@ -34,23 +34,23 @@ const openEmail = () => {
         <span class="intro-text"
           >Full-stack developer and data analyst passionate about creating</span
         >
-        <span class="highlight-primary">innovative web solutions</span>
-        <span class="intro-text">and driving</span>
-        <span class="highlight-secondary">insights through data</span
+        <span class="highlight-primary"> innovative web solutions</span>
+        <span class="intro-text"> and driving</span>
+        <span class="highlight-secondary"> insights through data</span
         ><span class="intro-text">.</span>
 
         <br /><br />
 
-        <span class="intro-text">Experienced in</span>
-        <span class="highlight-tech">modern JavaScript frameworks</span
+        <span class="intro-text"> Experienced in</span>
+        <span class="highlight-tech"> modern JavaScript frameworks</span
         ><span class="intro-text">,</span>
-        <span class="highlight-tech">backend development</span
+        <span class="highlight-tech"> backend development</span
         ><span class="intro-text">, and</span>
-        <span class="highlight-tech">data visualization</span
+        <span class="highlight-tech"> data visualization</span
         ><span class="intro-text">, with a</span>
-        <span class="highlight-accent">proven track record</span>
+        <span class="highlight-accent"> proven track record</span>
         <span class="intro-text"
-          >of delivering impactful projects in corporate and community
+          > of delivering impactful projects in corporate and community
           settings.</span
         >
       </div>
