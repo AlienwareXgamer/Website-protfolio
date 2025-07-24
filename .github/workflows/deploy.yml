@@ -27,24 +27,16 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "18.19.0"
+          node-version: "20"
           cache: "npm"
 
-      - name: Clean npm cache
-        run: npm cache clean --force
-
-      - name: Remove package-lock and node_modules
-        run: |
-          rm -f package-lock.json
-          rm -rf node_modules
-
       - name: Install dependencies
-        run: |
-          npm install --no-optional
-          npm install @rollup/rollup-linux-x64-gnu --save-dev --no-optional
+        run: npm ci
 
       - name: Build project
         run: npm run build
+        env:
+          NODE_ENV: production
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
