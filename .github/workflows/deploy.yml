@@ -31,11 +31,13 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        node-version: '20'
         cache: 'npm'
 
-    - name: Install dependencies
-      run: npm ci
+    - name: Clean install dependencies
+      run: |
+        npm ci --no-optional
+        npm install --save-dev @rollup/rollup-linux-x64-gnu
 
     - name: Build project
       run: npm run build
