@@ -2,9 +2,9 @@ name: Deploy Portfolio to GitHub Pages
 
 on:
   push:
-    branches: [ "main", "more-ui-and-design-improvements-v3" ]
+    branches: ["main", "more-ui-and-design-improvements-v3"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -21,38 +21,38 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '18.19.0'
-        cache: 'npm'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "18.19.0"
+          cache: "npm"
 
-    - name: Clean npm cache
-      run: npm cache clean --force
+      - name: Clean npm cache
+        run: npm cache clean --force
 
-    - name: Remove package-lock and node_modules
-      run: |
-        rm -f package-lock.json
-        rm -rf node_modules
+      - name: Remove package-lock and node_modules
+        run: |
+          rm -f package-lock.json
+          rm -rf node_modules
 
-    - name: Install dependencies
-      run: |
-        npm install --no-optional
-        npm install @rollup/rollup-linux-x64-gnu --save-dev --no-optional
+      - name: Install dependencies
+        run: |
+          npm install --no-optional
+          npm install @rollup/rollup-linux-x64-gnu --save-dev --no-optional
 
-    - name: Build project
-      run: npm run build
+      - name: Build project
+        run: npm run build
 
-    - name: Setup Pages
-      uses: actions/configure-pages@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
 
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
-      with:
-        path: ./dist
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
 
   deploy:
     environment:
