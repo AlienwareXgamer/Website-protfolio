@@ -12,20 +12,15 @@ export default defineConfig({
     },
   },
   build: {
-    // Fix crypto-hash build issues
     sourcemap: false,
     minify: "esbuild",
-    target: "esnext",
+    target: "es2015",
     rollupOptions: {
       output: {
         // Let Vite handle chunking automatically
         manualChunks: undefined,
       },
     },
-  },
-  define: {
-    // Fix crypto-hash issues in production
-    global: "globalThis",
   },
   server: {
     port: 5173,
