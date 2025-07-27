@@ -28,7 +28,50 @@ const openEmail = () => {
 
       <HeroIdentity name="Francis Allen Prado" handle="@francis_allen_dev" />
 
-      <SocialIcons />
+      <div class="social-icons hero-contact-inline">
+        <a
+          class="social-icon"
+          href="mailto:francisallen148@gmail.com"
+          title="Email"
+        >
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a
+          class="social-icon"
+          href="https://www.linkedin.com/in/francis-allen-prado"
+          target="_blank"
+          title="LinkedIn"
+        >
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a
+          class="social-icon"
+          href="https://github.com/AlienwareXgamer"
+          target="_blank"
+          title="GitHub"
+        >
+          <i class="fab fa-github"></i>
+        </a>
+        <a
+          class="social-icon"
+          href="https://twitter.com/francis_allen_dev"
+          target="_blank"
+          title="Twitter"
+        >
+          <i class="fab fa-twitter"></i>
+        </a>
+        <a class="social-icon" href="tel:+639762404193" title="Call">
+          <i class="fas fa-phone"></i>
+        </a>
+        <a
+          class="social-icon"
+          href="https://maps.google.com/?q=Davao+Del+Sur,+Davao+City,+Roxas+Ave."
+          target="_blank"
+          title="Location"
+        >
+          <i class="fas fa-map-marker-alt"></i>
+        </a>
+      </div>
 
       <div class="hero-title">
         <span class="intro-text"
@@ -49,8 +92,8 @@ const openEmail = () => {
         <span class="highlight-tech"> data visualization</span
         ><span class="intro-text">, with a</span>
         <span class="highlight-accent"> proven track record</span>
-        <span class="intro-text"
-          > of delivering impactful projects in corporate and community
+        <span class="intro-text">
+          of delivering impactful projects in corporate and community
           settings.</span
         >
       </div>
@@ -62,12 +105,6 @@ const openEmail = () => {
         <BaseButton variant="secondary" @click="scrollToSection('projects')">
           View Projects
         </BaseButton>
-      </div>
-
-      <div class="hero-contact">
-        <button class="email-btn" @click="openEmail">
-          francisallen148@gmail.com
-        </button>
       </div>
     </div>
   </section>
@@ -81,7 +118,7 @@ const openEmail = () => {
   min-height: 100vh;
   width: 100%;
   text-align: center;
-  padding: 4rem 2rem;
+  padding: 2rem 1.5rem; /* Reduced padding to minimize dead space */
   box-sizing: border-box;
   background: linear-gradient(
     135deg,
@@ -91,18 +128,19 @@ const openEmail = () => {
 }
 
 .hero-content {
-  max-width: 900px;
+  max-width: none; /* Remove max-width constraint */
   width: 100%;
-  padding: 0 2rem;
+  padding: 0 2rem; /* Increased horizontal padding for edge-to-edge feel */
 }
 
 .hero-title {
-  font-size: 0.95rem;
+  font-size: 1rem; /* Increased from 0.95rem */
   color: #d1d5db;
-  margin-bottom: 2.5rem;
-  line-height: 1.6;
+  margin-bottom: 2rem; /* Reduced from 2.5rem */
+  line-height: 1.5; /* Tightened line height */
   font-weight: 300;
-  max-width: 600px;
+  max-width: none; /* Remove max-width to allow full screen width */
+  width: 100%; /* Full width */
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -161,84 +199,92 @@ body.light-mode .highlight-accent {
   display: flex;
   gap: 1.5rem;
   justify-content: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem; /* Reduced from 2rem */
   flex-wrap: wrap;
 }
 
 .hero-contact {
   display: flex;
+  gap: 1rem;
   justify-content: center;
   margin-top: 1.5rem;
 }
 
-.email-btn {
-  background: rgba(255, 255, 255, 0.05);
-  color: #9ca3af;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  font-size: 15px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  min-width: 250px;
-}
-
-.email-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #d1d5db;
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
-  box-shadow:
-    0 8px 25px rgba(139, 92, 246, 0.2),
-    0 0 15px rgba(139, 92, 246, 0.15);
+.hero-contact-inline {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
 }
 
 /* Desktop optimizations */
 @media (min-width: 1200px) {
   .hero-section {
-    padding: 4rem 4rem;
+    padding: 3rem 3rem; /* Reduced from 4rem */
+  }
+
+  .hero-content {
+    max-width: none; /* Remove max-width for large screens */
+    padding: 0 4rem; /* Increase padding for better edge spacing */
   }
 
   .hero-title {
-    font-size: 1.1rem;
-    max-width: 650px;
-    margin-bottom: 3rem;
+    font-size: 1.2rem;
+    max-width: none; /* Full width on large screens */
+    margin-bottom: 2.5rem;
   }
 
   .hero-buttons {
     gap: 2rem;
-    margin-bottom: 2.5rem;
+    margin-bottom: 2rem; /* Reduced spacing */
+  }
+
+  .hero-contact {
+    margin-top: 2rem;
   }
 }
 
 @media (min-width: 1440px) {
   .hero-content {
-    max-width: 900px;
+    max-width: none; /* Full width on extra large screens */
+    padding: 0 6rem; /* More padding for very large screens */
   }
 
   .hero-title {
-    font-size: 1.2rem;
-    max-width: 700px;
+    font-size: 1.3rem; /* Slightly increased */
+    max-width: none; /* Full width */
   }
 }
 
 /* Mobile responsive styles */
 @media (max-width: 768px) {
+  .hero-section {
+    padding: 2rem 1rem; /* Reduced mobile padding */
+  }
+
+  .hero-content {
+    padding: 0 1rem; /* Reduced mobile padding for more space */
+  }
+
   .hero-title {
     font-size: 0.9rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem; /* Reduced spacing */
+    max-width: none; /* Full width on mobile too */
   }
 
   .hero-buttons {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem; /* Reduced spacing */
   }
 
   .hero-contact {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
     margin-top: 1rem;
   }
 }
@@ -246,11 +292,15 @@ body.light-mode .highlight-accent {
 @media (max-width: 480px) {
   .hero-title {
     font-size: 0.85rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem; /* Reduced spacing */
   }
 
   .hero-section {
-    padding: 3rem 1rem;
+    padding: 2rem 0.5rem; /* Further reduced padding */
+  }
+
+  .hero-content {
+    padding: 0 0.5rem; /* Minimal padding for maximum width usage */
   }
 }
 </style>

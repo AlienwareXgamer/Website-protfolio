@@ -4,18 +4,6 @@ import ExperienceItem from "../../features/experience/ExperienceItem.vue";
 
 const experiences = [
   {
-    title: "Professional Photographer",
-    period: "September 2017 - Present",
-    company: "Freelance",
-    description:
-      "Versed and skilled in multiple genres of photography, including portraits, event, and product photography.",
-    achievements: [
-      "Managed client relationships, ensuring satisfaction and repeat business",
-      "Edited and retouched photos using Adobe Photoshop and Lightroom",
-      "Conducted photo shoots in various settings, demonstrating adaptability and creativity",
-    ],
-  },
-  {
     title: "Data Analyst - Lessor Management System",
     period: "January 2025 - May 2025",
     company: "Globe Telecom Inc. (Davao) Internship",
@@ -23,8 +11,8 @@ const experiences = [
       "Managed lessor data for assigned locations, primarily in the Mindanao and Visayas regions.",
     achievements: [
       "Contributed to the making of the prototype updated lessor management system",
-      "Assembled, troubleshooted, and maintained computers",
-      "Provided technical assistance and resolved hardware and software issues",
+      "Performed data analysis and reporting for lessor management",
+      "Collaborated with the development team on system improvements",
     ],
   },
   {
@@ -72,17 +60,40 @@ const experiences = [
 <style scoped>
 .experience-section {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1800px; /* Increased max-width to fill more horizontal space */
   margin: 0 auto;
-  display: block; /* Ensure the section displays */
-  min-height: auto; /* Allow natural height */
+  display: block;
+  min-height: auto;
+  padding: 0 3rem; /* Add horizontal padding for edge-to-edge look */
 }
 
 .experience-list {
   margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  gap: 2.5rem;
+  justify-items: stretch;
+  align-items: stretch;
+  width: 100%;
+  max-width: 100%; /* Allow grid to use full section width */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.experience-item {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
+  border: 1.5px solid rgba(139, 92, 246, 0.22); /* Static border for card */
+  border-left: 6px solid #8b5cf6; /* Purple accent for experience */
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  width: 100%;
+  align-items: center;
+  height: 100%;
+  box-sizing: border-box;
 }
 </style>

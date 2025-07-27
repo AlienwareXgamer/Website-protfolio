@@ -9,11 +9,10 @@ defineProps({
 
 <template>
   <div class="experience-item">
-    <div class="experience-header">
-      <h4>{{ experience.title }}</h4>
-      <span class="experience-period">{{ experience.period }}</span>
+    <div class="experience-header" style="flex-direction: column; align-items: center; text-align: center;">
+      <h4 style="text-align: center;">{{ experience.title }}</h4>
+      <span class="experience-period" style="text-align: center;">{{ experience.period }}</span>
     </div>
-    <p class="experience-company">{{ experience.company }}</p>
     <p class="experience-description">{{ experience.description }}</p>
     <ul v-if="experience.achievements" class="experience-achievements">
       <li v-for="achievement in experience.achievements" :key="achievement">
@@ -25,15 +24,15 @@ defineProps({
 
 <style scoped>
 .experience-item {
-  margin-bottom: 0; /* Remove bottom margin since parent uses gap */
+  margin-bottom: 2rem;
   padding: 1.5rem;
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  border-left: 4px solid #8b5cf6;
+  border-radius: 16px;
+  border: 1px solid rgba(139, 92, 246, 0.18); /* Thinner static border */
+  border-left: 4px solid #8b5cf6; /* Thinner purple accent */
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.10); /* Gentle inner glow by default */
   transition: all 0.3s ease;
   position: relative;
-  width: 100%;
-  box-sizing: border-box;
 }
 
 .experience-item::before {
@@ -54,10 +53,9 @@ defineProps({
   background: rgba(255, 255, 255, 0.08);
   transform: translateY(-2px);
   box-shadow:
-    0 8px 25px rgba(139, 92, 246, 0.15),
-    0 0 15px rgba(139, 92, 246, 0.1),
-    0 0 0 1px rgba(139, 92, 246, 0.1);
-  border-left-color: #a855f7;
+    0 0 0 2px rgba(139, 92, 246, 0.10), /* Gentle inner glow */
+    0 0 0 8px rgba(139, 92, 246, 0.22); /* Stronger outer glow on hover */
+  border-left-color: #7c3aed;
 }
 
 .experience-item:hover::before {
@@ -65,39 +63,35 @@ defineProps({
 }
 
 .experience-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 0.5rem;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 1.2rem; /* More space below header */
 }
 
 .experience-header h4 {
+  font-size: clamp(1.1rem, 1.5vw + 1rem, 1.5rem); /* Slightly smaller than project card */
+  font-weight: 700;
   color: #fff;
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin: 0;
+  line-height: 1.3;
+  margin: 0 0 0.3rem 0; /* Tighter space below title */
+  text-align: center;
 }
 
 .experience-period {
-  color: #8b5cf6;
   font-size: 0.9rem;
+  color: #8b5cf6;
   font-weight: 500;
-  white-space: nowrap;
-}
-
-.experience-company {
-  color: #a1a1aa;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  font-weight: 500;
+  text-align: center;
+  margin-bottom: 0.2rem; /* Tighter space below year */
 }
 
 .experience-description {
+  margin-top: 0.5rem; /* Less space above description */
+  margin-bottom: 1.2rem; /* More space below description */
   color: #d1d5db;
-  line-height: 1.6;
-  margin-bottom: 1rem;
+  line-height: 1.7;
+  text-align: center;
 }
 
 .experience-achievements {
@@ -109,16 +103,26 @@ defineProps({
 .experience-achievements li {
   color: #d1d5db;
   margin-bottom: 0.5rem;
-  padding-left: 1.5rem;
+  padding-left: 2.2rem; /* More space for icon */
   position: relative;
+  display: flex;
+  align-items: center;
+  min-height: 1.7em;
 }
 
 .experience-achievements li::before {
-  content: "▸";
-  color: #8b5cf6;
-  font-weight: bold;
+  content: "";
+  display: block;
+  width: 0;
+  height: 0;
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 9px solid #8b5cf6;
+  margin-right: 0.6em;
   position: absolute;
   left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* Responsive */

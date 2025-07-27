@@ -123,6 +123,7 @@ const bottomRowSkills = skillsCategories.slice(4, 7);
   align-items: center;
   justify-content: center;
   width: 100%;
+  padding: 0 2rem; /* Added edge-to-edge padding */
 }
 
 .skills-container {
@@ -132,6 +133,7 @@ const bottomRowSkills = skillsCategories.slice(4, 7);
   align-items: center;
   margin-top: 2rem;
   gap: 2.5rem;
+  max-width: none; /* Remove max-width for full screen usage */
 }
 
 .skills-row {
@@ -156,7 +158,26 @@ const bottomRowSkills = skillsCategories.slice(4, 7);
 }
 
 /* Responsive layouts */
-@media (min-width: 1200px) {
+@media (min-width: 1400px) {
+  .skills-section {
+    padding: 0 6rem; /* More padding for very large screens */
+  }
+
+  .skills-row {
+    gap: 2.5rem;
+  }
+
+  .top-row,
+  .bottom-row {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1399px) {
+  .skills-section {
+    padding: 0 4rem; /* Increased padding for large screens */
+  }
+
   .skills-row {
     gap: 2.5rem;
   }
@@ -168,6 +189,10 @@ const bottomRowSkills = skillsCategories.slice(4, 7);
 }
 
 @media (min-width: 900px) and (max-width: 1199px) {
+  .skills-section {
+    padding: 0 2rem; /* Standard padding */
+  }
+
   .top-row,
   .bottom-row {
     grid-template-columns: repeat(3, 1fr);
@@ -176,6 +201,10 @@ const bottomRowSkills = skillsCategories.slice(4, 7);
 }
 
 @media (min-width: 768px) and (max-width: 899px) {
+  .skills-section {
+    padding: 0 1.5rem; /* Reduced padding for tablets */
+  }
+
   .top-row,
   .bottom-row {
     grid-template-columns: repeat(2, 1fr);
@@ -184,6 +213,10 @@ const bottomRowSkills = skillsCategories.slice(4, 7);
 }
 
 @media (max-width: 767px) {
+  .skills-section {
+    padding: 0 1rem; /* Minimal padding for mobile */
+  }
+
   .skills-container {
     gap: 2rem;
   }

@@ -50,5 +50,8 @@ const educationData = [
 <style scoped>
 .education-list {
   margin-top: 2rem;
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
 }
 </style>

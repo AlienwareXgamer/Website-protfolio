@@ -13,25 +13,27 @@
   width: 100%;
   max-width: none;
   margin: 0;
-  padding: 4rem 2rem; /* Simplified padding */
-  padding-top: 8rem; /* Add extra top padding to account for navigation bar */
+  padding: 3rem 2rem; /* Reduced from 4rem to minimize vertical dead space */
+  padding-top: 6rem; /* Reduced from 8rem to decrease top dead space */
   color: #d5d5db;
   position: relative;
   box-sizing: border-box;
-  display: block; /* Changed from flex to block for better content flow */
-  min-height: auto; /* Allow natural content height */
+  display: block;
+  min-height: auto;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
 }
 
 .content-section-base > :deep(*) {
-  max-width: 1200px;
-  width: 100%;
+  max-width: 1800px; /* Increased max-width for more horizontal space */
+  width: 100%; /* Use full width of parent */
   margin-left: auto;
   margin-right: auto;
   text-align: center;
   position: relative;
-  display: block; /* Ensure child elements display properly */
+  display: block;
+  padding-left: 2vw; /* Add gentle left padding */
+  padding-right: 2vw; /* Add gentle right padding */
 }
 
 .content-section-base::before {
@@ -57,7 +59,7 @@
 
 .content-section-base :deep(h3) {
   color: #fff;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem; /* Reduced from 2.5rem */
   margin-top: 0; /* Remove top margin since we now have padding-top */
   font-size: 2.5rem;
   font-weight: 700;
@@ -85,41 +87,41 @@
 /* Responsive */
 @media (max-width: 1024px) {
   .content-section-base {
-    padding: 3rem 2rem;
-    padding-top: 7rem; /* Adjust for smaller screens */
+    padding: 2.5rem 2rem; /* Reduced padding */
+    padding-top: 5rem; /* Reduced top padding */
   }
 }
 
 @media (max-width: 768px) {
   .content-section-base {
-    padding: 2.5rem 1.5rem;
-    padding-top: 6rem; /* Adjust for mobile */
+    padding: 2rem 1.5rem; /* Optimized mobile padding */
+    padding-top: 4.5rem; /* Reduced mobile top padding */
   }
 
   .content-section-base :deep(h3) {
     font-size: 2rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem; /* Reduced margin */
     margin-top: 0;
   }
 }
 
 @media (max-width: 480px) {
   .content-section-base {
-    padding: 2rem 1rem;
-    padding-top: 5.5rem; /* Adjust for very small screens */
+    padding: 1.5rem 1rem; /* Further reduced for small screens */
+    padding-top: 4rem;
   }
 
   .content-section-base :deep(h3) {
     font-size: 1.8rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
     margin-top: 0;
   }
 }
 
 @media (min-width: 1440px) {
   .content-section-base {
-    padding: 5rem 2rem;
-    padding-top: 9rem; /* Extra space for larger screens */
+    padding: 4rem 3rem; /* Better use of large screen space */
+    padding-top: 7rem;
   }
 }
 </style>

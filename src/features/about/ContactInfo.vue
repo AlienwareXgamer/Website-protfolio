@@ -26,12 +26,16 @@ defineProps({
 <style scoped>
 .contact-info {
   background: rgba(255, 255, 255, 0.08);
-  padding: 2rem;
+  padding: 1.5rem 2rem; /* Added horizontal padding for edge-to-edge feel */
   border-radius: 16px;
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
+  max-width: none; /* Remove max-width for full screen usage */
+  width: 100%; /* Full width */
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .contact-info:hover {
@@ -44,7 +48,7 @@ defineProps({
 }
 
 .contact-item {
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.6rem; /* Reduced from 0.75rem */
   font-size: 1.1rem;
 }
 
@@ -79,5 +83,40 @@ body.light-mode .contact-item span {
 
 body.light-mode .contact-item strong {
   color: #1f2937 !important;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .contact-info {
+    padding: 1.25rem 1rem; /* Reduced mobile padding for more space */
+    margin-top: 1.25rem;
+    max-width: none; /* Full width on mobile */
+  }
+
+  .contact-item {
+    font-size: 1rem;
+    margin-bottom: 0.5rem; /* Tighter mobile spacing */
+  }
+}
+
+@media (min-width: 1200px) {
+  .contact-info {
+    max-width: none; /* Full width on large screens */
+    padding: 1.75rem 4rem; /* Increased horizontal padding */
+  }
+
+  .contact-item {
+    font-size: 1.15rem; /* Slightly larger for better readability */
+  }
+}
+
+@media (min-width: 1440px) {
+  .contact-info {
+    padding: 1.75rem 6rem; /* More padding for very large screens */
+  }
+
+  .contact-item {
+    font-size: 1.2rem; /* Larger text for better readability */
+  }
 }
 </style>

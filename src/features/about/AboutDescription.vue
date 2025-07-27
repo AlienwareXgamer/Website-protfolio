@@ -28,15 +28,16 @@ const paragraphs = computed(() => {
 <style scoped>
 .about-description {
   text-align: center;
-  padding: 2rem 0;
+  padding: 1.5rem 2rem; /* Added horizontal padding for edge-to-edge feel */
 }
 
 .about-description .paragraph {
   font-size: 1.15rem;
-  line-height: 1.9;
+  line-height: 1.7;
   color: #d1d5db;
-  margin-bottom: 2.5rem;
-  max-width: 700px;
+  margin-bottom: 1.8rem;
+  max-width: none; /* Remove max-width to allow full screen width */
+  width: 100%; /* Full width */
   margin-left: auto;
   margin-right: auto;
   font-weight: 300;
@@ -87,9 +88,36 @@ body.light-mode .about-description .paragraph {
 
 /* Responsive */
 @media (max-width: 768px) {
+  .about-description {
+    padding: 1rem; /* Reduced mobile padding for more space */
+  }
+
   .about-description .paragraph {
     font-size: 1rem;
-    max-width: 90%;
+    max-width: none; /* Full width on mobile */
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+}
+
+@media (min-width: 1200px) {
+  .about-description {
+    padding: 1.5rem 4rem; /* Increased padding for large screens */
+  }
+
+  .about-description .paragraph {
+    max-width: none; /* Full width on large screens */
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 1440px) {
+  .about-description {
+    padding: 1.5rem 6rem; /* More padding for very large screens */
+  }
+
+  .about-description .paragraph {
+    font-size: 1.3rem; /* Slightly larger for better readability */
   }
 }
 </style>

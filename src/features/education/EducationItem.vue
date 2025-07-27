@@ -30,6 +30,19 @@ const isAteneo = (institution) => {
     </p>
     <ul v-if="education.achievements" class="education-achievements">
       <li v-for="achievement in education.achievements" :key="achievement">
+        <span class="triangle-icon-left">
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 12 12"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <polygon
+              points="2,2 10,6 2,10"
+              :fill="isAteneo(education.institution) ? '#3b82f6' : '#22c55e'"
+            />
+          </svg>
+        </span>
         {{ achievement }}
       </li>
     </ul>
@@ -44,6 +57,9 @@ const isAteneo = (institution) => {
   border-radius: 12px;
   border-left: 4px solid #22c55e;
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: relative;
 }
 
@@ -160,19 +176,30 @@ const isAteneo = (institution) => {
   list-style: none;
   padding: 0;
   margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
-
 .education-achievements li {
   color: #d1d5db;
   margin-bottom: 0.5rem;
-  padding-left: 1.5rem;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100%;
+  padding-left: 1.8em; /* Reserve space for icon inside card */
 }
-
-.education-achievements li::before {
-  content: "🎓";
+.education-achievements li .triangle-icon-left {
   position: absolute;
-  left: 0;
+  left: 0.5em; /* Just inside card, left of text */
+  top: 50%;
+  transform: translateY(-50%);
+  margin-right: 0.6em;
 }
 
 /* Responsive */

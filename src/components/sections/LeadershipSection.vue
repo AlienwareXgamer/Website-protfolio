@@ -241,9 +241,18 @@ const certifications = [
 }
 
 .leadership-achievements li::before {
-  content: "🏆";
+  content: "";
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  border-left: 7px solid #f59e0b; /* Smaller orange arrow */
+  margin-right: 0.6em;
   position: absolute;
   left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 /* Certifications */
@@ -260,15 +269,14 @@ const certifications = [
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
   text-align: center;
+  box-shadow: 0 0 0 2px #8b5cf6, 0 0 16px 2px rgba(139, 92, 246, 0.15); /* Subtle purple glow */
 }
 
 .certification-card:hover {
   background: rgba(255, 255, 255, 0.08);
   border-color: rgba(139, 92, 246, 0.3);
   transform: translateY(-2px);
-  box-shadow:
-    0 8px 25px rgba(139, 92, 246, 0.15),
-    0 0 0 1px rgba(139, 92, 246, 0.1);
+  box-shadow: 0 0 0 3px #8b5cf6, 0 0 32px 4px rgba(139, 92, 246, 0.22); /* Stronger purple glow on hover */
 }
 
 .certification-card h5 {

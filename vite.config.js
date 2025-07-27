@@ -5,8 +5,8 @@ import { resolve } from "path";
 // https://vite.dev/config/
 export default defineConfig(() => {
   // Determine base path based on environment
-  const isGitHubPages = process.env.GITHUB_ACTIONS === 'true';
-  const base = isGitHubPages ? '/Website-Portfolio/' : '/';
+  const isGitHubPages = process.env.GITHUB_ACTIONS === "true";
+  const base = isGitHubPages ? "/Website-Portfolio/" : "/";
 
   return {
     plugins: [vue()],
@@ -27,7 +27,7 @@ export default defineConfig(() => {
         },
       },
       // Ensure assets are properly handled
-      assetsDir: 'assets',
+      assetsDir: "assets",
     },
     server: {
       port: 5173,

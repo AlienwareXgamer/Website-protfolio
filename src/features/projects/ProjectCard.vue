@@ -83,12 +83,11 @@ defineProps({
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
   position: relative;
+  padding-top: 2rem; /* Restore normal top padding */
   overflow: hidden;
-  width: 100%;
-  box-sizing: border-box;
-  height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 
 .project-card::before {
@@ -122,21 +121,20 @@ defineProps({
 
 .project-header {
   display: flex;
-  justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 1.5rem;
-  position: relative;
-  z-index: 1;
+  margin-bottom: 0.5rem; /* Reduced space below header */
 }
 
 .project-header h4 {
-  margin: 0;
-  font-size: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 0 0 0.5rem 0; /* 2 spaces below title */
+  font-size: clamp(1.3rem, 2vw + 1.1rem, 2.2rem);
   font-weight: 700;
   color: white;
   line-height: 1.3;
-  flex-grow: 1;
-  margin-right: 1rem;
+  text-align: center;
 }
 
 .project-links {
@@ -177,52 +175,62 @@ defineProps({
 }
 
 .project-description {
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  font-size: 1rem;
-  position: relative;
-  z-index: 1;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.08rem;
+  line-height: 1.7;
+  margin-bottom: 0.5rem; /* 2 spaces below description */
+  text-align: left;
+  padding-bottom: 0.5rem;
 }
 
 .project-tech-stack {
+  position: static;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-  position: relative;
-  z-index: 1;
+  gap: 0.7rem 1.2rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.2rem; /* Space below tags, above title */
+  width: 100%;
+  max-width: 95%;
+  z-index: 2;
 }
 
 .tech-tag {
-  display: inline-block;
-  padding: 0.4rem 0.8rem;
-  background: rgba(139, 92, 246, 0.15);
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
-  transition: all 0.3s ease;
+  min-width: 80px;
+  max-width: 220px;
+  width: auto;
+  text-align: center;
+  margin-bottom: 0.7rem;
+  border-radius: 16px;
+  background: rgba(139, 92, 246, 0.08); /* Less transparent */
+  color: #8b5cf6; /* Purple text */
+  font-weight: 600;
+  font-size: clamp(0.85rem, 2vw, 1.05rem);
+  padding: 0.4rem 0.9rem;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  box-shadow: none;
+  position: relative;
 }
 
 .tech-tag:hover {
-  background: rgba(139, 92, 246, 0.25);
-  border-color: rgba(139, 92, 246, 0.5);
-  transform: scale(1.05);
-}
-
-.project-features {
-  margin-top: auto;
-  position: relative;
+  background: rgba(139, 92, 246, 0.18);
+  color: #fff;
+  box-shadow: 0 0 8px 2px rgba(139, 92, 246, 0.18);
   z-index: 1;
 }
 
+.project-features {
+  margin-top: 0.2rem; /* Minimal space above features */
+  padding-top: 0.2rem;
+  text-align: left;
+}
+
 .project-features h5 {
-  margin: 0 0 1rem 0;
-  font-size: 1.1rem;
+  font-size: 1.13rem;
   font-weight: 600;
-  color: white;
+  color: #8b5cf6;
+  margin-bottom: 0.5rem; /* Minimal space below features title */
 }
 
 .project-features ul {
@@ -233,17 +241,17 @@ defineProps({
 
 .project-features li {
   position: relative;
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.5;
-  margin-bottom: 0.5rem;
-  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  margin-bottom: 0.2rem; /* Minimal space between feature items */
+  font-size: 1rem;
 }
 
 .project-features li::before {
   content: "→";
   position: absolute;
   left: -1.2rem;
-  color: rgba(139, 92, 246, 0.8);
+  color: #8b5cf6;
   font-weight: bold;
 }
 
