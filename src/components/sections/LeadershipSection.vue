@@ -265,41 +265,45 @@ const certifications = [
 .certification-card {
   padding: 1.5rem;
   background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  border-left: 4px solid #8b5cf6; /* Purple accent */
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.1);
   transition: all 0.3s ease;
-  text-align: center;
-  box-shadow: 0 0 0 2px #8b5cf6, 0 0 16px 2px rgba(139, 92, 246, 0.15); /* Subtle purple glow */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the title and content */
+  text-align: center; /* Center-align text */
+  gap: 0.5rem;
 }
 
 .certification-card:hover {
   background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(139, 92, 246, 0.3);
-  transform: translateY(-2px);
-  box-shadow: 0 0 0 3px #8b5cf6, 0 0 32px 4px rgba(139, 92, 246, 0.22); /* Stronger purple glow on hover */
+  border-left-color: #7c3aed;
+  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.2);
+  transform: translateY(-4px);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .certification-card h5 {
-  color: #fff;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 600;
-  margin-bottom: 0.75rem;
-  line-height: 1.3;
+  color: #fff;
+  margin-bottom: 0.5rem;
 }
 
 .cert-issuer {
+  font-size: 1rem;
   color: #8b5cf6;
   font-weight: 500;
-  margin-bottom: 1rem;
 }
 
 .cert-details {
+  font-size: 0.9rem;
+  color: #9ca3af;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.85rem;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+  flex-direction: column;
+  align-items: center; /* Center-align content */
+  gap: 0.25rem;
 }
 
 .cert-year {
@@ -308,7 +312,6 @@ const certifications = [
 }
 
 .cert-id {
-  color: #9ca3af;
   font-family: monospace;
 }
 

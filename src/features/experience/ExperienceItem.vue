@@ -9,9 +9,14 @@ defineProps({
 
 <template>
   <div class="experience-item">
-    <div class="experience-header" style="flex-direction: column; align-items: center; text-align: center;">
-      <h4 style="text-align: center;">{{ experience.title }}</h4>
-      <span class="experience-period" style="text-align: center;">{{ experience.period }}</span>
+    <div
+      class="experience-header"
+      style="flex-direction: column; align-items: center; text-align: center"
+    >
+      <h4 style="text-align: center">{{ experience.title }}</h4>
+      <span class="experience-period" style="text-align: center">{{
+        experience.period
+      }}</span>
     </div>
     <p class="experience-description">{{ experience.description }}</p>
     <ul v-if="experience.achievements" class="experience-achievements">
@@ -30,7 +35,7 @@ defineProps({
   border-radius: 16px;
   border: 1px solid rgba(139, 92, 246, 0.18); /* Thinner static border */
   border-left: 4px solid #8b5cf6; /* Thinner purple accent */
-  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.10); /* Gentle inner glow by default */
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1); /* Gentle inner glow by default */
   transition: all 0.3s ease;
   position: relative;
 }
@@ -53,8 +58,8 @@ defineProps({
   background: rgba(255, 255, 255, 0.08);
   transform: translateY(-2px);
   box-shadow:
-    0 0 0 2px rgba(139, 92, 246, 0.10), /* Gentle inner glow */
-    0 0 0 8px rgba(139, 92, 246, 0.22); /* Stronger outer glow on hover */
+    0 0 0 2px rgba(139, 92, 246, 0.1),
+    /* Gentle inner glow */ 0 0 0 8px rgba(139, 92, 246, 0.22); /* Stronger outer glow on hover */
   border-left-color: #7c3aed;
 }
 
@@ -70,7 +75,11 @@ defineProps({
 }
 
 .experience-header h4 {
-  font-size: clamp(1.1rem, 1.5vw + 1rem, 1.5rem); /* Slightly smaller than project card */
+  font-size: clamp(
+    1.1rem,
+    1.5vw + 1rem,
+    1.5rem
+  ); /* Slightly smaller than project card */
   font-weight: 700;
   color: #fff;
   line-height: 1.3;

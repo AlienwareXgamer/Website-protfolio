@@ -239,4 +239,16 @@ const bottomRowSkills = skillsCategories.slice(4, 7);
   max-width: 400px;
   margin: 0 auto;
 }
+
+/* Skill card hover effect */
+.skill-card:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow:
+    0 0 0 2px rgba(139, 92, 246, 0.2),
+    0 8px 25px rgba(139, 92, 246, 0.3),
+    0 0 15px rgba(139, 92, 246, 0.4);
+  border-left-color: #7c3aed;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
 </style>

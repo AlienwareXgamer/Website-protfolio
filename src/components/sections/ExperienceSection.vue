@@ -96,4 +96,15 @@ const experiences = [
   height: 100%;
   box-sizing: border-box;
 }
+
+.experience-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px) scale(1.02); /* Slight scaling effect */
+  box-shadow:
+    0 0 0 2px rgba(139, 92, 246, 0.2),
+    /* Inner glow */ 0 8px 25px rgba(139, 92, 246, 0.3),
+    /* Outer glow */ 0 0 15px rgba(139, 92, 246, 0.4); /* Gradient-like glow */
+  border-left-color: #7c3aed; /* Slightly brighter accent */
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth transition */
+}
 </style>

@@ -214,7 +214,9 @@ const projects = [
   padding: 0.5rem 1.1rem;
   border: 1px solid rgba(139, 92, 246, 0.25);
   box-shadow: 0 2px 8px rgba(139, 92, 246, 0.08);
-  transition: background 0.2s, color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -255,7 +257,11 @@ const projects = [
 
 /* Hover effect for project cards */
 .project-card:hover {
-  box-shadow: 0 20px 60px rgba(139, 92, 246, 0.22);
-  transform: translateY(-6px) scale(1.025);
+  box-shadow:
+    0 0 0 2px rgba(139, 92, 246, 0.2),
+    /* Inner glow */ 0 12px 40px rgba(139, 92, 246, 0.3),
+    /* Outer glow */ 0 0 20px rgba(139, 92, 246, 0.4); /* Gradient-like glow */
+  transform: translateY(-6px) scale(1.03); /* Slightly increased scaling */
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth transition */
 }
 </style>

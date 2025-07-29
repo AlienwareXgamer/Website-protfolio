@@ -54,4 +54,26 @@ const educationData = [
   gap: 2.5rem;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
 }
+
+.education-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow:
+    0 0 0 2px rgba(59, 130, 246, 0.2),
+    0 8px 25px rgba(59, 130, 246, 0.3),
+    0 0 15px rgba(59, 130, 246, 0.4);
+  border-left-color: #2563eb;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.education-item:nth-child(2):hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-4px) scale(1.02);
+  box-shadow:
+    0 0 0 2px rgba(34, 197, 94, 0.2),
+    0 8px 25px rgba(34, 197, 94, 0.3),
+    0 0 15px rgba(34, 197, 94, 0.4);
+  border-left-color: #22c55e;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
 </style>

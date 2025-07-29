@@ -1,7 +1,6 @@
 <script setup>
 import ProfilePhoto from "./ui/ProfilePhoto.vue";
 import HeroIdentity from "./ui/HeroIdentity.vue";
-import SocialIcons from "./ui/SocialIcons.vue";
 import BaseButton from "./ui/BaseButton.vue";
 
 defineProps({
@@ -14,10 +13,6 @@ const scrollToSection = (sectionId) => {
   if (element) {
     element.scrollIntoView({ behavior: "smooth", block: "start" });
   }
-};
-
-const openEmail = () => {
-  window.location.href = "mailto:francisallen148@gmail.com";
 };
 </script>
 
