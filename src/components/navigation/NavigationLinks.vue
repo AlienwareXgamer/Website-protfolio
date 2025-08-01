@@ -196,6 +196,7 @@ const handleNavClick = (itemId) => {
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   padding: 0.35rem;
   border-radius: 6px;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   font-family: inherit;
   width: 32px;
@@ -215,6 +216,7 @@ const handleNavClick = (itemId) => {
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.95);
+  -webkit-backdrop-filter: blur(25px);
   backdrop-filter: blur(25px);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 10px;
@@ -320,6 +322,7 @@ const handleNavClick = (itemId) => {
     width: 90%;
     max-width: 320px;
     background: rgba(0, 0, 0, 0.95);
+    -webkit-backdrop-filter: blur(25px);
     backdrop-filter: blur(25px);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
@@ -390,6 +393,7 @@ const handleNavClick = (itemId) => {
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s ease;
+    -webkit-backdrop-filter: blur(2px);
     backdrop-filter: blur(2px);
   }
 
@@ -436,6 +440,7 @@ body.light-mode .mobile-menu-button:hover {
 
 body.light-mode .mobile-nav {
   background: rgba(255, 255, 255, 0.98);
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(139, 92, 246, 0.15);
   box-shadow: 0 12px 40px rgba(139, 92, 246, 0.15);

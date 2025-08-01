@@ -39,6 +39,7 @@ defineEmits(["scroll-to-section", "toggle-theme"]);
   justify-content: center; /* Changed from space-between to center since we removed the logo */
   padding: 0.5rem 1rem;
   background: rgba(0, 0, 0, 0.2); /* Much more transparent when not hovered */
+  -webkit-backdrop-filter: blur(15px); /* Safari support */
   backdrop-filter: blur(15px); /* Reduced blur for more transparency */
   border: 1px solid rgba(255, 255, 255, 0.05); /* Very transparent border */
   border-radius: 12px;
@@ -65,6 +66,7 @@ defineEmits(["scroll-to-section", "toggle-theme"]);
 
 .navigation:hover {
   background: rgba(0, 0, 0, 0.9); /* Solid background on hover */
+  -webkit-backdrop-filter: blur(30px); /* Safari support */
   backdrop-filter: blur(30px); /* Increased blur on hover */
   border-color: rgba(139, 92, 246, 0.5);
   box-shadow:
@@ -103,9 +105,8 @@ defineEmits(["scroll-to-section", "toggle-theme"]);
 @media (max-width: 768px) {
   .navigation {
     padding: 0.45rem 0.8rem;
-    backdrop-filter: blur(
-      15px
-    ); /* Less blur on mobile for better transparency */
+    -webkit-backdrop-filter: blur(15px); /* Safari support */
+    backdrop-filter: blur(15px); /* Less blur on mobile for better transparency */
     background: rgba(0, 0, 0, 0.3); /* More transparent on mobile */
     width: 92%;
     top: 0.3rem;
@@ -115,6 +116,7 @@ defineEmits(["scroll-to-section", "toggle-theme"]);
 
   .navigation:hover {
     background: rgba(0, 0, 0, 0.85); /* Less opaque on mobile hover */
+    -webkit-backdrop-filter: blur(25px); /* Safari support */
     backdrop-filter: blur(25px);
   }
 }

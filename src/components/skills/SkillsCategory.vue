@@ -8,13 +8,8 @@ defineProps({
 
 const getIconUrl = (icon) => {
   if (!icon) return "";
-  // Fix for Vite static asset handling
-  try {
-    return new URL(`../../assets/logos/${icon}`, import.meta.url).href;
-  } catch (error) {
-    console.warn(`Could not load icon: ${icon}`);
-    return "";
-  }
+  // Simple path-based approach for Vite static assets
+  return `/src/assets/logos/${icon}`;
 };
 </script>
 

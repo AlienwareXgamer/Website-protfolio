@@ -3,7 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+
+    <!-- iOS-specific meta tags for better mobile experience -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Francis Prado Portfolio" />
+
+    <!-- Android-specific meta tags -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#8b5cf6" />
+    <meta name="msapplication-navbutton-color" content="#8b5cf6" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
     <meta
       name="description"
       content="Francis Allen Prado - Web Developer and Data Analyst Portfolio. Experienced in Vue.js, Node.js, and modern web technologies."
@@ -41,9 +59,18 @@
       type="image/jpeg"
     />
 
+    <!-- Prevent zoom on iOS when focusing inputs -->
+    <style>
+      input,
+      textarea,
+      select {
+        font-size: 16px !important;
+      }
+    </style>
+
     <title>Francis Allen Prado - Portfolio</title>
-    <script type="module" crossorigin src="/assets/index-Dgtxbb4b.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-C0i1q4Wa.css">
+    <script type="module" crossorigin src="/assets/index-C8VWX1V5.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-BjQyv3jT.css">
   </head>
   <body>
     <div id="app"></div>
