@@ -136,6 +136,7 @@ This is a modern, stylish personal portfolio website for Francis Allen Prado, bu
    ```
 
 5. **Preview production build:**
+
    ```sh
    npm run preview
    ```
