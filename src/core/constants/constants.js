@@ -29,11 +29,11 @@ export const SOCIAL_LINKS = {
 export const NAVIGATION_ITEMS = [
   { id: "home", label: "Home" },
   { id: "about", label: "About" },
+  { id: "skills", label: "Skills" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
   { id: "education", label: "Education" },
   { id: "leadership", label: "Leadership" },
-  { id: "skills", label: "Skills" },
 ];
 
 export const ANIMATION_CONFIG = {

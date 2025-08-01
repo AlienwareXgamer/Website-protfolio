@@ -14,7 +14,7 @@
   max-width: none;
   margin: 0;
   padding: 3rem 2rem; /* Reduced from 4rem to minimize vertical dead space */
-  padding-top: 6rem; /* Reduced from 8rem to decrease top dead space */
+  padding-top: 8rem; /* Increased from 6rem to provide more space for navigation */
   color: #d5d5db;
   position: relative;
   box-sizing: border-box;

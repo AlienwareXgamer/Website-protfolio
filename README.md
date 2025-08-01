@@ -1,6 +1,6 @@
 # Francis Allen Prado Portfolio Website
 
-> **📱 Important Note**: This is the **Desktop Version Build (Final Build V1)**. This version is optimized for desktop and larger screen viewing. Mobile version optimization is currently in development and will be released in a future update.
+> **📱 Important Note**: This is the **Desktop Version Build (Final Build V1.1)**. This version is optimized for desktop and larger screen viewing. Mobile version optimization is currently in development and will be released in a future update.
 
 This is a modern, stylish personal portfolio website for Francis Allen Prado, built with Vue 3 and Vite. It features a glassmorphic design, smooth scroll-snapping, dynamic navigation highlighting, interactive starfield animations, and both dark and light themes with enhanced UI/UX design.
 
@@ -11,9 +11,28 @@ This is a modern, stylish personal portfolio website for Francis Allen Prado, bu
 - 🚧 **Mobile Version**: Currently under development - mobile responsiveness improvements coming soon
 - 🎯 **Target Devices**: Desktop computers, laptops, and tablets in landscape mode
 
-## ✨ Latest Updates (v3.0 - UI & Design Improvements)
+## ✨ Latest Updates (v3.1 - Navigation & Auto-Scroll Improvements) - August 1, 2025
 
-### 🎨 Enhanced Visual Design System
+### 🎯 Enhanced Navigation & Auto-Scroll System
+
+- **Fixed Auto-Scroll Functionality**: Resolved navigation link clicking issues where smooth scrolling was broken
+- **Custom Scroll Container Support**: Updated scroll function to work with the portfolio's custom scroll container instead of window scrolling
+- **Precise Section Targeting**: Navigation links now properly scroll to sections with accurate positioning
+- **Navigation Bar Offset**: Added proper offset calculation (100px) to prevent section titles from being cut off by the fixed navigation bar
+- **Smooth Scroll Animation**: Maintained smooth scrolling behavior while fixing positioning accuracy
+- **Section Order Optimization**: Updated navigation order to match content flow (About → Skills → Experience → Projects → Education → Leadership)
+
+### 🛠️ Technical Navigation Fixes
+
+- **Container-Based Scrolling**: Modified `scrollToSection` function to use `.portfolio-container` element instead of window
+- **Relative Position Calculations**: Improved element positioning relative to the scroll container
+- **Enhanced Padding System**: Added strategic padding to prevent title cutting:
+  - Desktop: 8rem top padding for content sections
+  - Mobile: 4.5rem top padding optimized for smaller screens
+  - Hero Section: 6rem top padding for proper navigation clearance
+- **Cross-Device Compatibility**: Ensured scroll behavior works consistently across all screen sizes
+
+### 🎨 Enhanced Visual Design System (Previous Updates)
 
 - **Clean Color Palette**: Replaced messy gradients with cohesive solid colors
 - **Typography Refinements**: Improved font sizes, spacing, and readability

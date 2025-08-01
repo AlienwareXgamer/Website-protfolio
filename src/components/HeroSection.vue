@@ -114,6 +114,7 @@ const scrollToSection = (sectionId) => {
   width: 100%;
   text-align: center;
   padding: 2rem 1.5rem; /* Reduced padding to minimize dead space */
+  padding-top: 6rem; /* Added top padding to prevent navigation overlap */
   box-sizing: border-box;
   background: linear-gradient(
     135deg,

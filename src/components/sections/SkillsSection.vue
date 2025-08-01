@@ -74,10 +74,10 @@ const skillsCategories = [
   },
 ];
 
-// Group skills for better layout
-const topRowSkills = skillsCategories.slice(0, 3);
-const middleRowSkills = skillsCategories.slice(3, 4);
-const bottomRowSkills = skillsCategories.slice(4, 7);
+// Group skills for 4 cards per row layout
+const firstRowSkills = skillsCategories.slice(0, 4);
+const secondRowSkills = skillsCategories.slice(4, 7); // Only 3 cards in the last row
+
 </script>
 
 <template>
@@ -85,28 +85,19 @@ const bottomRowSkills = skillsCategories.slice(4, 7);
     <section id="skills" class="skills-section">
       <h3>Technical Skills</h3>
       <div class="skills-container">
-        <!-- Top Row: Programming, Frameworks, Databases -->
-        <div class="skills-row top-row">
+        <!-- First Row: 4 cards -->
+        <div class="skills-row four-column-row">
           <SkillsCategory
-            v-for="category in topRowSkills"
+            v-for="category in firstRowSkills"
             :key="category.name"
             :category="category"
           />
         </div>
 
-        <!-- Middle Row: Developer Tools (centered) -->
-        <div class="skills-row middle-row">
+        <!-- Second Row: 3 cards -->
+        <div class="skills-row three-column-row">
           <SkillsCategory
-            v-for="category in middleRowSkills"
-            :key="category.name"
-            :category="category"
-          />
-        </div>
-
-        <!-- Bottom Row: Software, Hardware, Additional -->
-        <div class="skills-row bottom-row">
-          <SkillsCategory
-            v-for="category in bottomRowSkills"
+            v-for="category in secondRowSkills"
             :key="category.name"
             :category="category"
           />
@@ -123,7 +114,7 @@ const bottomRowSkills = skillsCategories.slice(4, 7);
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 0 2rem; /* Added edge-to-edge padding */
+  padding: 0 2rem;
 }
 
 .skills-container {
@@ -133,111 +124,116 @@ const bottomRowSkills = skillsCategories.slice(4, 7);
   align-items: center;
   margin-top: 2rem;
   gap: 2.5rem;
-  max-width: none; /* Remove max-width for full screen usage */
+  max-width: none;
 }
 
 .skills-row {
   display: grid;
   gap: 2rem;
   width: 100%;
-  max-width: 1400px;
+  max-width: 1600px;
   justify-items: center;
   align-items: stretch;
 }
 
-/* Top and Bottom rows: 3 columns */
-.top-row,
-.bottom-row {
-  grid-template-columns: repeat(3, 1fr);
+/* Four cards per row */
+.four-column-row {
+  grid-template-columns: repeat(4, 1fr);
 }
 
-/* Middle row: 1 column centered */
-.middle-row {
-  grid-template-columns: 1fr;
-  max-width: 400px;
+/* Three cards per row (centered) */
+.three-column-row {
+  grid-template-columns: repeat(3, 1fr);
+  max-width: 1200px;
 }
 
 /* Responsive layouts */
 @media (min-width: 1400px) {
   .skills-section {
-    padding: 0 6rem; /* More padding for very large screens */
+    padding: 0 6rem;
   }
 
   .skills-row {
     gap: 2.5rem;
-  }
-
-  .top-row,
-  .bottom-row {
-    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (min-width: 1200px) and (max-width: 1399px) {
   .skills-section {
-    padding: 0 4rem; /* Increased padding for large screens */
+    padding: 0 4rem;
   }
 
   .skills-row {
-    gap: 2.5rem;
-  }
-
-  .top-row,
-  .bottom-row {
-    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
   }
 }
 
-@media (min-width: 900px) and (max-width: 1199px) {
+@media (min-width: 1024px) and (max-width: 1199px) {
   .skills-section {
-    padding: 0 2rem; /* Standard padding */
+    padding: 0 3rem;
   }
 
-  .top-row,
-  .bottom-row {
+  .four-column-row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .three-column-row {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  .skills-row {
     gap: 1.8rem;
   }
 }
 
-@media (min-width: 768px) and (max-width: 899px) {
+@media (min-width: 768px) and (max-width: 1023px) {
   .skills-section {
-    padding: 0 1.5rem; /* Reduced padding for tablets */
+    padding: 0 2rem;
   }
 
-  .top-row,
-  .bottom-row {
+  .four-column-row {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .three-column-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .skills-row {
     gap: 1.5rem;
   }
 }
 
 @media (max-width: 767px) {
   .skills-section {
-    padding: 0 1rem; /* Minimal padding for mobile */
+    padding: 0 1rem;
   }
 
   .skills-container {
     gap: 2rem;
   }
 
-  .top-row,
-  .bottom-row,
-  .middle-row {
+  .four-column-row,
+  .three-column-row {
     grid-template-columns: 1fr;
     gap: 1.5rem;
-  }
-
-  .middle-row {
-    max-width: 100%;
   }
 }
 
 /* Card sizing */
 .skills-row :deep(.skills-category) {
   width: 100%;
-  max-width: 400px;
+  max-width: 420px; /* Increased from 350px to make cards wider */
   margin: 0 auto;
+}
+
+/* Additional width adjustments for better spacing */
+.four-column-row :deep(.skills-category) {
+  max-width: 380px; /* Slightly smaller for 4-card row to maintain balance */
+}
+
+.three-column-row :deep(.skills-category) {
+  max-width: 450px; /* Wider for 3-card row */
 }
 
 /* Skill card hover effect */

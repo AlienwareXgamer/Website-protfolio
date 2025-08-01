@@ -15,6 +15,9 @@ defineProps({
   <!-- About Section -->
   <AboutSection />
 
+  <!-- Skills Sections (Technical & Other) -->
+  <SkillsSection :skills="skills" />
+
   <!-- Experience Section -->
   <ExperienceSection />
 
@@ -26,9 +29,6 @@ defineProps({
 
   <!-- Leadership & Certifications Section -->
   <LeadershipSection />
-
-  <!-- Skills Sections (Technical & Other) -->
-  <SkillsSection :skills="skills" />
 </template>
 
 <style scoped>

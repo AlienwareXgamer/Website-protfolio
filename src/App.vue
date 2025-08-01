@@ -61,13 +61,28 @@ const sections = [
 const scrollToSection = (sectionId) => {
   console.log(`Attempting to scroll to: ${sectionId}`);
 
-  // Try the simple approach first (like your working hero buttons originally used)
   const element = document.getElementById(sectionId);
-  if (element) {
+  const scrollContainer = document.querySelector(".portfolio-container");
+  
+  if (element && scrollContainer) {
     console.log(`Found element:`, element);
 
-    // Use simple scrollIntoView method that we know works
-    element.scrollIntoView({ behavior: "smooth", block: "start" });
+    // Calculate navigation height + extra padding
+    const navigationHeight = 80; // Navigation bar height
+    const extraPadding = 20; // Additional breathing room
+    const totalOffset = navigationHeight + extraPadding;
+
+    // Get element position relative to the scroll container
+    const containerRect = scrollContainer.getBoundingClientRect();
+    const elementRect = element.getBoundingClientRect();
+    const relativeTop = elementRect.top - containerRect.top + scrollContainer.scrollTop;
+    const offsetPosition = relativeTop - totalOffset;
+
+    // Scroll the container with custom offset
+    scrollContainer.scrollTo({
+      top: Math.max(0, offsetPosition),
+      behavior: "smooth"
+    });
 
     // Update active section after scroll animation starts
     setTimeout(() => {
@@ -75,7 +90,7 @@ const scrollToSection = (sectionId) => {
       console.log(`Active section updated to: ${sectionId}`);
     }, 100);
   } else {
-    console.error(`Section with id "${sectionId}" not found`);
+    console.error(`Section with id "${sectionId}" not found or scroll container missing`);
     console.log(
       "Available elements with IDs:",
       Array.from(document.querySelectorAll("[id]")).map((el) => el.id)
@@ -685,7 +700,7 @@ body.light-mode .about-description p {
   border-color: rgba(139, 92, 246, 0.3);
   box-shadow:
     0 8px 32px rgba(139, 92, 246, 0.15),
-    0 0 0 1px rgba(139, 92, 246, 0.1),
+    0 0 0 2px rgba(139, 92, 246, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
