@@ -94,27 +94,79 @@
 
 @media (max-width: 768px) {
   .content-section-base {
-    padding: 2rem 1.5rem; /* Optimized mobile padding */
+    padding: 2rem 1rem; /* Optimized mobile padding */
     padding-top: 4.5rem; /* Reduced mobile top padding */
+    min-height: auto; /* Allow natural height on mobile */
   }
 
   .content-section-base :deep(h3) {
-    font-size: 2rem;
+    font-size: 1.8rem; /* Smaller heading on mobile */
     margin-bottom: 1.5rem; /* Reduced margin */
     margin-top: 0;
+    text-align: center; /* Center headings on mobile */
+    line-height: 1.2;
+  }
+
+  /* Improve readability and spacing on mobile */
+  .content-section-base :deep(p) {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .content-section-base :deep(.grid) {
+    gap: 1rem; /* Reduce grid gaps */
   }
 }
 
 @media (max-width: 480px) {
   .content-section-base {
-    padding: 1.5rem 1rem; /* Further reduced for small screens */
+    padding: 1.5rem 0.75rem; /* Further reduced for small screens */
     padding-top: 4rem;
   }
 
   .content-section-base :deep(h3) {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
     margin-bottom: 1.25rem;
-    margin-top: 0;
+  }
+
+  .content-section-base :deep(p) {
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  /* Ensure touch-friendly spacing */
+  .content-section-base :deep(button),
+  .content-section-base :deep(.button) {
+    min-height: 44px;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+/* Mobile performance optimizations */
+@media (max-width: 768px) {
+  .content-section-base {
+    /* Reduce complex effects on mobile for better performance */
+    backdrop-filter: blur(8px);
+  }
+
+  .content-section-base::before {
+    backdrop-filter: blur(6px);
+  }
+
+  /* Reduce motion for better mobile performance */
+  .content-section-base,
+  .content-section-base::before {
+    transition: all 0.2s ease;
+  }
+}
+
+/* Landscape mobile and small tablets */
+@media (max-width: 1024px) and (orientation: landscape) {
+  .content-section-base {
+    padding: 2rem 1.5rem;
+    padding-top: 4rem;
   }
 }
 

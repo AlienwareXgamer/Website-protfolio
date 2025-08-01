@@ -80,31 +80,144 @@ const experiences = [
   margin-right: auto;
 }
 
-.experience-item {
-  margin-bottom: 2rem;
-  padding: 1.5rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  border: 1.5px solid rgba(139, 92, 246, 0.22); /* Static border for card */
-  border-left: 6px solid #8b5cf6; /* Purple accent for experience */
-  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.08);
-  transition: all 0.3s ease;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 100%;
-  box-sizing: border-box;
+/* Mobile responsive improvements */
+@media (max-width: 1024px) {
+  .experience-section {
+    padding: 0 2rem;
+  }
+
+  .experience-list {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row on tablets */
+    gap: 2rem;
+  }
 }
 
-.experience-item:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-4px) scale(1.02); /* Slight scaling effect */
-  box-shadow:
-    0 0 0 2px rgba(139, 92, 246, 0.2),
-    /* Inner glow */ 0 8px 25px rgba(139, 92, 246, 0.3),
-    /* Outer glow */ 0 0 15px rgba(139, 92, 246, 0.4); /* Gradient-like glow */
-  border-left-color: #7c3aed; /* Slightly brighter accent */
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smooth transition */
+@media (max-width: 768px) {
+  .experience-section {
+    padding: 0 0.75rem; /* Minimal padding for mobile */
+  }
+
+  .experience-list {
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+  }
+
+  /* Mobile-optimized experience cards */
+  .experience-list :deep(.experience-item) {
+    padding: 1.25rem;
+    border-radius: 12px;
+    min-height: auto;
+  }
+
+  .experience-list :deep(.experience-header) {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    margin-bottom: 1rem;
+  }
+
+  .experience-list :deep(.experience-header h4) {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .experience-list :deep(.experience-period) {
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+    white-space: normal;
+  }
+
+  .experience-list :deep(.experience-company) {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .experience-list :deep(.experience-description) {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+
+  .experience-list :deep(.experience-achievements) {
+    text-align: left;
+  }
+
+  .experience-list :deep(.experience-achievements li) {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+  }
+
+  /* Touch-friendly interactions */
+  .experience-list :deep(.experience-item) {
+    -webkit-tap-highlight-color: rgba(139, 92, 246, 0.2);
+    touch-action: manipulation;
+  }
+}
+
+@media (max-width: 480px) {
+  .experience-section {
+    padding: 0 0.5rem;
+  }
+
+  .experience-list {
+    gap: 1.25rem;
+  }
+
+  .experience-list :deep(.experience-item) {
+    padding: 1rem;
+  }
+
+  .experience-list :deep(.experience-header h4) {
+    font-size: 1rem;
+  }
+
+  .experience-list :deep(.experience-period) {
+    font-size: 0.8rem;
+  }
+
+  .experience-list :deep(.experience-description) {
+    font-size: 0.9rem;
+  }
+
+  .experience-list :deep(.experience-achievements li) {
+    font-size: 0.85rem;
+  }
+}
+
+/* Landscape mode optimizations for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .experience-section {
+    padding: 0 1rem;
+  }
+
+  .experience-list {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  .experience-list :deep(.experience-item) {
+    padding: 1rem;
+  }
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 768px) {
+  .experience-list :deep(.experience-item) {
+    /* Reduce complex effects on mobile */
+    backdrop-filter: blur(8px);
+    transition: all 0.2s ease;
+  }
+
+  /* Disable hover effects on touch devices */
+  @media (hover: none) and (pointer: coarse) {
+    .experience-list :deep(.experience-item:hover) {
+      transform: none;
+    }
+  }
 }
 </style>

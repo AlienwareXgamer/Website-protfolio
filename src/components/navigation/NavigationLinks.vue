@@ -11,6 +11,16 @@ const emit = defineEmits(["scroll-to-section"]);
 const isMobileMenuOpen = ref(false);
 
 const handleNavClick = (itemId) => {
+  // Smooth scroll to section
+  const targetElement = document.getElementById(itemId);
+  if (targetElement) {
+    targetElement.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'nearest'
+    });
+  }
+  
   emit("scroll-to-section", itemId);
   isMobileMenuOpen.value = false; // Close mobile menu after navigation
 };
@@ -277,6 +287,172 @@ const handleNavClick = (itemId) => {
     display: flex;
     align-items: center;
     justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #a1a1aa;
+    padding: 0.75rem;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 44px;
+    min-height: 44px;
+    -webkit-tap-highlight-color: rgba(139, 92, 246, 0.3);
+    touch-action: manipulation;
   }
+
+  .mobile-menu-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #fff;
+    transform: translateY(-1px);
+  }
+
+  .mobile-menu-button:active {
+    transform: scale(0.98);
+  }
+
+  /* Mobile navigation overlay */
+  .mobile-nav {
+    position: fixed;
+    top: 5.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 320px;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    z-index: 999;
+    padding: 1.5rem;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateX(-50%) translateY(-10px);
+    transition: all 0.3s ease;
+  }
+
+  .mobile-nav.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .mobile-nav-link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 1.25rem;
+    color: #d1d5db;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    margin-bottom: 0.5rem;
+    min-height: 52px;
+    text-align: left;
+    border: 1px solid transparent;
+    -webkit-tap-highlight-color: rgba(139, 92, 246, 0.3);
+    touch-action: manipulation;
+  }
+
+  .mobile-nav-link:hover,
+  .mobile-nav-link.active {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.3);
+    color: #fff;
+    transform: translateX(4px);
+    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
+  }
+
+  .mobile-nav-link:active {
+    transform: translateX(4px) scale(0.98);
+  }
+
+  .mobile-nav-link:last-child {
+    margin-bottom: 0;
+  }
+
+  .mobile-nav-link::before {
+    display: none;
+  }
+
+  /* Mobile overlay background */
+  .mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(2px);
+  }
+
+  .mobile-overlay.active {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-menu-button {
+    padding: 0.6rem;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .mobile-nav {
+    width: 95%;
+    max-width: 300px;
+    padding: 1.25rem;
+    top: 5rem;
+  }
+
+  .mobile-nav-link {
+    padding: 0.875rem 1rem;
+    font-size: 15px;
+    min-height: 48px;
+  }
+}
+
+/* Light mode mobile menu */
+body.light-mode .mobile-menu-button {
+  background: rgba(139, 92, 246, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  color: #6b7280;
+}
+
+body.light-mode .mobile-menu-button:hover {
+  background: rgba(139, 92, 246, 0.2);
+  border-color: rgba(139, 92, 246, 0.4);
+  color: #1f2937;
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
+}
+
+body.light-mode .mobile-nav {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(139, 92, 246, 0.15);
+  box-shadow: 0 12px 40px rgba(139, 92, 246, 0.15);
+}
+
+body.light-mode .mobile-nav-link {
+  color: #4b5563;
+}
+
+body.light-mode .mobile-nav-link:hover,
+body.light-mode .mobile-nav-link.active {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: rgba(139, 92, 246, 0.2);
+  color: #1f2937;
+}
+
+body.light-mode .mobile-overlay {
+  background: rgba(0, 0, 0, 0.3);
 }
 </style>

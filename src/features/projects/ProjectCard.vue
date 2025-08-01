@@ -81,13 +81,16 @@ defineProps({
   background: rgba(255, 255, 255, 0.05);
   border-radius: 16px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: relative;
-  padding-top: 2rem; /* Restore normal top padding */
+  padding-top: 2rem;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUpFade 2s ease-out forwards;
 }
 
 .project-card::before {
@@ -97,27 +100,50 @@ defineProps({
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    135deg,
-    rgba(139, 92, 246, 0.15),
-    rgba(59, 130, 246, 0.1)
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
   border-radius: 16px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), transparent);
+  opacity: 0;
+  transition: all 0.4s ease;
+  pointer-events: none;
 }
 
 .project-card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(139, 92, 246, 0.4);
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-4px) scale(1.05);
   box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.3),
-    0 0 0 1px rgba(139, 92, 246, 0.2);
+    0 8px 25px rgba(139, 92, 246, 0.15),
+    0 0 15px rgba(139, 92, 246, 0.1),
+    0 0 0 1px rgba(139, 92, 246, 0.1);
+  transform-origin: center;
 }
 
 .project-card:hover::before {
   opacity: 1;
 }
+
+.project-card:hover .project-header,
+.project-card:hover .project-description,
+.project-card:hover .project-tech-stack,
+.project-card:hover .project-features {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.project-card:nth-child(1) { animation-delay: 0.2s; }
+.project-card:nth-child(2) { animation-delay: 0.4s; }
+.project-card:nth-child(3) { animation-delay: 0.6s; }
+.project-card:nth-child(4) { animation-delay: 0.8s; }
 
 .project-header {
   display: flex;

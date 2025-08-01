@@ -237,35 +237,88 @@ const createStars = () => {
 
 /* Performance optimization for lower-end devices */
 @media (max-width: 768px) {
-  .animation-layer::before,
-  .animation-layer::after {
-    box-shadow:
-      0 0 4px rgba(255, 255, 255, 0.8),
-      -8px -4px 0 rgba(255, 255, 255, 0.4),
-      -16px -8px 0 rgba(255, 255, 255, 0.2);
+  .stars-container {
+    /* Reduce star count and complexity on mobile */
+    background-image:
+      radial-gradient(2px 2px at 20px 30px, #fff, transparent),
+      radial-gradient(
+        2px 2px at 40px 70px,
+        rgba(255, 255, 255, 0.8),
+        transparent
+      ),
+      radial-gradient(1px 1px at 90px 40px, #fff, transparent),
+      radial-gradient(
+        1px 1px at 130px 80px,
+        rgba(255, 255, 255, 0.6),
+        transparent
+      ),
+      radial-gradient(2px 2px at 160px 30px, #fff, transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: parallaxStars 120s linear infinite; /* Slower animation */
+  }
+
+  .star {
+    /* Reduce individual star animations on mobile */
+    animation-duration: 8s; /* Slower */
+    animation-timing-function: ease-out;
+  }
+
+  .star.meteorit-star {
+    /* Simpler meteorite animation */
+    animation: meteoriteSimple 6s ease-out infinite;
+  }
+
+  /* Disable complex animations on very small screens */
+  @media (max-width: 480px) {
+    .star.meteorit-star {
+      display: none; /* Hide meteorites on very small screens */
+    }
+
+    .animation-layer::before,
+    .animation-layer::after {
+      display: none; /* Hide complex layers */
+    }
   }
 }
 
-/* Light mode styles - Plain white background */
-body.light-mode .stars-container {
-  background: #ffffff !important;
-  opacity: 1;
+/* Simplified meteorite animation for mobile */
+@keyframes meteoriteSimple {
+  0% {
+    transform: translate3d(-100px, -100px, 0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate3d(300px, 300px, 0);
+    opacity: 0;
+  }
 }
 
-/* Hide stars completely in light mode */
-body.light-mode .star.meteorit-star {
-  display: none;
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .stars-container {
+    /* Further reduce effects on touch-only devices */
+    background-size: 150px 75px;
+    animation-duration: 180s; /* Even slower */
+  }
+
+  .star {
+    /* Minimal star animation on touch devices */
+    animation-duration: 12s;
+  }
 }
 
-/* Hide shooting star animations in light mode */
-body.light-mode .animation-layer::before,
-body.light-mode .animation-layer::after {
-  display: none;
-}
-
-/* Remove background star patterns in light mode */
-body.light-mode .animation-layer {
-  background-image: none;
-  animation: none;
+/* Landscape mobile optimizations */
+@media (max-width: 768px) and (orientation: landscape) {
+  .stars-container {
+    background-size: 250px 125px;
+    animation-duration: 100s;
+  }
 }
 </style>

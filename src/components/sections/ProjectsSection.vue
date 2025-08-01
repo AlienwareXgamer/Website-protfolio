@@ -141,12 +141,188 @@ const projects = [
 
 @media (max-width: 767px) {
   .projects-section {
-    padding: 0 1rem; /* Minimal padding for mobile */
+    padding: 0 0.5rem; /* Reduced padding for more content space */
   }
 
   .projects-grid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 1.125rem; /* Tighter gap for mobile */
+    margin-top: 1.5rem;
+  }
+
+  /* Enhanced mobile-optimized project cards */
+  .projects-grid :deep(.project-card) {
+    max-width: 100%;
+    margin: 0;
+    padding: 1.25rem; /* Optimized mobile padding */
+    border-radius: 14px;
+    min-height: auto;
+  }
+
+  .projects-grid :deep(.project-header) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .projects-grid :deep(.project-title) {
+    font-size: 1.25rem; /* Readable but compact */
+    line-height: 1.2;
+    margin-bottom: 0.5rem;
+    text-align: left;
+  }
+
+  .projects-grid :deep(.project-description) {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    text-align: left;
+  }
+
+  .projects-grid :deep(.project-tech-stack) {
+    margin-bottom: 1.25rem;
+    padding: 1rem 0;
+  }
+
+  .projects-grid :deep(.tech-tags) {
+    gap: 0.5rem;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .projects-grid :deep(.tech-tag) {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.7rem;
+    min-height: 32px;
+    border-radius: 6px;
+    min-width: 80px;
+    text-align: center;
+  }
+
+  .projects-grid :deep(.project-features) {
+    margin-bottom: 1.25rem;
+  }
+
+  .projects-grid :deep(.project-features h5) {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .projects-grid :deep(.project-features li) {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0.375rem;
+  }
+
+  .projects-grid :deep(.project-links) {
+    gap: 0.75rem;
+    justify-content: flex-start;
+  }
+
+  .projects-grid :deep(.project-link) {
+    width: 40px;
+    height: 40px;
+    min-width: 44px; /* Touch-friendly */
+    min-height: 44px;
+    border-radius: 10px;
+  }
+
+  /* Touch-friendly interactions */
+  .projects-grid :deep(.project-card),
+  .projects-grid :deep(.project-link),
+  .projects-grid :deep(.tech-tag) {
+    -webkit-tap-highlight-color: rgba(139, 92, 246, 0.2);
+    touch-action: manipulation;
+  }
+}
+
+@media (max-width: 480px) {
+  .projects-section {
+    padding: 0 0.375rem; /* Minimal padding for small screens */
+  }
+
+  .projects-grid {
+    gap: 1rem;
+  }
+
+  .projects-grid :deep(.project-card) {
+    padding: 1rem;
+  }
+
+  .projects-grid :deep(.project-title) {
+    font-size: 1.1rem;
+  }
+
+  .projects-grid :deep(.project-description) {
+    font-size: 0.9rem;
+  }
+
+  .projects-grid :deep(.tech-tag) {
+    font-size: 0.75rem;
+    padding: 0.375rem 0.6rem;
+    min-width: 70px;
+  }
+
+  .projects-grid :deep(.project-features h5) {
+    font-size: 0.95rem;
+  }
+
+  .projects-grid :deep(.project-features li) {
+    font-size: 0.85rem;
+  }
+
+  .projects-grid :deep(.project-link) {
+    width: 36px;
+    height: 36px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+/* Ultra-small screens (narrow phones) */
+@media (max-width: 320px) {
+  .projects-section {
+    padding: 0 0.25rem;
+  }
+
+  .projects-grid :deep(.project-card) {
+    padding: 0.875rem;
+  }
+
+  .projects-grid :deep(.project-title) {
+    font-size: 1rem;
+  }
+
+  .projects-grid :deep(.project-description) {
+    font-size: 0.85rem;
+  }
+
+  .projects-grid :deep(.tech-tag) {
+    font-size: 0.7rem;
+    padding: 0.35rem 0.5rem;
+    min-width: 60px;
+  }
+}
+
+/* Enhanced landscape mode optimizations for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .projects-section {
+    padding: 0 0.75rem;
+  }
+
+  .projects-grid :deep(.project-card) {
+    padding: 1rem;
+  }
+
+  .projects-grid :deep(.project-header) {
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .projects-grid :deep(.project-title) {
+    font-size: 1.15rem;
   }
 }
 

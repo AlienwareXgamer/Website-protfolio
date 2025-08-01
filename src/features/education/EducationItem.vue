@@ -55,12 +55,16 @@ const isAteneo = (institution) => {
   padding: 1.5rem;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-left: 4px solid #22c55e;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   display: flex;
   flex-direction: column;
   align-items: center;
   position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUpFade 2s ease-out forwards;
 }
 
 .education-item::before {
@@ -73,13 +77,13 @@ const isAteneo = (institution) => {
   border-radius: 12px;
   background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), transparent);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: all 0.4s ease;
   pointer-events: none;
 }
 
 .education-item:hover {
   background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-2px);
+  transform: translateY(-4px) scale(1.05);
   box-shadow:
     0 8px 25px rgba(34, 197, 94, 0.15),
     0 0 15px rgba(34, 197, 94, 0.1),
@@ -91,43 +95,61 @@ const isAteneo = (institution) => {
   opacity: 1;
 }
 
+.education-item:hover * {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+
 .education-item.ateneo-glow {
   border-left-color: #3b82f6;
-  background: rgba(59, 130, 246, 0.03); /* Much more subtle background */
-  /* Remove the prominent glow and animation */
+  background: rgba(59, 130, 246, 0.03);
 }
 
 .education-item.ateneo-glow::before {
-  background: linear-gradient(135deg, rgba(59, 130, 246, 0.05), transparent);
-  opacity: 0; /* Hide by default, show on hover */
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), transparent);
+  opacity: 0;
 }
 
 .education-item.ateneo-glow:hover {
-  background: rgba(59, 130, 246, 0.08); /* Subtle hover background */
+  background: rgba(59, 130, 246, 0.08);
   box-shadow:
     0 8px 25px rgba(59, 130, 246, 0.15),
     0 0 15px rgba(59, 130, 246, 0.1),
     0 0 0 1px rgba(59, 130, 246, 0.1);
   border-left-color: #2563eb;
-  transform: translateY(-2px); /* Same as regular items */
+  transform: translateY(-4px) scale(1.05);
 }
 
 .education-item.ateneo-glow:hover::before {
-  opacity: 1; /* Show the gradient overlay on hover */
+  opacity: 1;
+}
+
+.education-item.ateneo-glow:hover * {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
 }
 
 .education-item.ateneo-glow .education-year {
   color: #60a5fa;
-  /* Remove text shadow for subtlety */
 }
 
 .education-item.ateneo-glow .education-header h4 {
-  color: #fff; /* Keep normal text color */
-  /* Remove text shadow */
+  color: #fff;
 }
 
-/* Remove the pulsing animation completely */
-/* @keyframes ateneoPulse removed */
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.education-item:nth-child(1) { animation-delay: 0.2s; }
+.education-item:nth-child(2) { animation-delay: 0.4s; }
 
 .education-header {
   display: flex;

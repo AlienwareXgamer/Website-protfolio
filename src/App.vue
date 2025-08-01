@@ -63,7 +63,7 @@ const scrollToSection = (sectionId) => {
 
   const element = document.getElementById(sectionId);
   const scrollContainer = document.querySelector(".portfolio-container");
-  
+
   if (element && scrollContainer) {
     console.log(`Found element:`, element);
 
@@ -75,13 +75,14 @@ const scrollToSection = (sectionId) => {
     // Get element position relative to the scroll container
     const containerRect = scrollContainer.getBoundingClientRect();
     const elementRect = element.getBoundingClientRect();
-    const relativeTop = elementRect.top - containerRect.top + scrollContainer.scrollTop;
+    const relativeTop =
+      elementRect.top - containerRect.top + scrollContainer.scrollTop;
     const offsetPosition = relativeTop - totalOffset;
 
     // Scroll the container with custom offset
     scrollContainer.scrollTo({
       top: Math.max(0, offsetPosition),
-      behavior: "smooth"
+      behavior: "smooth",
     });
 
     // Update active section after scroll animation starts
@@ -90,7 +91,9 @@ const scrollToSection = (sectionId) => {
       console.log(`Active section updated to: ${sectionId}`);
     }, 100);
   } else {
-    console.error(`Section with id "${sectionId}" not found or scroll container missing`);
+    console.error(
+      `Section with id "${sectionId}" not found or scroll container missing`
+    );
     console.log(
       "Available elements with IDs:",
       Array.from(document.querySelectorAll("[id]")).map((el) => el.id)
@@ -1095,6 +1098,14 @@ body.light-mode .about-description p {
   scrollbar-width: none;
   -ms-overflow-style: none;
   z-index: 10; /* Increased z-index but keep stars behind */
+  /* Mobile-specific optimizations */
+  -webkit-overflow-scrolling: touch; /* iOS smooth scrolling */
+  will-change: scroll-position; /* Performance optimization */
+}
+
+/* Hide scrollbars but maintain scrollability */
+.portfolio-container::-webkit-scrollbar {
+  display: none;
 }
 
 /* Remove conflicting section styles since they're handled by ContentSectionBase */
@@ -1114,120 +1125,122 @@ body.light-mode .about-description p {
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Remove duplicate .content-section styles - they're handled by ContentSectionBase.vue */
+/* Mobile-first responsive design improvements */
+@media (max-width: 768px) {
+  .navigation {
+    padding: 0.75rem 1rem;
+    backdrop-filter: blur(15px);
+    background: rgba(0, 0, 0, 0.4);
+    width: 95%;
+    top: 0.5rem;
+    justify-content: space-between;
+    gap: 1rem;
+    min-width: 300px;
+    border-radius: 16px;
+  }
 
-/* Light mode mobile menu improvements */
-body.light-mode .mobile-menu-button {
-  background: rgba(139, 92, 246, 0.1);
-  border: 1px solid rgba(139, 92, 246, 0.2);
-  color: #6b7280;
+  .navigation:hover {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(20px);
+  }
+
+  /* Improve touch targets on mobile */
+  .nav-logo .logo-circle {
+    width: 38px;
+    height: 38px;
+    font-size: 14px;
+    min-width: 44px; /* iOS minimum touch target */
+    min-height: 44px;
+  }
+
+  .nav-actions button {
+    padding: 0.75rem;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: 12px;
+  }
 }
 
-body.light-mode .mobile-menu-button:hover {
-  background: rgba(139, 92, 246, 0.2);
-  border-color: rgba(139, 92, 246, 0.4);
-  color: #1f2937;
-  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
+@media (max-width: 480px) {
+  .navigation {
+    padding: 0.6rem 0.8rem;
+    gap: 0.75rem;
+    top: 0.25rem;
+    min-width: 280px;
+    width: 96%;
+  }
+
+  .nav-logo .logo-circle {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .nav-actions button {
+    padding: 0.6rem;
+    min-width: 44px;
+    min-height: 44px;
+  }
 }
 
-body.light-mode .mobile-nav {
-  background: rgba(255, 255, 255, 0.98) !important;
-  backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(139, 92, 246, 0.15) !important;
-  box-shadow: 0 12px 40px rgba(139, 92, 246, 0.15) !important;
+/* Touch-friendly mobile menu improvements */
+@media (max-width: 768px) {
+  .mobile-nav {
+    position: fixed;
+    top: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 320px;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(25px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    z-index: 999;
+    padding: 1.5rem;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+  }
+
+  .mobile-nav-link {
+    display: block;
+    width: 100%;
+    padding: 1rem 1.25rem;
+    color: #d1d5db;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    margin-bottom: 0.5rem;
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+  }
+
+  .mobile-nav-link:hover,
+  .mobile-nav-link.active {
+    background: rgba(139, 92, 246, 0.2);
+    color: #fff;
+    transform: translateX(4px);
+  }
+
+  .mobile-nav-link:last-child {
+    margin-bottom: 0;
+  }
 }
 
-body.light-mode .mobile-nav-link {
-  color: #4b5563 !important;
-}
-
-body.light-mode .mobile-nav-link:hover,
-body.light-mode .mobile-nav-link.active {
-  background: rgba(139, 92, 246, 0.1) !important;
-  color: #1f2937 !important;
-}
-
-/* Light mode project features and tech stack improvements */
-body.light-mode .project-features {
-  color: #374151 !important;
-}
-
-body.light-mode .project-features h5 {
-  color: #1f2937 !important;
-}
-
-body.light-mode .project-features li {
-  color: #4b5563 !important;
-}
-
-body.light-mode .project-tech-stack {
-  margin-bottom: 1.5rem;
-}
-
-/* Enhanced light mode gradients and shadows */
-body.light-mode .hero-photo {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6, #a855f7) !important;
-  box-shadow:
-    0 25px 50px rgba(139, 92, 246, 0.3),
-    0 0 0 4px rgba(255, 255, 255, 0.8),
-    0 0 0 6px rgba(139, 92, 246, 0.2) !important;
-}
-
-body.light-mode .hero-photo:hover {
-  box-shadow:
-    0 30px 60px rgba(139, 92, 246, 0.4),
-    0 0 0 4px rgba(255, 255, 255, 0.9),
-    0 0 0 6px rgba(139, 92, 246, 0.3) !important;
-}
-
-/* Light mode skill items with better visual hierarchy */
-body.light-mode .skill-item {
-  background: rgba(255, 255, 255, 0.7) !important;
-  border: 1px solid rgba(139, 92, 246, 0.15) !important;
-  color: #374151 !important;
-  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.05) !important;
-}
-
-body.light-mode .skill-item:hover {
-  background: rgba(255, 255, 255, 0.9) !important;
-  border-color: rgba(139, 92, 246, 0.3) !important;
-  color: #1f2937 !important;
-  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.15) !important;
-  transform: translateY(-2px) !important;
-}
-
-/* Light mode about section enhancements */
-body.light-mode .about-description {
-  background: rgba(255, 255, 255, 0.8) !important;
-  border: 1px solid rgba(139, 92, 246, 0.15) !important;
-  border-radius: 12px !important;
-  padding: 2rem !important;
-  box-shadow: 0 4px 20px rgba(139, 92, 246, 0.05) !important;
-}
-
-body.light-mode .about-description:hover {
-  background: rgba(255, 255, 255, 0.95) !important;
-  border-color: rgba(139, 92, 246, 0.25) !important;
-  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.1) !important;
-  transform: translateY(-2px) !important;
-}
-
-/* Light mode scroll indicator improvements */
-body.light-mode .portfolio-container::-webkit-scrollbar {
-  width: 6px;
-}
-
-body.light-mode .portfolio-container::-webkit-scrollbar-track {
-  background: rgba(139, 92, 246, 0.1);
-  border-radius: 3px;
-}
-
-body.light-mode .portfolio-container::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  border-radius: 3px;
-}
-
-body.light-mode .portfolio-container::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #4338ca, #7c3aed);
+/* Prevent zoom on touch devices */
+@media (max-width: 768px) {
+  .nav-link,
+  .mobile-nav-link,
+  .nav-actions button {
+    -webkit-tap-highlight-color: rgba(139, 92, 246, 0.2);
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+  }
 }
 </style>

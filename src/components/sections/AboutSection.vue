@@ -64,4 +64,69 @@ const aboutDescription =
 .github-icon {
   background-image: url("/src/assets/icons/github.svg");
 }
+
+/* Mobile-first responsive improvements */
+@media (max-width: 768px) {
+  #about {
+    padding: 0 0.75rem; /* Minimal padding for mobile */
+  }
+
+  .about-contact-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .contact-btn {
+    width: 100%;
+    max-width: 280px;
+    min-height: 44px; /* Touch-friendly height */
+    padding: 0.875rem 1.25rem;
+    font-size: 1rem;
+    -webkit-tap-highlight-color: rgba(139, 92, 246, 0.3);
+    touch-action: manipulation;
+  }
+
+  .contact-btn:active {
+    transform: scale(0.98);
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  #about {
+    padding: 0 0.5rem;
+  }
+
+  .contact-btn {
+    max-width: 260px;
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .icon {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+/* Landscape mobile optimizations */
+@media (max-width: 768px) and (orientation: landscape) {
+  .about-contact-buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .contact-btn {
+    width: auto;
+    max-width: 200px;
+  }
+}
 </style>

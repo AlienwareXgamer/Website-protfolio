@@ -55,25 +55,126 @@ const educationData = [
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
 }
 
-.education-item:hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-4px) scale(1.02);
-  box-shadow:
-    0 0 0 2px rgba(59, 130, 246, 0.2),
-    0 8px 25px rgba(59, 130, 246, 0.3),
-    0 0 15px rgba(59, 130, 246, 0.4);
-  border-left-color: #2563eb;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+/* Mobile responsive improvements */
+@media (max-width: 1024px) {
+  .education-list {
+    grid-template-columns: 1fr; /* Single column on tablets and below */
+    gap: 2rem;
+  }
 }
 
-.education-item:nth-child(2):hover {
-  background: rgba(255, 255, 255, 0.1);
-  transform: translateY(-4px) scale(1.02);
-  box-shadow:
-    0 0 0 2px rgba(34, 197, 94, 0.2),
-    0 8px 25px rgba(34, 197, 94, 0.3),
-    0 0 15px rgba(34, 197, 94, 0.4);
-  border-left-color: #22c55e;
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+@media (max-width: 768px) {
+  .education-list {
+    margin-top: 1.5rem;
+    gap: 1.5rem;
+  }
+
+  /* Mobile-optimized education cards */
+  .education-list :deep(.education-item) {
+    padding: 1.25rem;
+    border-radius: 12px;
+    min-height: auto;
+  }
+
+  .education-list :deep(.education-header) {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+
+  .education-list :deep(.education-header h4) {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .education-list :deep(.education-year) {
+    font-size: 0.85rem;
+    margin-bottom: 0.75rem;
+    white-space: normal;
+  }
+
+  .education-list :deep(.education-institution) {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .education-list :deep(.education-location) {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .education-list :deep(.education-description) {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .education-list :deep(.education-achievements) {
+    text-align: left;
+  }
+
+  .education-list :deep(.education-achievements li) {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+  }
+
+  /* Touch-friendly interactions */
+  .education-list :deep(.education-item) {
+    -webkit-tap-highlight-color: rgba(34, 197, 94, 0.2);
+    touch-action: manipulation;
+  }
+}
+
+@media (max-width: 480px) {
+  .education-list {
+    gap: 1.25rem;
+  }
+
+  .education-list :deep(.education-item) {
+    padding: 1rem;
+  }
+
+  .education-list :deep(.education-header h4) {
+    font-size: 1rem;
+  }
+
+  .education-list :deep(.education-year) {
+    font-size: 0.8rem;
+  }
+
+  .education-list :deep(.education-institution) {
+    font-size: 0.9rem;
+  }
+
+  .education-list :deep(.education-location) {
+    font-size: 0.8rem;
+  }
+
+  .education-list :deep(.education-description) {
+    font-size: 0.9rem;
+  }
+
+  .education-list :deep(.education-achievements li) {
+    font-size: 0.85rem;
+  }
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 768px) {
+  .education-list :deep(.education-item) {
+    /* Reduce complex effects on mobile */
+    backdrop-filter: blur(8px);
+    transition: all 0.2s ease;
+  }
+
+  /* Disable hover effects on touch devices */
+  @media (hover: none) and (pointer: coarse) {
+    .education-list :deep(.education-item:hover) {
+      transform: none;
+    }
+  }
 }
 </style>

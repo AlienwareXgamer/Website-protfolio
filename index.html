@@ -3,7 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no"
+    />
+
+    <!-- iOS-specific meta tags for better mobile experience -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Francis Prado Portfolio" />
+
+    <!-- Android-specific meta tags -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="theme-color" content="#8b5cf6" />
+
     <meta
       name="description"
       content="Francis Allen Prado - Web Developer and Data Analyst Portfolio. Experienced in Vue.js, Node.js, and modern web technologies."
@@ -40,6 +56,15 @@
       as="image"
       type="image/jpeg"
     />
+
+    <!-- Prevent zoom on iOS when focusing inputs -->
+    <style>
+      input,
+      textarea,
+      select {
+        font-size: 16px !important;
+      }
+    </style>
 
     <title>Francis Allen Prado - Portfolio</title>
   </head>

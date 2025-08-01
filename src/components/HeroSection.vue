@@ -7,11 +7,16 @@ defineProps({
   isDarkMode: Boolean,
 });
 
-// Simple, reliable scroll function (same as navigation now uses)
-const scrollToSection = (sectionId) => {
-  const element = document.getElementById(sectionId);
-  if (element) {
-    element.scrollIntoView({ behavior: "smooth", block: "start" });
+// Copy exact navigation scroll function
+const handleButtonClick = (sectionId) => {
+  // Smooth scroll to section (copied from NavigationLinks.vue)
+  const targetElement = document.getElementById(sectionId);
+  if (targetElement) {
+    targetElement.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'nearest'
+    });
   }
 };
 </script>
@@ -94,10 +99,10 @@ const scrollToSection = (sectionId) => {
       </div>
 
       <div class="hero-buttons">
-        <BaseButton variant="primary" @click="scrollToSection('about')">
+        <BaseButton variant="primary" @click="handleButtonClick('about')">
           Get to Know Me
         </BaseButton>
-        <BaseButton variant="secondary" @click="scrollToSection('projects')">
+        <BaseButton variant="secondary" @click="handleButtonClick('projects')">
           View Projects
         </BaseButton>
       </div>
@@ -130,13 +135,13 @@ const scrollToSection = (sectionId) => {
 }
 
 .hero-title {
-  font-size: 1rem; /* Increased from 0.95rem */
+  font-size: 1.3rem; /* Increased from 1rem */
   color: #d1d5db;
-  margin-bottom: 2rem; /* Reduced from 2.5rem */
-  line-height: 1.5; /* Tightened line height */
+  margin-bottom: 2rem;
+  line-height: 1.6; /* Slightly increased for better readability */
   font-weight: 300;
-  max-width: none; /* Remove max-width to allow full screen width */
-  width: 100%; /* Full width */
+  max-width: none;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
@@ -218,17 +223,17 @@ body.light-mode .highlight-accent {
 /* Desktop optimizations */
 @media (min-width: 1200px) {
   .hero-section {
-    padding: 3rem 3rem; /* Reduced from 4rem */
+    padding: 3rem 3rem;
   }
 
   .hero-content {
-    max-width: none; /* Remove max-width for large screens */
-    padding: 0 4rem; /* Increase padding for better edge spacing */
+    max-width: none;
+    padding: 0 4rem;
   }
 
   .hero-title {
-    font-size: 1.2rem;
-    max-width: none; /* Full width on large screens */
+    font-size: 1.5rem; /* Increased from 1.2rem */
+    max-width: none;
     margin-bottom: 2.5rem;
   }
 
@@ -244,30 +249,52 @@ body.light-mode .highlight-accent {
 
 @media (min-width: 1440px) {
   .hero-content {
-    max-width: none; /* Full width on extra large screens */
-    padding: 0 6rem; /* More padding for very large screens */
+    max-width: none;
+    padding: 0 6rem;
   }
 
   .hero-title {
-    font-size: 1.3rem; /* Slightly increased */
-    max-width: none; /* Full width */
+    font-size: 1.7rem; /* Increased from 1.3rem */
+    max-width: none;
   }
 }
 
-/* Mobile responsive styles */
+/* Mobile responsive styles - Enhanced for phone browsers */
 @media (max-width: 768px) {
   .hero-section {
     padding: 2rem 1rem; /* Reduced mobile padding */
+    min-height: 100vh;
+    min-height: 100dvh; /* Use dynamic viewport height for mobile */
   }
 
   .hero-content {
-    padding: 0 1rem; /* Reduced mobile padding for more space */
+    padding: 0 0.75rem; /* Reduced mobile padding for more space */
+    max-width: 100%;
+  }
+
+  .hero-photo {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-name {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+
+  .hero-handle {
+    font-size: 1rem;
+    margin-bottom: 1.25rem;
   }
 
   .hero-title {
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem; /* Reduced spacing */
-    max-width: none; /* Full width on mobile too */
+    font-size: 1.1rem; /* Increased from 0.95rem */
+    margin-bottom: 1.5rem;
+    max-width: none;
+    line-height: 1.6; /* Improved readability */
+    padding: 0 0.5rem;
   }
 
   .hero-buttons {
@@ -277,26 +304,194 @@ body.light-mode .highlight-accent {
     margin-bottom: 1rem; /* Reduced spacing */
   }
 
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    max-width: 280px;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    min-height: 48px; /* Touch-friendly height */
+  }
+
+  .social-icons {
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .social-icon {
+    width: 44px; /* Touch-friendly size */
+    height: 44px;
+    border-radius: 12px;
+  }
+
   .hero-contact {
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.75rem;
     margin-top: 1rem;
+  }
+
+  .email-btn {
+    width: 100%;
+    max-width: 240px;
+    min-height: 44px; /* Touch-friendly */
+    font-size: 0.95rem;
   }
 }
 
 @media (max-width: 480px) {
-  .hero-title {
-    font-size: 0.85rem;
-    margin-bottom: 1.25rem; /* Reduced spacing */
-  }
-
   .hero-section {
-    padding: 2rem 0.5rem; /* Further reduced padding */
+    padding: 1.5rem 0.75rem; /* Further reduced padding */
   }
 
   .hero-content {
     padding: 0 0.5rem; /* Minimal padding for maximum width usage */
+  }
+
+  .hero-photo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-name {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .hero-handle {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+
+  .hero-title {
+    font-size: 1rem; /* Increased from 0.85rem */
+    margin-bottom: 1.25rem;
+    padding: 0 0.25rem;
+  }
+
+  .hero-buttons {
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    max-width: 260px;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+  }
+
+  .social-icons {
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .social-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+
+  .email-btn {
+    max-width: 220px;
+    padding: 0.625rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* iOS Safari specific optimizations */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 768px) {
+    .hero-section {
+      /* Fix for iOS Safari viewport issues */
+      min-height: -webkit-fill-available;
+      padding-top: max(env(safe-area-inset-top), 2rem);
+      padding-bottom: max(env(safe-area-inset-bottom), 2rem);
+    }
+  }
+}
+
+/* Android Chrome specific optimizations */
+@media screen and (max-width: 768px) and (orientation: portrait) {
+  .hero-section {
+    /* Better handling of address bar on Android Chrome */
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+}
+
+/* Landscape mode optimizations for mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .hero-section {
+    padding: 1.5rem 1rem;
+    min-height: 100vh;
+  }
+
+  .hero-photo {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 1rem;
+  }
+
+  .hero-name {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-title {
+    font-size: 0.95rem; /* Increased from 0.8rem */
+    margin-bottom: 1rem;
+  }
+
+  .hero-buttons {
+    flex-direction: row;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: auto;
+    max-width: 160px;
+    padding: 0.625rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .social-icons {
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Touch and interaction improvements */
+@media (max-width: 768px) {
+  .hero-photo,
+  .social-icon,
+  .btn-primary,
+  .btn-secondary,
+  .email-btn {
+    -webkit-tap-highlight-color: rgba(139, 92, 246, 0.3);
+    -webkit-user-select: none;
+    user-select: none;
+    touch-action: manipulation;
+  }
+
+  /* Improve tap targets */
+  .social-icon,
+  .btn-primary,
+  .btn-secondary,
+  .email-btn {
+    cursor: pointer;
+    position: relative;
+  }
+
+  /* Add subtle press effects for better mobile feedback */
+  .social-icon:active,
+  .btn-primary:active,
+  .btn-secondary:active,
+  .email-btn:active {
+    transform: scale(0.98);
   }
 }
 </style>

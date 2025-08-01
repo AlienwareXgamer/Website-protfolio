@@ -158,9 +158,13 @@ const certifications = [
   padding: 2rem;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-left: 4px solid #f59e0b;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUpFade 2s ease-out forwards;
 }
 
 .leadership-item::before {
@@ -173,86 +177,48 @@ const certifications = [
   border-radius: 16px;
   background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), transparent);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease;
   pointer-events: none;
 }
 
 .leadership-item:hover {
   background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-2px);
+  transform: translateY(-4px) scale(1.05);
   box-shadow:
     0 8px 25px rgba(245, 158, 11, 0.15),
     0 0 15px rgba(245, 158, 11, 0.1),
     0 0 0 1px rgba(245, 158, 11, 0.1);
   border-left-color: #d97706;
+  transform-origin: center;
 }
 
 .leadership-item:hover::before {
   opacity: 1;
 }
 
-.leadership-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 0.5rem;
-  flex-wrap: wrap;
-  gap: 0.5rem;
+.leadership-item:hover .leadership-header,
+.leadership-item:hover .leadership-organization,
+.leadership-item:hover .leadership-description,
+.leadership-item:hover .leadership-achievements {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
 }
 
-.leadership-header h5 {
-  color: #fff;
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin: 0;
-}
+.leadership-item:nth-child(1) { animation-delay: 0.1s; }
+.leadership-item:nth-child(2) { animation-delay: 0.2s; }
+.leadership-item:nth-child(3) { animation-delay: 0.3s; }
+.leadership-item:nth-child(4) { animation-delay: 0.4s; }
+.leadership-item:nth-child(5) { animation-delay: 0.5s; }
 
-.leadership-period {
-  color: #f59e0b;
-  font-size: 0.9rem;
-  font-weight: 500;
-  white-space: nowrap;
-}
-
-.leadership-organization {
-  color: #a1a1aa;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  font-weight: 500;
-}
-
-.leadership-description {
-  color: #d1d5db;
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
-
-.leadership-achievements {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.leadership-achievements li {
-  color: #d1d5db;
-  margin-bottom: 0.5rem;
-  padding-left: 1.5rem;
-  position: relative;
-}
-
-.leadership-achievements li::before {
-  content: "";
-  display: inline-block;
-  width: 0;
-  height: 0;
-  border-top: 4px solid transparent;
-  border-bottom: 4px solid transparent;
-  border-left: 7px solid #f59e0b; /* Smaller orange arrow */
-  margin-right: 0.6em;
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Certifications */
@@ -266,54 +232,58 @@ const certifications = [
   padding: 1.5rem;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 16px;
-  border-left: 4px solid #8b5cf6; /* Purple accent */
-  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.1);
-  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 4px solid #8b5cf6;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   display: flex;
   flex-direction: column;
-  align-items: center; /* Center the title and content */
-  text-align: center; /* Center-align text */
+  align-items: center;
+  text-align: center;
   gap: 0.5rem;
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUpFade 2s ease-out forwards;
+}
+
+.certification-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
 }
 
 .certification-card:hover {
   background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow:
+    0 8px 25px rgba(139, 92, 246, 0.15),
+    0 0 15px rgba(139, 92, 246, 0.1),
+    0 0 0 1px rgba(139, 92, 246, 0.1);
   border-left-color: #7c3aed;
-  box-shadow: 0 8px 30px rgba(139, 92, 246, 0.2);
-  transform: translateY(-4px);
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform-origin: center;
 }
 
-.certification-card h5 {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #fff;
-  margin-bottom: 0.5rem;
+.certification-card:hover::before {
+  opacity: 1;
 }
 
-.cert-issuer {
-  font-size: 1rem;
-  color: #8b5cf6;
-  font-weight: 500;
+.certification-card:hover h5,
+.certification-card:hover .cert-issuer,
+.certification-card:hover .cert-details {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
 }
 
-.cert-details {
-  font-size: 0.9rem;
-  color: #9ca3af;
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* Center-align content */
-  gap: 0.25rem;
-}
-
-.cert-year {
-  color: #22c55e;
-  font-weight: 600;
-}
-
-.cert-id {
-  font-family: monospace;
-}
+.certification-card:nth-child(1) { animation-delay: 0.6s; }
+.certification-card:nth-child(2) { animation-delay: 0.7s; }
 
 /* Responsive */
 @media (min-width: 1024px) {
@@ -323,20 +293,184 @@ const certifications = [
   }
 }
 
+/* Mobile responsive improvements */
+@media (max-width: 1024px) {
+  .leadership-content {
+    grid-template-columns: 1fr; /* Single column on tablets and below */
+    gap: 2.5rem;
+  }
+
+  .certifications-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+    gap: 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .leadership-content {
+    margin-top: 1.5rem;
+    gap: 2rem;
+  }
+
+  .leadership-section h4,
+  .certifications-section h4 {
+    font-size: 1.4rem;
+    margin-bottom: 1.25rem;
+    text-align: center;
+  }
+
+  /* Mobile-optimized leadership items */
+  .leadership-item {
+    padding: 1.25rem;
+    border-radius: 12px;
+    margin-bottom: 1.25rem;
+  }
+
   .leadership-header {
     flex-direction: column;
     align-items: flex-start;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .leadership-header h5 {
+    font-size: 1.1rem;
+    line-height: 1.3;
   }
 
   .leadership-period {
+    font-size: 0.85rem;
     white-space: normal;
+  }
+
+  .leadership-organization {
+    font-size: 0.95rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .leadership-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .leadership-achievements li {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+  }
+
+  /* Mobile-optimized certifications */
+  .certifications-grid {
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 1.25rem;
+  }
+
+  .certification-card {
+    padding: 1.25rem;
+    border-radius: 12px;
+  }
+
+  .certification-card h5 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .cert-issuer {
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
   }
 
   .cert-details {
     flex-direction: column;
     text-align: center;
-    gap: 0.25rem;
+    gap: 0.375rem;
+  }
+
+  .cert-year,
+  .cert-id {
+    font-size: 0.85rem;
+  }
+
+  /* Touch-friendly interactions */
+  .leadership-item,
+  .certification-card {
+    -webkit-tap-highlight-color: rgba(139, 92, 246, 0.2);
+    touch-action: manipulation;
+  }
+}
+
+@media (max-width: 480px) {
+  .leadership-content {
+    gap: 1.5rem;
+  }
+
+  .leadership-section h4,
+  .certifications-section h4 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .leadership-item {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .leadership-header h5 {
+    font-size: 1rem;
+  }
+
+  .leadership-period {
+    font-size: 0.8rem;
+  }
+
+  .leadership-organization {
+    font-size: 0.9rem;
+  }
+
+  .leadership-description {
+    font-size: 0.9rem;
+  }
+
+  .leadership-achievements li {
+    font-size: 0.85rem;
+  }
+
+  .certification-card {
+    padding: 1rem;
+  }
+
+  .certification-card h5 {
+    font-size: 1rem;
+  }
+
+  .cert-issuer {
+    font-size: 0.9rem;
+  }
+
+  .cert-year,
+  .cert-id {
+    font-size: 0.8rem;
+  }
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 768px) {
+  .leadership-item,
+  .certification-card {
+    /* Reduce complex effects on mobile */
+    backdrop-filter: blur(8px);
+    transition: all 0.2s ease;
+  }
+
+  /* Disable hover effects on touch devices */
+  @media (hover: none) and (pointer: coarse) {
+    .leadership-item:hover,
+    .certification-card:hover {
+      transform: none;
+    }
   }
 }
 </style>

@@ -33,11 +33,13 @@ defineProps({
   padding: 1.5rem;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 16px;
-  border: 1px solid rgba(139, 92, 246, 0.18); /* Thinner static border */
-  border-left: 4px solid #8b5cf6; /* Thinner purple accent */
-  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.1); /* Gentle inner glow by default */
-  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-left: 3px solid #8b5cf6;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideUpFade 2s ease-out forwards;
 }
 
 .experience-item::before {
@@ -47,25 +49,50 @@ defineProps({
   left: 0;
   right: 0;
   bottom: 0;
-  border-radius: 12px;
+  border-radius: 16px;
   background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), transparent);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: all 0.4s ease;
   pointer-events: none;
 }
 
 .experience-item:hover {
   background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-2px);
+  transform: translateY(-4px) scale(1.05);
   box-shadow:
-    0 0 0 2px rgba(139, 92, 246, 0.1),
-    /* Gentle inner glow */ 0 0 0 8px rgba(139, 92, 246, 0.22); /* Stronger outer glow on hover */
+    0 8px 25px rgba(139, 92, 246, 0.15),
+    0 0 15px rgba(139, 92, 246, 0.1),
+    0 0 0 1px rgba(139, 92, 246, 0.1);
   border-left-color: #7c3aed;
+  transform-origin: center;
 }
 
 .experience-item:hover::before {
   opacity: 1;
 }
+
+.experience-item:hover .experience-header,
+.experience-item:hover .experience-description,
+.experience-item:hover .experience-achievements {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.experience-item:nth-child(1) { animation-delay: 0.2s; }
+.experience-item:nth-child(2) { animation-delay: 0.4s; }
+.experience-item:nth-child(3) { animation-delay: 0.6s; }
+.experience-item:nth-child(4) { animation-delay: 0.8s; }
 
 .experience-header {
   flex-direction: column;

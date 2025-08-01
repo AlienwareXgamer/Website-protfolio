@@ -6,43 +6,43 @@ const skillsCategories = [
   {
     name: "Programming Languages",
     skills: [
-      { name: "JavaScript", proficiency: 85 },
-      { name: "TypeScript", proficiency: 75 },
-      { name: "MySQL", proficiency: 80 },
+      { name: "JavaScript", proficiency: 85, icon: "javascript.svg" },
+      { name: "TypeScript", proficiency: 75, icon: "typescript.svg" },
+      { name: "MySQL", proficiency: 80, icon: "mysql.svg" },
     ],
   },
   {
     name: "Frameworks & Runtimes",
     skills: [
-      { name: "Vue.js", proficiency: 85 },
-      { name: "Next.js", proficiency: 75 },
-      { name: "Node.js", proficiency: 80 },
-      { name: "Laravel", proficiency: 70 },
+      { name: "Vue.js", proficiency: 85, icon: "vuedotjs.svg" },
+      { name: "Next.js", proficiency: 75, icon: "nextdotjs.svg" },
+      { name: "Node.js", proficiency: 80, icon: "nodedotjs.svg" },
+      { name: "Laravel", proficiency: 70, icon: "laravel.svg" },
     ],
   },
   {
     name: "Databases & ORMs",
     skills: [
-      { name: "Firebase", proficiency: 80 },
-      { name: "Firestore", proficiency: 78 },
-      { name: "Prisma", proficiency: 75 },
+      { name: "Firebase", proficiency: 80, icon: "firebase.svg" },
+      { name: "Firestore", proficiency: 78, icon: "firebase.svg" },
+      { name: "Prisma", proficiency: 75, icon: "prisma.svg" },
     ],
   },
   {
     name: "Developer Tools",
     skills: [
-      { name: "Git", proficiency: 85 },
-      { name: "GitHub", proficiency: 85 },
-      { name: "npm", proficiency: 80 },
+      { name: "Git", proficiency: 85, icon: "git.svg" },
+      { name: "GitHub", proficiency: 85, icon: "github.svg" },
+      { name: "npm", proficiency: 80, icon: "npm.svg" },
     ],
   },
   {
     name: "Software & Design",
     skills: [
       { name: "Microsoft Office", level: "Proficient with Pivot Tables" },
-      { name: "Canva", level: "Advanced" },
-      { name: "Figma", level: "Intermediate" },
-      { name: "Arduino IDE", level: "Development Environment" },
+      { name: "Canva", level: "Advanced", icon: "canva.svg" },
+      { name: "Figma", level: "Intermediate", icon: "figma.svg" },
+      { name: "Arduino IDE", level: "Development Environment", icon: "arduino.svg" },
     ],
   },
   {
@@ -77,7 +77,6 @@ const skillsCategories = [
 // Group skills for 4 cards per row layout
 const firstRowSkills = skillsCategories.slice(0, 4);
 const secondRowSkills = skillsCategories.slice(4, 7); // Only 3 cards in the last row
-
 </script>
 
 <template>
@@ -206,17 +205,134 @@ const secondRowSkills = skillsCategories.slice(4, 7); // Only 3 cards in the las
 
 @media (max-width: 767px) {
   .skills-section {
-    padding: 0 1rem;
+    padding: 0.5rem; /* Reduced padding for more content space */
   }
 
   .skills-container {
-    gap: 2rem;
+    gap: 1.25rem; /* Tighter gap for mobile */
+    margin-top: 1.5rem;
   }
 
   .four-column-row,
   .three-column-row {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+    grid-template-columns: 1fr; /* Always single column on mobile */
+    gap: 1rem;
+  }
+
+  /* Enhanced mobile skill cards */
+  .skills-row :deep(.skills-category) {
+    max-width: 100%;
+    margin: 0;
+    padding: 1rem; /* Reduced padding for more content */
+    border-radius: 12px;
+    min-height: auto;
+    background: rgba(255, 255, 255, 0.08); /* Slightly more visible on mobile */
+  }
+
+  .skills-row :deep(.skills-category h4) {
+    font-size: 1rem; /* Consistent mobile heading size */
+    margin-bottom: 0.875rem;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  .skills-row :deep(.skill-item) {
+    padding: 0.625rem 0.75rem; /* Optimized mobile padding */
+    margin-bottom: 0.375rem;
+    font-size: 0.9rem; /* Readable but compact */
+    min-height: 40px; /* Touch-friendly but compact */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 8px;
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    transition: all 0.2s ease;
+    line-height: 1.3;
+  }
+
+  .skills-row :deep(.skill-item:last-child) {
+    margin-bottom: 0;
+  }
+
+  /* Enhanced touch feedback */
+  .skills-row :deep(.skill-item:active) {
+    transform: scale(0.98);
+    background: rgba(139, 92, 246, 0.15);
+  }
+}
+
+@media (max-width: 480px) {
+  .skills-section {
+    padding: 0 0.375rem; /* Minimal padding for small screens */
+  }
+
+  .skills-container {
+    gap: 1rem;
+  }
+
+  .skills-row :deep(.skills-category) {
+    padding: 0.875rem;
+  }
+
+  .skills-row :deep(.skills-category h4) {
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .skills-row :deep(.skill-item) {
+    padding: 0.5rem 0.625rem;
+    font-size: 0.85rem;
+    min-height: 36px;
+  }
+}
+
+/* Ultra-small screens (narrow phones) */
+@media (max-width: 320px) {
+  .skills-section {
+    padding: 0 0.25rem;
+  }
+
+  .skills-row :deep(.skills-category) {
+    padding: 0.75rem;
+  }
+
+  .skills-row :deep(.skills-category h4) {
+    font-size: 0.9rem;
+  }
+
+  .skills-row :deep(.skill-item) {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    min-height: 34px;
+  }
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 768px) {
+  .skills-row :deep(.skills-category) {
+    /* Reduce complex effects on mobile */
+    backdrop-filter: blur(8px);
+    transition: all 0.2s ease;
+  }
+
+  .skills-row :deep(.skill-item) {
+    /* Simplify animations on mobile */
+    transition:
+      transform 0.15s ease,
+      background-color 0.15s ease;
+  }
+
+  /* Disable hover effects on touch devices */
+  @media (hover: none) and (pointer: coarse) {
+    .skills-row :deep(.skills-category:hover) {
+      transform: none;
+    }
+
+    .skills-row :deep(.skill-item:hover) {
+      transform: none;
+    }
   }
 }
 
