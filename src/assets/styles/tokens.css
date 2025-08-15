@@ -101,3 +101,16 @@ body.light-mode {
 .safe-area { padding-left: env(safe-area-inset-left,0); padding-right: env(safe-area-inset-right,0); }
 .safe-area-top { padding-top: env(safe-area-inset-top,0); }
 .safe-area-bottom { padding-bottom: env(safe-area-inset-bottom,0); }
+
+/* Unified focus ring utility */
+:focus { outline: none; }
+:focus-visible { outline: 2px solid var(--color-text-accent); outline-offset: 3px; box-shadow: 0 0 0 4px rgba(139,92,246,0.35); }
+.focus-ring { outline: 2px solid var(--color-text-accent); outline-offset: 3px; }
+
+/* Remove focus ring when not keyboard navigating (handled by :focus-visible) */
+:focus:not(:focus-visible) { outline: none !important; box-shadow: none !important; }
+
+/* Reduced motion safeguard */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}

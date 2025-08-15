@@ -106,7 +106,7 @@ const handleNavClick = (itemId) => {
   transform: translateY(10px);
   animation: linkFadeIn 0.5s ease-out forwards;
   /* Remove default focus outline and borders */
-  outline: none;
+  outline: none; /* kept to neutralize UA outline; global focus-visible handles ring */
   box-shadow: none;
 }
 
@@ -171,17 +171,23 @@ const handleNavClick = (itemId) => {
   box-shadow: none;
 }
 
+/* Remove custom focus-visible box-shadow to use unified token ring */
+.nav-link:focus-visible {
+  box-shadow: none;
+  background: rgba(139, 92, 246, 0.25);
+  color: #fff;
+}
+
 /* Remove any active state borders */
 .nav-link:active {
   outline: none;
   box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
 }
 
-.nav-link:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(255,255,255,0.6), var(--shadow-focus);
-  background: rgba(139, 92, 246, 0.25);
-  color: #fff;
+/* Reduced motion: disable entrance animation & transform scaling */
+@media (prefers-reduced-motion: reduce) {
+  .nav-link { animation: none !important; transform: none !important; }
+  .nav-link:hover, .nav-link.active { transform: none !important; }
 }
 
 .mobile-menu-button {

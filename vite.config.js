@@ -5,7 +5,7 @@ import { resolve } from "path";
 // https://vite.dev/config/
 export default defineConfig(() => {
   // Determine base path based on environment
-  const isGitHubPages = process.env.GITHUB_ACTIONS === "true";
+  const isGitHubPages = process.env.GITHUB_ACTIONS === "true" && !process.env.VERCEL;
   const base = isGitHubPages ? "/Website-Portfolio/" : "/";
 
   return {

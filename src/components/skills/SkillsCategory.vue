@@ -6,11 +6,18 @@ defineProps({
   },
 });
 
+const logos = import.meta.glob('@/assets/logos/*', { eager: true, import: 'default' });
+const logoMap = Object.fromEntries(
+  Object.entries(logos).map(([path, mod]) => [path.split('/').pop(), mod])
+);
+
 const getIconUrl = (icon) => {
-  if (!icon) return "";
-  // Simple path-based approach for Vite static assets
-  return `/src/assets/logos/${icon}`;
+  if (!icon) return '';
+  return logoMap[icon] || '';
 };
+
+const makeSkillId = (name) =>
+  `skill-${name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g,'')}`;
 </script>
 
 <template>
@@ -23,12 +30,13 @@ const getIconUrl = (icon) => {
         class="skill-item"
       >
         <div class="skill-info">
-          <span class="skill-name">{{ skill.name }}</span>
+          <span class="skill-name" :id="makeSkillId(skill.name)">{{ skill.name }}</span>
           <div class="skill-adornments">
             <img
               v-if="skill.icon"
               :src="getIconUrl(skill.icon)"
-              :alt="`${skill.name} icon`"
+              :alt="''" aria-hidden="false"
+              :aria-describedby="makeSkillId(skill.name)"
               class="skill-icon"
             />
             <span v-if="skill.level" class="skill-level">{{
@@ -239,5 +247,10 @@ const getIconUrl = (icon) => {
     font-size: 0.8rem;
     padding: 0.25rem 0.5rem;
   }
+}
+
+/* Reduced motion: eliminate custom animations & transforms */
+@media (prefers-reduced-motion: reduce) {
+  .skills-category, .skills-category:hover, .skill-item, .skill-item:hover { animation: none !important; transform: none !important; transition: none !important; }
 }
 </style>

@@ -2,7 +2,14 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- Favicon & App Icons -->
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/vite.svg" />
+    <link rel="apple-touch-icon" href="/vite.svg" />
+    <link rel="manifest" href="/manifest.json" crossorigin="use-credentials" />
+    <!-- Canonical URL (update domain after deployment) -->
+    <link rel="canonical" href="https://francisprado.dev/" />
+
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0, viewport-fit=cover"
@@ -69,6 +76,64 @@
     </style>
 
     <title>Francis Allen Prado - Portfolio</title>
+
+    <!-- Primary Meta -->
+    <meta name="robots" content="index,follow" />
+
+    <!-- Theme Colors (light/dark) -->
+    <meta name="theme-color" content="#0c0c0c" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+
+    <!-- Open Graph -->
+    <meta property="og:site_name" content="Francis Allen Prado Portfolio" />
+    <meta property="og:title" content="Francis Allen Prado - Web Developer & Data Analyst" />
+    <meta property="og:description" content="Building performant, accessible web applications & data-driven systems." />
+    <meta property="og:url" content="https://francisprado.dev/" />
+    <meta property="og:image" content="https://francisprado.dev/og-image.jpg" />
+    <meta property="og:image:alt" content="Preview of Francis Allen Prado portfolio" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:site" content="@francis_allen_dev" />
+    <meta name="twitter:image" content="https://francisprado.dev/og-image.jpg" />
+
+    <!-- Structured Data (Person + Projects) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Francis Allen Prado",
+      "jobTitle": "Web Developer & Data Analyst",
+      "email": "mailto:francisallen148@gmail.com",
+      "url": "https://francisprado.dev/",
+      "image": "https://francisprado.dev/og-image.jpg",
+      "sameAs": [
+        "https://www.linkedin.com/in/francis-allen-prado",
+        "https://github.com/AlienwareXgamer",
+        "https://twitter.com/francis_allen_dev"
+      ],
+      "knowsAbout": ["Web Development","Data Analysis","Vue.js","Node.js","TypeScript"],
+      "hasPart": [
+        {
+          "@type": "CreativeWork",
+          "name": "Fullstack Granville 2 Subdivision | Ateneo Thesis Project",
+          "description": "Web-based homeowner & guest tracking system with RFID/QR integration."
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "Dormitory Management System | Ateneo System Integration Project",
+          "description": "Tenant management with billing, maintenance, access tracking."
+        },
+        {
+          "@type": "CreativeWork",
+          "name": "LMS (Lessor Management System)",
+          "description": "Updated management system prototype developed during internship."
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="app"></div>

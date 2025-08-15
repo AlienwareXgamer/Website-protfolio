@@ -1,0 +1,14 @@
+{
+  "name": "Francis Allen Prado Portfolio",
+  "short_name": "Prado",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0c0c0c",
+  "theme_color": "#8b5cf6",
+  "description": "Web Developer & Data Analyst portfolio of Francis Allen Prado.",
+  "lang": "en",
+  "icons": [
+    { "src": "/vite.svg", "type": "image/svg+xml", "sizes": "512x512" }
+  ]
+}
