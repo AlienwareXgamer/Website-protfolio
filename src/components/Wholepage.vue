@@ -1,66 +1,26 @@
 <script setup>
-import { onMounted, ref } from "vue";
+import { computed } from 'vue';
 
-const starsContainer = ref(null);
-
-onMounted(() => {
-  createStars();
-});
-
-const createStars = () => {
-  const container = starsContainer.value;
-  if (!container) {
-    console.error("Stars container not found!");
-    return;
-  }
-
-  // Clear any existing stars first
-  container.innerHTML = "";
-
-  console.log("Creating optimized starfield...");
-
-  // Create fewer, more optimized stars for better performance
-  const totalStars = 50; // Reduced from 100 for better performance
-
-  for (let i = 0; i < totalStars; i++) {
-    const star = document.createElement("div");
-    star.className = "star meteorit-star";
-
-    // Random position across entire screen
-    const leftPos = Math.random() * 100;
-    const topPos = Math.random() * 100;
-    star.style.left = leftPos + "%";
-    star.style.top = topPos + "%";
-
-    // Optimized star styling
-    star.style.width = "2px";
-    star.style.height = "2px";
-    star.style.opacity = "0.8";
-    star.style.backgroundColor = "#ffffff";
-    star.style.position = "absolute";
-    star.style.borderRadius = "50%";
-    star.style.zIndex = "10";
-
-    // Add random animation delay for variety
-    star.style.setProperty("--random-delay", Math.random());
-
-    container.appendChild(star);
-  }
-
-  console.log(`Created ${totalStars} optimized stars`);
-};
+const STAR_COUNT = 50;
+const stars = computed(() => Array.from({ length: STAR_COUNT }, (_, i) => ({
+  id: i,
+  left: Math.random() * 100,
+  top: Math.random() * 100,
+  delay: Math.random() * 4,
+  scale: 0.8 + Math.random() * 0.6
+})));
 </script>
 
 <template>
-  <!-- Optimized static stars -->
-  <div ref="starsContainer" class="stars-container">
-    <!-- Stars will be dynamically created here -->
+  <div class="stars-container">
+    <div
+      v-for="star in stars"
+      :key="star.id"
+      class="star meteorit-star"
+      :style="{ left: star.left + '%', top: star.top + '%', animationDelay: star.delay + 's', transform: 'scale(' + star.scale + ')' }"
+    />
   </div>
-
-  <!-- Optimized shooting star animation layer -->
-  <div class="animation-layer">
-    <!-- Single streamlined shooting star system -->
-  </div>
+  <div class="animation-layer" />
 </template>
 
 <style scoped>

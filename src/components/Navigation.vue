@@ -12,7 +12,7 @@ defineEmits(["scroll-to-section", "toggle-theme"]);
 </script>
 
 <template>
-  <nav class="navigation">
+  <nav class="navigation" role="navigation" aria-label="Primary site">
     <!-- Removed NavigationLogo component -->
 
     <NavigationLinks
@@ -37,7 +37,14 @@ defineEmits(["scroll-to-section", "toggle-theme"]);
   flex-direction: row;
   align-items: center;
   justify-content: center; /* Changed from space-between to center since we removed the logo */
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1rem; /* fallback */
+  padding: clamp(0.4rem, 0.6rem + 0.2vw, 0.75rem) clamp(0.75rem, 1rem + 0.5vw, 1.5rem);
+  font-size: var(--fs-sm);
+  line-height: var(--lh-normal);
+  max-width: var(--container-max);
+  /* Safe area horizontal padding */
+  padding-left: max(clamp(0.75rem, 1rem + 0.5vw, 2rem), env(safe-area-inset-left));
+  padding-right: max(clamp(0.75rem, 1rem + 0.5vw, 2rem), env(safe-area-inset-right));
   background: rgba(0, 0, 0, 0.2); /* Much more transparent when not hovered */
   -webkit-backdrop-filter: blur(15px); /* Safari support */
   backdrop-filter: blur(15px); /* Reduced blur for more transparency */
@@ -128,5 +135,9 @@ defineEmits(["scroll-to-section", "toggle-theme"]);
     top: 0.2rem;
     min-width: 280px;
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navigation { animation: none !important; transform: translateX(-50%) !important; }
 }
 </style>

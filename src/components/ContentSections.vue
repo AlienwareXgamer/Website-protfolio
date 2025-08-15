@@ -1,10 +1,13 @@
 <script setup>
+import { defineAsyncComponent } from 'vue';
 import AboutSection from "./sections/AboutSection.vue";
 import ExperienceSection from "./sections/ExperienceSection.vue";
-import ProjectsSection from "./sections/ProjectsSection.vue";
 import EducationSection from "./sections/EducationSection.vue";
 import LeadershipSection from "./sections/LeadershipSection.vue";
-import SkillsSection from "./sections/SkillsSection.vue";
+
+// Lazy load heavy components for faster initial page load
+const ProjectsSection = defineAsyncComponent(() => import('./sections/ProjectsSection.vue'));
+const SkillsSection = defineAsyncComponent(() => import('./sections/SkillsSection.vue'));
 
 defineProps({
   skills: Object,
@@ -16,13 +19,23 @@ defineProps({
   <AboutSection />
 
   <!-- Skills Sections (Technical & Other) -->
-  <SkillsSection :skills="skills" />
+  <Suspense>
+    <SkillsSection :skills="skills" />
+    <template #fallback>
+      <div class="section-fallback">Loading Skills...</div>
+    </template>
+  </Suspense>
 
   <!-- Experience Section -->
   <ExperienceSection />
 
   <!-- Projects Section -->
-  <ProjectsSection />
+  <Suspense>
+    <ProjectsSection />
+    <template #fallback>
+      <div class="section-fallback">Loading Projects...</div>
+    </template>
+  </Suspense>
 
   <!-- Education Section -->
   <EducationSection />
@@ -32,5 +45,12 @@ defineProps({
 </template>
 
 <style scoped>
-/* No additional styles needed - all handled by individual components */
+.section-fallback {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50vh;
+  font-size: 1.5rem;
+  color: #9ca3af;
+}
 </style>

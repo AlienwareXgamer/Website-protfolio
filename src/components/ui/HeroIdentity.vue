@@ -1,20 +1,15 @@
 <script setup>
-defineProps({
-  name: {
-    type: String,
-    required: true,
-  },
-  handle: {
-    type: String,
-    required: true,
-  },
+const props = defineProps({
+  name: { type: String, required: true },
+  handle: { type: String, required: true },
+  headingId: { type: String, default: 'home-heading' }
 });
 </script>
 
 <template>
   <div class="hero-identity">
-    <h1 class="hero-name">{{ name }}</h1>
-    <p class="hero-handle">{{ handle }}</p>
+    <h1 class="hero-name" :id="props.headingId">{{ props.name }}</h1>
+    <p class="hero-handle">{{ props.handle }}</p>
   </div>
 </template>
 

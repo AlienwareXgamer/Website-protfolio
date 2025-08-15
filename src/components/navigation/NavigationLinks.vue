@@ -2,51 +2,39 @@
 import { ref } from "vue";
 import { NAVIGATION_ITEMS } from "../../core/constants/constants.js";
 
-defineProps({
-  activeSection: String,
-});
-
+defineProps({ activeSection: String });
 const emit = defineEmits(["scroll-to-section"]);
-
 const isMobileMenuOpen = ref(false);
 
 const handleNavClick = (itemId) => {
-  // Smooth scroll to section
-  const targetElement = document.getElementById(itemId);
-  if (targetElement) {
-    targetElement.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-      inline: 'nearest'
-    });
-  }
-  
   emit("scroll-to-section", itemId);
-  isMobileMenuOpen.value = false; // Close mobile menu after navigation
+  isMobileMenuOpen.value = false;
 };
 </script>
 
 <template>
   <div class="nav-links-container">
-    <!-- Desktop Navigation -->
-    <div class="nav-links desktop-nav">
+    <div class="nav-links desktop-nav" role="menubar">
       <button
         v-for="item in NAVIGATION_ITEMS"
         :key="item.id"
         :class="['nav-link', { active: activeSection === item.id }]"
         @click="handleNavClick(item.id)"
         type="button"
+        :aria-current="activeSection === item.id ? 'page' : undefined"
+        role="menuitem"
       >
         {{ item.label }}
       </button>
     </div>
 
-    <!-- Mobile Menu Button -->
     <button
       class="mobile-menu-button"
       @click="isMobileMenuOpen = !isMobileMenuOpen"
       type="button"
       :aria-label="isMobileMenuOpen ? 'Close menu' : 'Open menu'"
+      :aria-expanded="isMobileMenuOpen.toString()"
+      aria-controls="primary-mobile-menu"
     >
       <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
         <path
@@ -66,17 +54,15 @@ const handleNavClick = (itemId) => {
       </svg>
     </button>
 
-    <!-- Mobile Navigation Menu -->
-    <div v-if="isMobileMenuOpen" class="mobile-nav">
+    <div v-if="isMobileMenuOpen" class="mobile-nav" id="primary-mobile-menu" role="menu">
       <button
         v-for="item in NAVIGATION_ITEMS"
         :key="item.id"
-        :class="[
-          'nav-link mobile-nav-link',
-          { active: activeSection === item.id },
-        ]"
+        :class="['nav-link mobile-nav-link', { active: activeSection === item.id }]"
         @click="handleNavClick(item.id)"
         type="button"
+        :aria-current="activeSection === item.id ? 'page' : undefined"
+        role="menuitem"
       >
         {{ item.label }}
       </button>
@@ -101,7 +87,11 @@ const handleNavClick = (itemId) => {
 .nav-link {
   color: #a1a1aa;
   text-decoration: none;
-  font-size: 13px; /* Smaller text */
+  font-size: var(--fs-sm);
+  line-height: var(--lh-tight);
+  min-height: 44px; /* touch target */
+  display: inline-flex;
+  align-items: center;
   font-weight: 500;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
@@ -187,6 +177,13 @@ const handleNavClick = (itemId) => {
   box-shadow: 0 4px 15px rgba(139, 92, 246, 0.3);
 }
 
+.nav-link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.6), var(--shadow-focus);
+  background: rgba(139, 92, 246, 0.25);
+  color: #fff;
+}
+
 .mobile-menu-button {
   display: none;
   background: rgba(255, 255, 255, 0.1);
@@ -255,6 +252,12 @@ const handleNavClick = (itemId) => {
 
 .mobile-nav-link::before {
   display: none;
+}
+
+.mobile-nav-link:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(139,92,246,0.6), var(--shadow-focus);
+  background: rgba(139,92,246,0.25);
 }
 
 /* Responsive optimizations */
@@ -459,5 +462,9 @@ body.light-mode .mobile-nav-link.active {
 
 body.light-mode .mobile-overlay {
   background: rgba(0, 0, 0, 0.3);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-link { animation: none; transform: none; }
 }
 </style>

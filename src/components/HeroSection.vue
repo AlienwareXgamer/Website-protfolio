@@ -2,109 +2,39 @@
 import ProfilePhoto from "./ui/ProfilePhoto.vue";
 import HeroIdentity from "./ui/HeroIdentity.vue";
 import BaseButton from "./ui/BaseButton.vue";
+import SocialIcons from "./ui/SocialIcons.vue";
+
+const emit = defineEmits(["scroll-request"]);
 
 defineProps({
   isDarkMode: Boolean,
 });
 
-// Copy exact navigation scroll function
-const handleButtonClick = (sectionId) => {
-  // Smooth scroll to section (copied from NavigationLinks.vue)
-  const targetElement = document.getElementById(sectionId);
-  if (targetElement) {
-    targetElement.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start',
-      inline: 'nearest'
-    });
-  }
-};
+const requestScroll = (sectionId) => emit("scroll-request", sectionId);
 </script>
 
 <template>
   <section class="hero-section" id="home">
     <div class="hero-content">
       <ProfilePhoto size="large" />
-
       <HeroIdentity name="Francis Allen Prado" handle="@francis_allen_dev" />
-
-      <div class="social-icons hero-contact-inline">
-        <a
-          class="social-icon"
-          href="mailto:francisallen148@gmail.com"
-          title="Email"
-        >
-          <i class="fas fa-envelope"></i>
-        </a>
-        <a
-          class="social-icon"
-          href="https://www.linkedin.com/in/francis-allen-prado"
-          target="_blank"
-          title="LinkedIn"
-        >
-          <i class="fab fa-linkedin"></i>
-        </a>
-        <a
-          class="social-icon"
-          href="https://github.com/AlienwareXgamer"
-          target="_blank"
-          title="GitHub"
-        >
-          <i class="fab fa-github"></i>
-        </a>
-        <a
-          class="social-icon"
-          href="https://twitter.com/francis_allen_dev"
-          target="_blank"
-          title="Twitter"
-        >
-          <i class="fab fa-twitter"></i>
-        </a>
-        <a class="social-icon" href="tel:+639762404193" title="Call">
-          <i class="fas fa-phone"></i>
-        </a>
-        <a
-          class="social-icon"
-          href="https://maps.google.com/?q=Davao+Del+Sur,+Davao+City,+Roxas+Ave."
-          target="_blank"
-          title="Location"
-        >
-          <i class="fas fa-map-marker-alt"></i>
-        </a>
-      </div>
-
+      <SocialIcons class="hero-contact-inline" />
       <div class="hero-title">
-        <span class="intro-text"
-          >Full-stack developer and data analyst passionate about creating</span
-        >
+        <span class="intro-text">Full-stack developer and data analyst passionate about creating</span>
         <span class="highlight-primary"> innovative web solutions</span>
         <span class="intro-text"> and driving</span>
-        <span class="highlight-secondary"> insights through data</span
-        ><span class="intro-text">.</span>
-
+        <span class="highlight-secondary"> insights through data</span><span class="intro-text">.</span>
         <br /><br />
-
         <span class="intro-text"> Experienced in</span>
-        <span class="highlight-tech"> modern JavaScript frameworks</span
-        ><span class="intro-text">,</span>
-        <span class="highlight-tech"> backend development</span
-        ><span class="intro-text">, and</span>
-        <span class="highlight-tech"> data visualization</span
-        ><span class="intro-text">, with a</span>
+        <span class="highlight-tech"> modern JavaScript frameworks</span><span class="intro-text">,</span>
+        <span class="highlight-tech"> backend development</span><span class="intro-text">, and</span>
+        <span class="highlight-tech"> data visualization</span><span class="intro-text">, with a</span>
         <span class="highlight-accent"> proven track record</span>
-        <span class="intro-text">
-          of delivering impactful projects in corporate and community
-          settings.</span
-        >
+        <span class="intro-text"> of delivering impactful projects in corporate and community settings.</span>
       </div>
-
       <div class="hero-buttons">
-        <BaseButton variant="primary" @click="handleButtonClick('about')">
-          Get to Know Me
-        </BaseButton>
-        <BaseButton variant="secondary" @click="handleButtonClick('projects')">
-          View Projects
-        </BaseButton>
+        <BaseButton variant="primary" @click="requestScroll('about')">Get to Know Me</BaseButton>
+        <BaseButton variant="secondary" @click="requestScroll('projects')">View Projects</BaseButton>
       </div>
     </div>
   </section>
@@ -135,10 +65,10 @@ const handleButtonClick = (sectionId) => {
 }
 
 .hero-title {
-  font-size: 1.3rem; /* Increased from 1rem */
-  color: #d1d5db;
+  font-size: 1.3rem;
+  color: var(--color-text-secondary); /* token-based */
   margin-bottom: 2rem;
-  line-height: 1.6; /* Slightly increased for better readability */
+  line-height: 1.6;
   font-weight: 300;
   max-width: none;
   width: 100%;
@@ -148,53 +78,15 @@ const handleButtonClick = (sectionId) => {
   letter-spacing: 0.01em;
   opacity: 0.95;
   font-family: "Inter", sans-serif;
+  background: none;
 }
 
-.intro-text {
-  color: #d1d5db;
-  font-weight: 300;
-}
+.intro-text { color: var(--color-text-secondary); font-weight: 300; }
 
-.highlight-primary {
-  color: #8b5cf6;
-  font-weight: 500;
-}
-
-.highlight-secondary {
-  color: #06b6d4;
-  font-weight: 500;
-}
-
-.highlight-tech {
-  color: #10b981;
-  font-weight: 500;
-}
-
-.highlight-accent {
-  color: #f59e0b;
-  font-weight: 500;
-}
-
-/* Light mode text colors */
-body.light-mode .intro-text {
-  color: #374151;
-}
-
-body.light-mode .highlight-primary {
-  color: #8b5cf6;
-}
-
-body.light-mode .highlight-secondary {
-  color: #0891b2;
-}
-
-body.light-mode .highlight-tech {
-  color: #059669;
-}
-
-body.light-mode .highlight-accent {
-  color: #d97706;
-}
+.highlight-primary,
+.highlight-secondary,
+.highlight-tech,
+.highlight-accent { color: var(--color-text-accent); background:none; }
 
 .hero-buttons {
   display: flex;
