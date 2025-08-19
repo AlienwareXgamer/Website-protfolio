@@ -154,7 +154,10 @@ const requestScroll = (sectionId) => emit("scroll-request", sectionId);
 /* Mobile responsive styles - Enhanced for phone browsers */
 @media (max-width: 768px) {
   .hero-section {
-    padding: 2rem 1rem; /* Reduced mobile padding */
+    /* Re-introduce top padding removed when overriding padding earlier */
+    /* Ensure enough space for fixed nav + safe area (iOS notch) */
+    padding: 2rem 1rem; /* existing */
+    padding-top: max(6rem, calc(env(safe-area-inset-top, 0px) + 5rem));
     min-height: 100vh;
     min-height: 100dvh; /* Use dynamic viewport height for mobile */
   }
@@ -233,7 +236,9 @@ const requestScroll = (sectionId) => emit("scroll-request", sectionId);
 
 @media (max-width: 480px) {
   .hero-section {
-    padding: 1.5rem 0.75rem; /* Further reduced padding */
+    /* Keep consistent clearance on very small devices */
+    padding: 1.5rem 0.75rem;
+    padding-top: max(6rem, calc(env(safe-area-inset-top, 0px) + 5rem));
   }
 
   .hero-content {
@@ -296,10 +301,9 @@ const requestScroll = (sectionId) => emit("scroll-request", sectionId);
 @supports (-webkit-touch-callout: none) {
   @media (max-width: 768px) {
     .hero-section {
-      /* Fix for iOS Safari viewport issues */
+      /* Maintain safe area while preserving space for nav */
       min-height: -webkit-fill-available;
-      padding-top: max(env(safe-area-inset-top), 2rem);
-      padding-bottom: max(env(safe-area-inset-bottom), 2rem);
+      padding-top: max(env(safe-area-inset-top, 0px) + 5rem, 6rem);
     }
   }
 }

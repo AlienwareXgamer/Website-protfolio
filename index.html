@@ -73,6 +73,30 @@
       select {
         font-size: 16px !important;
       }
+      :root {
+        /* Safe area custom properties for iOS devices (iPhone X - 16) */
+        --safe-top: env(safe-area-inset-top, 0px);
+        --safe-right: env(safe-area-inset-right, 0px);
+        --safe-bottom: env(safe-area-inset-bottom, 0px);
+        --safe-left: env(safe-area-inset-left, 0px);
+        /* Fallback dynamic vh unit (updated via JS for iOS 100vh issues) */
+        --vh: 1vh;
+      }
+
+      html { height: -webkit-fill-available; }
+
+      body {
+        min-height: 100dvh; /* Modern dynamic viewport */
+        min-height: -webkit-fill-available; /* iOS fallback */
+        padding-top: 0; /* We'll add safe padding per component */
+        margin: 0;
+        overscroll-behavior-y: contain; /* Prevent double-bounce with internal scroller */
+        -webkit-font-smoothing: antialiased;
+        -webkit-text-size-adjust: 100%;
+      }
+
+      /* Utility class if needed for pages that must respect safe bottom inset */
+      .with-safe-bottom { padding-bottom: calc(var(--safe-bottom) + 1rem); }
     </style>
 
     <title>Francis Allen Prado - Portfolio</title>
@@ -133,6 +157,19 @@
         }
       ]
     }
+    </script>
+
+    <script>
+      // iOS 100vh fix: set --vh to real innerHeight so 100 * var(--vh) mimics proper viewport.
+      (function() {
+        function setVh() {
+          const vh = window.innerHeight * 0.01;
+          document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+        setVh();
+        window.addEventListener('resize', setVh);
+        window.addEventListener('orientationchange', function() { setTimeout(setVh, 250); });
+      })();
     </script>
   </head>
   <body>

@@ -54,7 +54,13 @@ const handleNavClick = (itemId) => {
       </svg>
     </button>
 
-    <div v-if="isMobileMenuOpen" class="mobile-nav" id="primary-mobile-menu" role="menu">
+    <div
+      class="mobile-nav"
+      :class="{ active: isMobileMenuOpen }"
+      v-show="isMobileMenuOpen"
+      id="primary-mobile-menu"
+      role="menu"
+    >
       <button
         v-for="item in NAVIGATION_ITEMS"
         :key="item.id"
@@ -325,91 +331,35 @@ const handleNavClick = (itemId) => {
   /* Mobile navigation overlay */
   .mobile-nav {
     position: fixed;
-    top: 5.5rem;
+    top: calc(env(safe-area-inset-top, 0px) + 4.5rem); /* account for notch + nav height */
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(-10px);
     width: 90%;
-    max-width: 320px;
+    max-width: 340px;
     background: rgba(0, 0, 0, 0.95);
     -webkit-backdrop-filter: blur(25px);
     backdrop-filter: blur(25px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    z-index: 999;
-    padding: 1.5rem;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 18px;
+    z-index: 1100; /* above nav */
+    padding: 1.5rem 1.25rem 1.25rem;
+    box-shadow: 0 18px 50px -10px rgba(0,0,0,0.6), 0 0 0 1px rgba(139,92,246,0.25);
     opacity: 0;
     visibility: hidden;
-    transform: translateX(-50%) translateY(-10px);
-    transition: all 0.3s ease;
+    transition: opacity .3s ease, transform .35s cubic-bezier(.4,0,.2,1), visibility .3s;
+    will-change: transform, opacity;
+    overflow-y: auto;
+    max-height: calc(100dvh - (env(safe-area-inset-top, 0px) + 6rem));
+    scrollbar-width: none;
   }
-
+  .mobile-nav::-webkit-scrollbar { display: none; }
   .mobile-nav.active {
     opacity: 1;
     visibility: visible;
     transform: translateX(-50%) translateY(0);
   }
-
-  .mobile-nav-link {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    padding: 1rem 1.25rem;
-    color: #d1d5db;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    margin-bottom: 0.5rem;
-    min-height: 52px;
-    text-align: left;
-    border: 1px solid transparent;
-    -webkit-tap-highlight-color: rgba(139, 92, 246, 0.3);
-    touch-action: manipulation;
-  }
-
-  .mobile-nav-link:hover,
-  .mobile-nav-link.active {
-    background: rgba(139, 92, 246, 0.2);
-    border-color: rgba(139, 92, 246, 0.3);
-    color: #fff;
-    transform: translateX(4px);
-    box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
-  }
-
-  .mobile-nav-link:active {
-    transform: translateX(4px) scale(0.98);
-  }
-
-  .mobile-nav-link:last-child {
-    margin-bottom: 0;
-  }
-
-  .mobile-nav-link::before {
-    display: none;
-  }
-
-  /* Mobile overlay background */
-  .mobile-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 998;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    -webkit-backdrop-filter: blur(2px);
-    backdrop-filter: blur(2px);
-  }
-
-  .mobile-overlay.active {
-    opacity: 1;
-    visibility: visible;
-  }
+  /* Improve tap targets inside mobile menu */
+  .mobile-nav-link { min-height: 48px; font-size: 15px; }
 }
 
 @media (max-width: 480px) {

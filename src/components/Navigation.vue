@@ -30,7 +30,8 @@ defineEmits(["scroll-to-section", "toggle-theme"]);
 <style scoped>
 .navigation {
   position: fixed;
-  top: 0.5rem;
+  /* Replace fixed top with safe-area aware calculation */
+  top: calc(env(safe-area-inset-top, 0px) + 0.5rem);
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -116,7 +117,7 @@ defineEmits(["scroll-to-section", "toggle-theme"]);
     backdrop-filter: blur(15px); /* Less blur on mobile for better transparency */
     background: rgba(0, 0, 0, 0.3); /* More transparent on mobile */
     width: 92%;
-    top: 0.3rem;
+    top: calc(env(safe-area-inset-top, 0px) + 0.3rem);
     justify-content: space-between;
     gap: 0.8rem;
   }
@@ -132,12 +133,19 @@ defineEmits(["scroll-to-section", "toggle-theme"]);
   .navigation {
     padding: 0.4rem 0.6rem;
     gap: 0.6rem;
-    top: 0.2rem;
+    top: calc(env(safe-area-inset-top, 0px) + 0.2rem);
     min-width: 280px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .navigation { animation: none !important; transform: translateX(-50%) !important; }
+}
+
+/* Support older iOS (constant()) syntax */
+@supports (top: constant(safe-area-inset-top)) {
+  .navigation { top: calc(constant(safe-area-inset-top) + 0.5rem); }
+  @media (max-width: 768px) { .navigation { top: calc(constant(safe-area-inset-top) + 0.3rem); } }
+  @media (max-width: 480px) { .navigation { top: calc(constant(safe-area-inset-top) + 0.2rem); } }
 }
 </style>
